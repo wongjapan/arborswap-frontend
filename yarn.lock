@@ -10,6 +10,19 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@arborswap/uikit@^0.49.1":
+  version "0.49.1"
+  resolved "https://registry.yarnpkg.com/@arborswap/uikit/-/uikit-0.49.1.tgz#13d4a32db0174d531e5209326f4ac85a065151b8"
+  integrity sha512-bJFAiMrDIJv7pVYDQjVvsVK7LZwV/Eu8NJenrRjiX8jLjCzc37X6sWDjgIUhB07f65wvjsICwSyrU7Wf3D89Zw==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -2037,18 +2050,6 @@
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
-
-"@pancakeswap/uikit@^0.49.1":
-  version "0.49.2"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/uikit/-/uikit-0.49.2.tgz#0f867a8e3a60f12611e6449ce2297f6d3646f5ab"
-  integrity sha512-x7xoIObwudNxX330g2tNDNgOqeOq9nQmO5GEJRe280+nq7qFQzuRG+VyAbPMY12UoVoSuMHL97XM87yIHnXK+A==
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    styled-system "^5.1.5"
 
 "@pedrouid/environment@^1.0.1":
   version "1.0.1"

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from '@pancakeswap/uikit'
+import { Box } from '@arborswap/uikit'
 
 const Card = styled(Box)<{
   width?: string
@@ -12,7 +12,7 @@ const Card = styled(Box)<{
   padding: 1.25rem;
   padding: ${({ padding }) => padding};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '10px'};
   background-color: ${({ theme }) => theme.colors.background};
 `
 export default Card
