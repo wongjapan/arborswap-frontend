@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Flex } from '@arborswap/uikit'
 import SubNav from 'components/Menu/SubNav'
 
+import TreeLogo from 'assets/images/tree-logo.png'
+
 const StyledPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@ const StyledPage = styled.div`
   padding: 16px;
   padding-bottom: 0;
   min-height: calc(100vh - 64px);
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: url(${TreeLogo}) no-repeat center center fixed;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;

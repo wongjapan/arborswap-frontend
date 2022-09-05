@@ -5,7 +5,9 @@ import { ButtonMenu, ButtonMenuItem } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
-  margin-bottom: 40px;
+  min-width: 436px;
+  /* width: 100%; */
+  /* margin-bottom: 40px; */
 `
 
 const getActiveIndex = (pathname: string): number => {
@@ -27,15 +29,15 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
+      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} fullWidth scale="md" variant="primary">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
         </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
+        <ButtonMenuItem id="pool-nav-link" to="/liquidity" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
-          {t('Liquidity')}
+        <ButtonMenuItem id="pool-nav-links" to="/pool" as={Link}>
+          {t('Limit Order')}
         </ButtonMenuItem>
       </ButtonMenu>
     </StyledNav>
