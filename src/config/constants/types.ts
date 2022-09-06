@@ -154,6 +154,11 @@ export type PageMeta = {
   description?: string
   image?: string
 }
+export type PageBreadcrumb = {
+  title: string
+  subtitle?: string
+  description?: string
+}
 
 export enum LotteryStatus {
   PENDING = 'pending',
