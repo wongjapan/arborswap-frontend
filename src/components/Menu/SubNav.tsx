@@ -5,7 +5,10 @@ import { ButtonMenu, ButtonMenuItem } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
-  min-width: 436px;
+  width: 436px;
+  @media (max-width: 470px) {
+    width: 100%;
+  }
   /* width: 100%; */
   /* margin-bottom: 40px; */
 `
