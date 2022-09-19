@@ -6,12 +6,14 @@ import { Text } from '@arborswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
+import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 export interface FarmProps {
   label: string
   pid: number
   token: Token
   quoteToken: Token
+  details?: string
 }
 
 const Container = styled.div`
@@ -55,10 +57,11 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
       <TokenWrapper>
         <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       </TokenWrapper>
-      <div>
+      <div style={{ paddingRight: '10px' }}>
         {handleRenderFarming()}
         <Text bold>{label}</Text>
-      </div>
+      </div>{' '}
+      <CommunityTag />
     </Container>
   )
 }

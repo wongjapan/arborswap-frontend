@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { useFarmUser } from 'state/farms/hooks'
 
+import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
@@ -22,6 +23,7 @@ export interface RowProps {
   earned: EarnedProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
+  type: 'core' | 'community'
   details: FarmWithStakedValue
 }
 
@@ -100,6 +102,16 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
             }
 
             switch (key) {
+              case 'type':
+                return (
+                  <td key={key}>
+                    <CellInner style={{ width: '140px' }}>
+                      {props[key] === 'community' ? <CommunityTag scale="sm" /> : <CoreTag scale="sm" />}
+                      <CommunityTag />
+                      {/* {props?.details?.boosted ? <BoostedTag scale="sm" ml="16px" /> : null} */}
+                    </CellInner>
+                  </td>
+                )
               case 'details':
                 return (
                   <td key={key}>
