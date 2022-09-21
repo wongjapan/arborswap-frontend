@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@arborswap/uikit'
+import { ButtonTabs, ButtonTabsItem } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
@@ -32,17 +32,17 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} fullWidth scale="md" variant="primary">
-        <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
+      <ButtonTabs activeIndex={getActiveIndex(location.pathname)} fullWidth scale="md" variant="primary">
+        <ButtonTabsItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
-        </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-link" to="/liquidity" as={Link}>
+        </ButtonTabsItem>
+        <ButtonTabsItem id="pool-nav-link" to="/liquidity" as={Link}>
           {t('Liquidity')}
-        </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-links" to="/pool" as={Link}>
+        </ButtonTabsItem>
+        <ButtonTabsItem id="pool-nav-links" to="/pool" as={Link}>
           {t('Limit Order')}
-        </ButtonMenuItem>
-      </ButtonMenu>
+        </ButtonTabsItem>
+      </ButtonTabs>
     </StyledNav>
   )
 }

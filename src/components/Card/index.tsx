@@ -11,7 +11,7 @@ const Card = styled(Box)<{
   padding: 1.25rem;
   padding: ${({ padding }) => padding};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius ?? '10px'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '0  0 10px 10px'};
   background-color: ${({ theme }) => theme.colors.background};
 `
 export default Card

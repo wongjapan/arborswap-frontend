@@ -22,10 +22,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@arborswap/uikit@^0.49.9":
-  version "0.49.9"
-  resolved "https://registry.yarnpkg.com/@arborswap/uikit/-/uikit-0.49.9.tgz#e096173967a994fd59a457c2776e576c67b7a85e"
-  integrity sha512-Y9F/W9Rs4TZAXv1vWEXaVYh9/5d1a6SDu4LGpcPYnGdTPNMlbGDGEgDjZjmz+uEARDKfbhyozlsYwZvaNXOANA==
+"@arborswap/uikit@^0.50.0":
+  version "0.50.0"
+  resolved "https://registry.yarnpkg.com/@arborswap/uikit/-/uikit-0.50.0.tgz#83915431bf9d2833716efb5a525b3347030a75ca"
+  integrity sha512-qBZAVn+EZgkISBNFzg6QFaQq9PuC/23oSV+ViKX3VtPYi52gw5/l+74Fh1Qt2I3wPRkN3nZchpPRJI8YCO/sCQ==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
