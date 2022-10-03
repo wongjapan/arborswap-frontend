@@ -20,8 +20,8 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         href: '/pool',
       },
       {
-        label: t('Auction'),
-        href: '/farms/auction',
+        label: t('Limit Orders'),
+        href: '/pool',
       },
     ],
   },
