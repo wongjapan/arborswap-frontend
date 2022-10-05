@@ -27,6 +27,13 @@ const StyledTableBorder = styled.div`
   background-size: 400% 400%;
 `
 
+const StyledTableFlex = styled.div`
+  /* border-radius: ${({ theme }) => theme.radii.card};
+  background-color: ${({ theme }) => theme.colors.cardBorder}; */
+  padding: 1px 1px 3px 1px;
+  background-size: 400% 400%;
+`
+
 const ScrollButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -43,7 +50,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
     })
   }
   return (
-    <StyledTableBorder>
+    <StyledTableFlex>
       <StyledTable role="table" ref={tableWrapperEl}>
         {pools.map((pool) => (
           <PoolRow
@@ -60,7 +67,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
           </Button>
         </ScrollButtonContainer>
       </StyledTable>
-    </StyledTableBorder>
+    </StyledTableFlex>
   )
 }
 

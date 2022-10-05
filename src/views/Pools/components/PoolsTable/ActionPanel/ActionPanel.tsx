@@ -67,7 +67,8 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   padding: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    flex-direction: row;
+    flex-direction: column;
+    /* flex-direction: row; */
     padding: 16px 32px;
   }
 `
@@ -245,7 +246,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   return (
     <StyledActionPanel expanded={expanded}>
-      <InfoSection>
+      {/* <InfoSection>
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
@@ -288,7 +289,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         <span ref={tagTargetRef}>
           <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
         </span>
-      </InfoSection>
+      </InfoSection> */}
       <ActionContainer>
         {showSubtitle && (
           <Text mt="4px" mb="16px" color="textSubtle">

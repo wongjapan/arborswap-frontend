@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useMatchBreakpoints } from '@arborswap/uikit'
+import { Flex, useMatchBreakpoints } from '@arborswap/uikit'
 import { Pool } from 'state/types'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import NameCell from './Cells/NameCell'
@@ -37,27 +37,29 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
 
   return (
     <>
-      <StyledRow role="row" onClick={toggleExpanded}>
-        <NameCell pool={pool} />
-        {pool.isAutoVault ? (
-          <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
-        ) : (
-          <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+      <Flex flexDirection="column" maxWidth="470px" width="100%">
+        <StyledRow role="row" onClick={toggleExpanded}>
+          <NameCell pool={pool} />
+          {/* {pool.isAutoVault ? (
+            <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+          ) : (
+            <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+          )} */}
+          {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
+          {/* {isLargerScreen && <TotalStakedCell pool={pool} />} */}
+          {isDesktop && <EndsInCell pool={pool} />}
+          <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
+        </StyledRow>
+        {shouldRenderActionPanel && (
+          <ActionPanel
+            account={account}
+            pool={pool}
+            userDataLoaded={userDataLoaded}
+            expanded={expanded}
+            breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }}
+          />
         )}
-        {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-        {isLargerScreen && <TotalStakedCell pool={pool} />}
-        {isDesktop && <EndsInCell pool={pool} />}
-        <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
-      </StyledRow>
-      {shouldRenderActionPanel && (
-        <ActionPanel
-          account={account}
-          pool={pool}
-          userDataLoaded={userDataLoaded}
-          expanded={expanded}
-          breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }}
-        />
-      )}
+      </Flex>
     </>
   )
 }
