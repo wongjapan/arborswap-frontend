@@ -9,6 +9,9 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
+  border-radius: 6px;
+  padding: 5px 10px !important;
+  background-color: ${({ theme }) => theme.colors.background};
 
   ${Text} {
     margin-left: 8px;
@@ -61,11 +64,11 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
     <Wrapper>
       <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
-          {t('Live')}
+          {t('Active')}
         </ButtonMenuItem>
         <NotificationDot show={hasStakeInFinishedPools}>
           <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {t('Finished')}
+            {t('Inactive')}
           </ButtonMenuItem>
         </NotificationDot>
       </ButtonMenu>
@@ -81,9 +84,9 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   return (
     <ViewControls>
-      {viewModeToggle}
-      {stakedOnlySwitch}
+      {/* {viewModeToggle} */}
       {liveOrFinishedSwitch}
+      {stakedOnlySwitch}
     </ViewControls>
   )
 }
