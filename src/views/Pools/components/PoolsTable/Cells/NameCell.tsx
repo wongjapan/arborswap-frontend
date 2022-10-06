@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { TokenPairImage } from 'components/TokenImage'
+import { TokenImage } from 'components/TokenImage'
 import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
 
@@ -53,13 +53,14 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     title = t('Manual CAKE')
     subtitle = `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`
   }
+  const src = `https://pancakeswap.finance/images/tokens/${earningToken.address[56]}.svg`
 
   return (
     <StyledCell role="cell">
       {isAutoVault ? (
         <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
       ) : (
-        <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
+        <TokenImage token={earningToken} title={earningTokenSymbol} src={src} mr="8px" width={40} height={40} />
       )}
       <CellContent>
         {showStakedTag && (
