@@ -20,8 +20,16 @@ interface PoolRowProps {
 }
 
 const StyledRow = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 6px;
+  width: 100%;
+  max-width: 470px;
   display: flex;
+  cursor: pointer;
+`
+const StyledGrid = styled.div`
+  width: 100%;
+  max-width: 470px;
   cursor: pointer;
 `
 
@@ -36,31 +44,29 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
   }
 
   return (
-    <>
-      <Flex flexDirection="column" maxWidth="470px" width="100%">
-        <StyledRow role="row" onClick={toggleExpanded}>
-          <NameCell pool={pool} />
-          {/* {pool.isAutoVault ? (
+    <StyledGrid>
+      <StyledRow role="row" onClick={toggleExpanded}>
+        <NameCell pool={pool} />
+        {/* {pool.isAutoVault ? (
             <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
           ) : (
             <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
           )} */}
-          {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-          {/* {isLargerScreen && <TotalStakedCell pool={pool} />} */}
-          {isDesktop && <EndsInCell pool={pool} />}
-          <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
-        </StyledRow>
-        {shouldRenderActionPanel && (
-          <ActionPanel
-            account={account}
-            pool={pool}
-            userDataLoaded={userDataLoaded}
-            expanded={expanded}
-            breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }}
-          />
-        )}
-      </Flex>
-    </>
+        {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
+        {/* {isLargerScreen && <TotalStakedCell pool={pool} />} */}
+        {isDesktop && <EndsInCell pool={pool} />}
+        <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
+      </StyledRow>
+      {shouldRenderActionPanel && (
+        <ActionPanel
+          account={account}
+          pool={pool}
+          userDataLoaded={userDataLoaded}
+          expanded={expanded}
+          breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }}
+        />
+      )}
+    </StyledGrid>
   )
 }
 

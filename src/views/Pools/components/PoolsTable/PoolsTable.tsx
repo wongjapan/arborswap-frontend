@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@arborswap/uikit'
+import { Button, ChevronUpIcon, Flex } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -12,12 +12,17 @@ interface PoolsTableProps {
 }
 
 const StyledTable = styled.div`
-  border-radius: ${({ theme }) => theme.radii.card};
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  /* border-radius: ${({ theme }) => theme.radii.card}; */
 
-  background-color: ${({ theme }) => theme.card.background};
+  /* background-color: ${({ theme }) => theme.card.background};
   > div:not(:last-child) {
     border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
-  }
+  } */
 `
 
 const StyledTableBorder = styled.div`
@@ -30,8 +35,8 @@ const StyledTableBorder = styled.div`
 const StyledTableFlex = styled.div`
   /* border-radius: ${({ theme }) => theme.radii.card};
   background-color: ${({ theme }) => theme.colors.cardBorder}; */
-  padding: 1px 1px 3px 1px;
-  background-size: 400% 400%;
+  padding: 1px;
+  /* background-size: 400% 400%; */
 `
 
 const ScrollButtonContainer = styled.div`
@@ -50,24 +55,26 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
     })
   }
   return (
-    <StyledTableFlex>
-      <StyledTable role="table" ref={tableWrapperEl}>
-        {pools.map((pool) => (
-          <PoolRow
-            key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
-            pool={pool}
-            account={account}
-            userDataLoaded={userDataLoaded}
-          />
-        ))}
-        <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {t('To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
-        </ScrollButtonContainer>
-      </StyledTable>
-    </StyledTableFlex>
+    <Flex flexDirection="column">
+      <StyledTableFlex>
+        <StyledTable role="table" ref={tableWrapperEl}>
+          {pools.map((pool) => (
+            <PoolRow
+              key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
+              pool={pool}
+              account={account}
+              userDataLoaded={userDataLoaded}
+            />
+          ))}
+        </StyledTable>
+      </StyledTableFlex>
+      <ScrollButtonContainer>
+        <Button variant="text" onClick={scrollToTop}>
+          {t('To Top')}
+          <ChevronUpIcon color="primary" />
+        </Button>
+      </ScrollButtonContainer>
+    </Flex>
   )
 }
 

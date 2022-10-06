@@ -65,6 +65,8 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   flex-direction: column-reverse;
   justify-content: center;
   padding: 12px;
+  width: 100%;
+  max-width: 470px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: column;
@@ -78,7 +80,7 @@ const ActionContainer = styled.div`
   flex-direction: column;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
+    /* flex-direction: row; */
     align-items: center;
     flex-grow: 1;
     flex-basis: 0;
