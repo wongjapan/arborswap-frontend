@@ -14,7 +14,7 @@ interface PoolsTableProps {
 const StyledTable = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
   /* justify-content: space-between; */
   flex-wrap: wrap;
   /* border-radius: ${({ theme }) => theme.radii.card}; */
