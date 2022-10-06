@@ -60,11 +60,13 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.dropdown};
+  background: ${({ theme }) => theme.colors.background};
+  margin-top: -10px;
+  border-radius: 0 0 6px 6px;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
-  padding: 12px;
+  padding: 22px 12px 12px 12px;
   width: 100%;
   max-width: 470px;
 
