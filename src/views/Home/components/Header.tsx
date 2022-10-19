@@ -1,7 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
+import {
+  Flex,
+  Heading,
+  Text,
+  LinkExternal,
+  Button,
+  DashboardIcon,
+  SubMenu,
+  SubMenuItem,
+  Grid,
+  Box,
+} from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 import FooterBg from '../assets/header-bg.png'
@@ -14,6 +25,7 @@ const Wrapper = styled(Flex)`
   min-height: 1200px;
   background: url(${FooterBg});
   background-size: cover;
+  flex-direction: column;
 `
 const InnerWrapper = styled(Flex)`
   width: 1200px;
@@ -39,15 +51,6 @@ const StyledNav = styled.nav`
   padding-right: 16px;
 `
 
-const NavLink = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
-  }
-`
-
 const Logos = styled.a`
   list-style-type: none;
   display: flex;
@@ -61,12 +64,17 @@ const Logos = styled.a`
   margin-left: 20px;
 `
 
-const WrapperInner = styled(Flex)`
+const StatsWrapper = styled.div`
   position: relative;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
+  width: 830px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  padding: 20px;
+  margin: 600px auto 0 auto;
+  background: rgba(68, 54, 20, 0.08);
+  box-shadow: inset 11.9333px -11.9333px 11.9333px rgba(200, 156, 52, 0.08),
+    inset -11.9333px 11.9333px 11.9333px rgba(200, 156, 52, 0.08);
+  backdrop-filter: blur(6.5px);
 `
 const FirstColumn = styled(Flex)`
   position: relative;
@@ -112,6 +120,22 @@ const Header = () => {
             <Button startIcon={<DashboardIcon color="#FFFFFF" />}>Launch APP</Button>
           </StyledNav>
         </InnerWrapper>
+        <StatsWrapper>
+          <Grid justifyItems="center" alignContent="center" gridTemplateColumns="1fr 1fr" gridColumnGap="16px">
+            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
+              Total Trading Volume
+            </Box>
+            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
+              Total Value Locked
+            </Box>
+            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
+              Total Projects Launched
+            </Box>
+            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
+              Total Tickets Won
+            </Box>
+          </Grid>
+        </StatsWrapper>
       </Wrapper>
     </>
   )

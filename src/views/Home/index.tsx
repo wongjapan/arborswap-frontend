@@ -5,6 +5,7 @@ import useTheme from 'hooks/useTheme'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import PopularPool from './components/PopularPool'
+
 import TrendingNft from './components/TrendingNft'
 import FeaturedIdo from './components/FeaturedIdo'
 
