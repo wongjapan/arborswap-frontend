@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Link } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import Container from 'components/Layout/Container'
 
 import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
@@ -10,11 +9,46 @@ import Logo from '../assets/logo.svg'
 const Wrapper = styled(Flex)`
   z-index: 1;
   position: relative;
-  padding-top: 166px;
+  padding-top: 36px;
   overflow: hidden;
-  min-height: 666px;
+  min-height: 1200px;
   background: url(${FooterBg});
   background-size: cover;
+`
+
+const StyledNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  transform: translate3d(0, 0, 0);
+
+  padding-left: 16px;
+  padding-right: 16px;
+`
+
+const NavLink = styled.a`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    margin: 0px 10px;
+  }
+`
+
+const Logos = styled.a`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    margin: 0px 10px;
+  }
+  display: inline-block;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-left: 20px;
 `
 
 const WrapperInner = styled(Flex)`
@@ -35,19 +69,25 @@ const Header = () => {
   return (
     <>
       <Wrapper>
-        <Container>
-          <WrapperInner>
-            <FirstColumn>
-              <img src={Logo} alt="white" width="260px" />
-              <Text textAlign="left" color="white" marginTop="64px">
-                Want to join Arbor on this new Journey?
-              </Text>
-            </FirstColumn>
-            <Text textAlign="center" color="white">
+        <StyledNav>
+          <Logos href="#">
+            <img src={Logo} alt="logo" />
+          </Logos>
+          <Flex alignItems="center" height="100%" justifyContent="center">
+            <Text textAlign="left" color="white">
               Products
             </Text>
-          </WrapperInner>
-        </Container>
+            <Text textAlign="left" color="white">
+              RBA Token
+            </Text>
+            <Text textAlign="left" color="white">
+              Community
+            </Text>
+            <Text textAlign="left" color="white">
+              About
+            </Text>
+          </Flex>
+        </StyledNav>
       </Wrapper>
     </>
   )
