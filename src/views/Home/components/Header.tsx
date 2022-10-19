@@ -4,8 +4,8 @@ import { Flex, Heading, Text, Link } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Container from 'components/Layout/Container'
 
-import FooterBg from '../assets/footer-bg.png'
-import LogoWhite from '../assets/logo-white.svg'
+import FooterBg from '../assets/header-bg.png'
+import Logo from '../assets/logo.svg'
 
 const Wrapper = styled(Flex)`
   z-index: 1;
@@ -30,7 +30,7 @@ const FirstColumn = styled(Flex)`
   flex-direction: column;
 `
 
-const Footer = () => {
+const Header = () => {
   const { t } = useTranslation()
   return (
     <>
@@ -38,7 +38,7 @@ const Footer = () => {
         <Container>
           <WrapperInner>
             <FirstColumn>
-              <img src={LogoWhite} alt="white" width="260px" />
+              <img src={Logo} alt="white" width="260px" />
               <Text textAlign="left" color="white" marginTop="64px">
                 Want to join Arbor on this new Journey?
               </Text>
@@ -53,4 +53,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Header
