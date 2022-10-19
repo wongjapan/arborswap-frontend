@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text, Link } from '@arborswap/uikit'
+import { BrowserRouter, Link } from 'react-router-dom'
+import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 import FooterBg from '../assets/header-bg.png'
@@ -10,10 +11,20 @@ const Wrapper = styled(Flex)`
   z-index: 1;
   position: relative;
   padding-top: 36px;
-  overflow: hidden;
   min-height: 1200px;
   background: url(${FooterBg});
   background-size: cover;
+`
+const InnerWrapper = styled(Flex)`
+  width: 1200px;
+  margin: 0 auto;
+`
+
+const MenuWrapper = styled(Flex)`
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 `
 
 const StyledNav = styled.nav`
@@ -24,7 +35,6 @@ const StyledNav = styled.nav`
   height: 50px;
   background-color: transparent;
   transform: translate3d(0, 0, 0);
-
   padding-left: 16px;
   padding-right: 16px;
 `
@@ -69,25 +79,39 @@ const Header = () => {
   return (
     <>
       <Wrapper>
-        <StyledNav>
-          <Logos href="#">
-            <img src={Logo} alt="logo" />
-          </Logos>
-          <Flex alignItems="center" height="100%" justifyContent="center">
-            <Text textAlign="left" color="white">
-              Products
-            </Text>
-            <Text textAlign="left" color="white">
-              RBA Token
-            </Text>
-            <Text textAlign="left" color="white">
-              Community
-            </Text>
-            <Text textAlign="left" color="white">
-              About
-            </Text>
-          </Flex>
-        </StyledNav>
+        <InnerWrapper>
+          <StyledNav>
+            <Logos href="#">
+              <img src={Logo} alt="logo" />
+            </Logos>
+            <MenuWrapper>
+              <SubMenu
+                component={
+                  <Text textAlign="left" color="white">
+                    Products
+                  </Text>
+                }
+              >
+                <SubMenuItem as={Link} to="/swap">
+                  Oke
+                </SubMenuItem>
+                <SubMenuItem as={LinkExternal} href="https://bscscan.com" bold={false} color="text">
+                  Okes
+                </SubMenuItem>
+              </SubMenu>
+              <Text textAlign="left" color="white">
+                RBA Token
+              </Text>
+              <Text textAlign="left" color="white">
+                Community
+              </Text>
+              <Text textAlign="left" color="white">
+                About
+              </Text>
+            </MenuWrapper>
+            <Button startIcon={<DashboardIcon color="#FFFFFF" />}>Launch APP</Button>
+          </StyledNav>
+        </InnerWrapper>
       </Wrapper>
     </>
   )
