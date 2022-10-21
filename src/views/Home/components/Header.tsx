@@ -17,6 +17,7 @@ import { useTranslation } from 'contexts/Localization'
 
 import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
+import Dividers from '../assets/dividers.png'
 
 const Wrapper = styled(Flex)`
   z-index: 1;
@@ -64,22 +65,33 @@ const Logos = styled.a`
   margin-left: 20px;
 `
 
-const StatsWrapper = styled.div`
+const StatsWrapper = styled(Flex)`
   position: relative;
-  width: 830px;
+  flex-wrap: wrap;
   border-radius: 10px;
   border: 1px solid #ffffff;
-  padding: 20px;
+  padding: 35px;
   margin: 600px auto 0 auto;
   background: rgba(68, 54, 20, 0.08);
   box-shadow: inset 11.9333px -11.9333px 11.9333px rgba(200, 156, 52, 0.08),
     inset -11.9333px 11.9333px 11.9333px rgba(200, 156, 52, 0.08);
   backdrop-filter: blur(6.5px);
 `
-const FirstColumn = styled(Flex)`
+
+const InnerStatsWrapper = styled(Flex)`
   position: relative;
-  width: 500px;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  height: 270px;
+  background-image: url(${Dividers});
+  background-size: cover;
+`
+const StatsColumn = styled(Flex)`
+  position: relative;
+  width: 380px;
+  flex-direction: row;
 `
 
 const Header = () => {
@@ -121,20 +133,28 @@ const Header = () => {
           </StyledNav>
         </InnerWrapper>
         <StatsWrapper>
-          <Grid justifyItems="center" alignContent="center" gridTemplateColumns="1fr 1fr" gridColumnGap="16px">
-            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
-              Total Trading Volume
-            </Box>
-            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
-              Total Value Locked
-            </Box>
-            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
-              Total Projects Launched
-            </Box>
-            <Box as="p" style={{ color: '#A69F9F', padding: '50px' }}>
-              Total Tickets Won
-            </Box>
-          </Grid>
+          <InnerStatsWrapper>
+            <StatsColumn>
+              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
+                Total Trading Volume
+              </Box>
+            </StatsColumn>
+            <StatsColumn>
+              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
+                Total Value Locked
+              </Box>
+            </StatsColumn>
+            <StatsColumn>
+              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
+                Total Projects Launched
+              </Box>
+            </StatsColumn>
+            <StatsColumn>
+              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
+                Total Tickets Won
+              </Box>
+            </StatsColumn>
+          </InnerStatsWrapper>
         </StatsWrapper>
       </Wrapper>
     </>
