@@ -73,6 +73,24 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
   },
+  f4h: {
+    symbol: 'F4H',
+    address: {
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+      97: '0x21f0bB168a2C2128EB8B42283B33233ea47dB1B4',
+    },
+    decimals: 18,
+    projectLink: 'https://fight4hope.io/',
+  },
+  rba: {
+    symbol: 'RBA',
+    address: {
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+      97: '0x430EA547076C0051B252b1ab1ef83cd83F2D1aB4',
+    },
+    decimals: 18,
+    projectLink: 'https://roburna.com/',
+  },
   pha: {
     symbol: 'PHA',
     address: {
