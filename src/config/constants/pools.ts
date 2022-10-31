@@ -8,7 +8,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.f4h,
     contractAddress: {
       97: '0xA21F1bE7C9238D1FD2dD188930feFff425a806BA',
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      56: '0xA21F1bE7C9238D1FD2dD188930feFff425a806BA',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -22,7 +22,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.f4h,
     contractAddress: {
       97: '0xA21F1bE7C9238D1FD2dD188930feFff425a806BA',
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      56: '0xA21F1bE7C9238D1FD2dD188930feFff425a806BA',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
