@@ -17,7 +17,7 @@ const StyledCell = styled(BaseCell)`
   padding-right: 12px;
   padding-left: 0px;
   ${({ theme }) => theme.mediaQueries.md} {
-    flex: 0 0 120px;
+    flex: 0 0 24px;
     padding-right: 32px;
     padding-left: 8px;
   }
@@ -32,11 +32,6 @@ const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayo
   const { t } = useTranslation()
   return (
     <StyledCell role="cell">
-      {isFullLayout && (
-        <Text color="primary" bold>
-          {expanded ? t('Hide') : t('Details')}
-        </Text>
-      )}
       <ArrowIcon color="primary" toggled={expanded} />
     </StyledCell>
   )
