@@ -54,9 +54,9 @@ const FarmsPoolsRow = () => {
       return t('Auto CAKE')
     }
 
-    if (pool.sousId === 0) {
-      return t('Manual CAKE')
-    }
+    // if (pool.sousId === 0) {
+    //   return t('Manual CAKE')
+    // }
 
     return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
       earningSymbol: pool.earningToken.symbol,

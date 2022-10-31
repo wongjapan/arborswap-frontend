@@ -49,10 +49,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   if (isAutoVault) {
     title = t('Auto CAKE')
     subtitle = t('Automatic restaking')
-  } else if (isManualCakePool) {
-    title = t('Manual CAKE')
-    subtitle = `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`
   }
+
   const src = `https://pancakeswap.finance/images/tokens/${earningToken.address[56]}.svg`
 
   return (
