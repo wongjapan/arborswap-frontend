@@ -4,13 +4,13 @@ import { Flex, useMatchBreakpoints } from '@arborswap/uikit'
 import { Pool } from 'state/types'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import NameCell from './Cells/NameCell'
-import EarningsCell from './Cells/EarningsCell'
+// import EarningsCell from './Cells/EarningsCell'
 import AprCell from './Cells/AprCell'
-import TotalStakedCell from './Cells/TotalStakedCell'
+// import TotalStakedCell from './Cells/TotalStakedCell'
 import EndsInCell from './Cells/EndsInCell'
 import ExpandActionCell from './Cells/ExpandActionCell'
 import ActionPanel from './ActionPanel/ActionPanel'
-import AutoEarningsCell from './Cells/AutoEarningsCell'
+// import AutoEarningsCell from './Cells/AutoEarningsCell'
 import AutoAprCell from './Cells/AutoAprCell'
 
 interface PoolRowProps {
@@ -35,7 +35,6 @@ const StyledGrid = styled.div`
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
   const { isXs, isSm, isMd, isLg, isXl, isXxl, isTablet, isDesktop } = useMatchBreakpoints()
-  const isLargerScreen = isLg || isXl || isXxl
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
 

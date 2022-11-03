@@ -129,7 +129,9 @@ const Header = () => {
                 About
               </Text>
             </MenuWrapper>
-            <Button startIcon={<DashboardIcon color="#FFFFFF" />}>Launch APP</Button>
+            <Button as={Link} to="/swap" startIcon={<DashboardIcon color="#FFFFFF" />}>
+              Launch APP
+            </Button>
           </StyledNav>
         </InnerWrapper>
         <StatsWrapper>
