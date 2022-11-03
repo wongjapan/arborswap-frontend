@@ -1,8 +1,8 @@
 {
   "short_name": "ArborSwap",
   "name": "ArborSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "description": "ArborSwap is the all-in-one platform to bring your DeFi vision to life",
+  "homepage_url": "https://arborswap.org",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",
