@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Link, Skeleton, Text, TimerIcon } from '@arborswap/uikit'
-import { getBscScanLink } from 'utils'
 import { Pool } from 'state/types'
 import { useBlock } from 'state/block/hooks'
 import Balance from 'components/Balance'
@@ -18,7 +17,7 @@ const StyledCell = styled(BaseCell)`
 `
 
 const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
-  const { lockTime } = pool
+  const { lockTime, isLock } = pool
   const { t } = useTranslation()
 
   return (
@@ -27,7 +26,9 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Duration (Days)')}
         </Text>
-        {lockTime}
+        <Text fontSize="14px" fontWeight="700">
+          {isLock ? lockTime : '-'}
+        </Text>
       </CellContent>
     </StyledCell>
   )
