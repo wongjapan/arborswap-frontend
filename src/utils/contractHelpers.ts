@@ -42,6 +42,8 @@ import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
+import normalStake from 'config/abi/normalStake.json'
+import lockStake from 'config/abi/lockStake.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
@@ -77,11 +79,18 @@ export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ether
 export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV2Abi, address, signer)
 }
-export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+export const getSouschefContractBackup = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
   return getContract(abi, getAddress(config.contractAddress), signer)
 }
+
+export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const config = poolsConfig.find((pool) => pool.sousId === id)
+  const abi = config.isLock ? lockStake : normalStake
+  return getContract(abi, getAddress(config.contractAddress), signer)
+}
+
 export const getSouschefV2Contract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   return getContract(sousChefV2, getAddress(config.contractAddress), signer)

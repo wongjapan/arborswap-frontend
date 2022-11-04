@@ -3,7 +3,7 @@ import { PoolConfig, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
   {
-    sousId: 0,
+    sousId: 1,
     stakingToken: tokens.f4h,
     earningToken: tokens.f4h,
     contractAddress: {
@@ -19,7 +19,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
-    sousId: 1,
+    sousId: 2,
     stakingToken: tokens.f4h,
     earningToken: tokens.f4h,
     contractAddress: {
@@ -32,7 +32,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     rate: 10,
     tokenPerBlock: '10',
-    sortOrder: 2,
+    sortOrder: 1,
     isFinished: false,
   },
 ]

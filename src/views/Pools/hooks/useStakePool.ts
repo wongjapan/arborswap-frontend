@@ -15,7 +15,7 @@ const options = {
 
 const sousStake = async (sousChefContract, amount, decimals = 18) => {
   const gasPrice = getGasPrice()
-  const tx = await sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
+  const tx = await sousChefContract.stake(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
     ...options,
     gasPrice,
   })
@@ -36,22 +36,16 @@ const sousStakeBnb = async (sousChefContract, amount) => {
 const useStakePool = (sousId: number, isUsingBnb = false) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
 
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
-      if (sousId === 0) {
-        await stakeFarm(masterChefContract, 0, amount)
-      } else if (isUsingBnb) {
-        await sousStakeBnb(sousChefContract, amount)
-      } else {
-        await sousStake(sousChefContract, amount, decimals)
-      }
+      await sousStake(sousChefContract, amount, decimals)
+
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
     },
-    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, sousChefContract, sousId],
   )
 
   return { onStake: handleStake }
