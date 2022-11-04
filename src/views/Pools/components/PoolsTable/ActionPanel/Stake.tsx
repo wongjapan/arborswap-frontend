@@ -30,17 +30,8 @@ interface StackedActionProps {
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoaded }) => {
-  const {
-    sousId,
-    stakingToken,
-    earningToken,
-    stakingLimit,
-    isFinished,
-    poolCategory,
-    userData,
-    stakingTokenPrice,
-    isAutoVault,
-  } = pool
+  const { sousId, stakingToken, earningToken, isFinished, poolCategory, userData, stakingTokenPrice, isAutoVault } =
+    pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
@@ -129,7 +120,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     { placement: 'bottom' },
   )
 
-  const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
+  const reachStakingLimit = false
 
   if (!account) {
     return (

@@ -25,7 +25,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData } = pool
+  const { stakingToken, stakingTokenPrice, isFinished, userData } = pool
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
@@ -59,7 +59,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     { placement: 'bottom' },
   )
 
-  const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
+  const reachStakingLimit = false
 
   const renderStakeAction = () => {
     return isStaked ? (

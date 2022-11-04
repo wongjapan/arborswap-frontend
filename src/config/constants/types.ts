@@ -73,6 +73,7 @@ export interface PoolConfig {
   contractAddress: Address
   poolCategory: PoolCategory
   tokenPerBlock: string
+  isLock?: boolean
   rate?: number
   lockTime?: number
   sortOrder?: number

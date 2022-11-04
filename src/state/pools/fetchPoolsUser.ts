@@ -1,8 +1,8 @@
 import poolsConfig from 'config/constants/pools'
-import sousChefABI from 'config/abi/sousChef.json'
+import normalStakeABI from 'config/abi/normalStake.json'
+import lockStakeABI from 'config/abi/lockStake.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import { getMasterchefContract } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
@@ -12,7 +12,8 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const masterChefContract = getMasterchefContract()
+const lockPools = poolsConfig.filter((p) => p.isLock === true)
+const normalPools = poolsConfig.filter((p) => p.isLock !== true)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -54,11 +55,20 @@ export const fetchUserBalances = async (account) => {
 export const fetchUserStakeBalances = async (account) => {
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'userInfo',
+    name: 'staker',
     params: [account],
   }))
-  const userInfo = await multicall(sousChefABI, calls)
-  const stakedBalances = nonMasterPools.reduce(
+  const userInfo = await multicall(normalStakeABI, calls)
+  const userLockInfo = await multicall(lockStakeABI, calls)
+  const lockStakedBalances = lockPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userLockInfo[index].amount._hex).toJSON(),
+    }),
+    {},
+  )
+
+  const stakedBalances = normalPools.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(userInfo[index].amount._hex).toJSON(),
@@ -66,29 +76,34 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  // Cake / Cake pool
-  const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
-
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount.toString()).toJSON() }
+  return { ...stakedBalances, ...lockStakedBalances }
 }
 
 export const fetchUserPendingRewards = async (account) => {
   const calls = nonMasterPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'pendingReward',
+    name: 'getTotalRewards',
     params: [account],
   }))
-  const res = await multicall(sousChefABI, calls)
-  const pendingRewards = nonMasterPools.reduce(
+
+  const res = await multicall(normalStakeABI, calls)
+
+  const pendingRewards = normalPools.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(res[index]).toJSON(),
     }),
     {},
   )
+  const resLock = await multicall(lockStakeABI, calls)
 
-  // Cake / Cake pool
-  const pendingReward = await masterChefContract.pendingCake('0', account)
+  const pendingLockRewards = lockPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(resLock[index]).toJSON(),
+    }),
+    {},
+  )
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
+  return { ...pendingRewards, ...pendingLockRewards }
 }

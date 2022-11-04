@@ -46,17 +46,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     fees: { performanceFee },
   } = useCakeVault()
 
-  const {
-    stakingToken,
-    earningToken,
-    totalStaked,
-    startBlock,
-    endBlock,
-    stakingLimit,
-    contractAddress,
-    sousId,
-    isAutoVault,
-  } = pool
+  const { stakingToken, earningToken, totalStaked, contractAddress, sousId, isAutoVault } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
@@ -64,8 +54,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const isManualCakePool = sousId === 0
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
-    getPoolBlockInfo(pool, currentBlock)
+  const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
@@ -109,43 +98,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           {totalStakedTooltipVisible && totalStakedTooltip}
         </Flex>
       </Flex>
-      {stakingLimit && stakingLimit.gt(0) && (
-        <Flex mb="2px" justifyContent="space-between">
-          <Text small>{t('Max. stake per user')}:</Text>
-          <Text small>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
-        </Flex>
-      )}
-      {shouldShowBlockCountdown && (
-        <Flex mb="2px" justifyContent="space-between" alignItems="center">
-          <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
-          {blocksRemaining || blocksUntilStart ? (
-            <Flex alignItems="center">
-              <Link external href={getBscScanLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
-                <Balance small value={blocksToDisplay} decimals={0} color="primary" />
-                <Text small ml="4px" color="primary" textTransform="lowercase">
-                  {t('Blocks')}
-                </Text>
-                <TimerIcon ml="4px" color="primary" />
-              </Link>
-            </Flex>
-          ) : (
-            <Skeleton width="54px" height="21px" />
-          )}
-        </Flex>
-      )}
-      {isAutoVault && (
-        <Flex mb="2px" justifyContent="space-between" alignItems="center">
-          {tooltipVisible && tooltip}
-          <TooltipText ref={targetRef} small>
-            {t('Performance Fee')}
-          </TooltipText>
-          <Flex alignItems="center">
-            <Text ml="4px" small>
-              {performanceFee / 100}%
-            </Text>
-          </Flex>
-        </Flex>
-      )}
+
       <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false} small>
           {t('See Token Info')}

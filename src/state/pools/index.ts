@@ -6,7 +6,7 @@ import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'sta
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
-import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
+import { fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
@@ -44,16 +44,16 @@ const initialState: PoolsState = {
 
 // Thunks
 export const fetchPoolsPublicDataAsync = (currentBlock: number) => async (dispatch, getState) => {
-  const blockLimits = await fetchPoolsBlockLimits()
+  // const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
 
   const prices = getTokenPricesFromFarm(getState().farms.data)
 
   const liveData = poolsConfig.map((pool) => {
-    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+    // const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
     const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-    const isPoolEndBlockExceeded = currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
-    const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
+    // const isPoolEndBlockExceeded = currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
+    const isPoolFinished = pool.isFinished
 
     const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
     const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
@@ -70,7 +70,7 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number) => async (dispat
       : 0
 
     return {
-      ...blockLimit,
+      // ...blockLimit,
       ...totalStaking,
       stakingTokenPrice,
       earningTokenPrice,
@@ -117,6 +117,7 @@ export const fetchPoolsUserDataAsync =
       stakingTokenBalance: stakingTokenBalances[pool.sousId],
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
+      duration: pendingRewards[pool.sousId],
     }))
 
     dispatch(setPoolsUserData(userData))

@@ -20,8 +20,8 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import Loading from 'components/Loading'
-import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
+// import PoolCard from './components/PoolCard'
+// import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 // import BountyCard from './components/BountyCard'
 // import HelpButton from './components/HelpButton'
@@ -29,9 +29,9 @@ import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
 
-const CardLayout = styled(FlexLayout)`
-  justify-content: center;
-`
+// const CardLayout = styled(FlexLayout)`
+//   justify-content: center;
+// `
 
 const PoolControls = styled.div`
   display: flex;
@@ -82,11 +82,11 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
-  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'arbor_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_pool_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'arbor_pool_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
@@ -170,11 +170,7 @@ const Pools: React.FC = () => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
-          'desc',
-        )
+        return orderBy(poolsToSort, (pool: Pool) => pool.rate, 'desc')
       case 'earned':
         return orderBy(
           poolsToSort,
@@ -242,17 +238,17 @@ const Pools: React.FC = () => {
   chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
 
-  const cardLayout = (
-    <CardLayout>
-      {chosenPools.map((pool) =>
-        pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
-        ) : (
-          <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
-      )}
-    </CardLayout>
-  )
+  // const cardLayout = (
+  //   <CardLayout>
+  //     {chosenPools.map((pool) =>
+  //       pool.isAutoVault ? (
+  //         <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+  //       ) : (
+  //         <PoolCard key={pool.sousId} pool={pool} account={account} />
+  //       ),
+  //     )}
+  //   </CardLayout>
+  // )
 
   const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 

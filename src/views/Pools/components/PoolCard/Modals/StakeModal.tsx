@@ -59,7 +59,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isRemovingStake = false,
   onDismiss,
 }) => {
-  const { sousId, stakingToken, earningTokenPrice, apr, userData, stakingLimit, earningToken } = pool
+  const { sousId, stakingToken, earningTokenPrice, apr, userData, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStakePool(sousId, isBnbPool)
@@ -71,10 +71,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [percent, setPercent] = useState(0)
   const [showRoiCalculator, setShowRoiCalculator] = useState(false)
   const getCalculatedStakingLimit = () => {
-    if (isRemovingStake) {
-      return userData.stakedBalance
-    }
-    return stakingLimit.gt(0) && stakingTokenBalance.gt(stakingLimit) ? stakingLimit : stakingTokenBalance
+    return stakingTokenBalance
   }
 
   const usdValueStaked = new BigNumber(stakeAmount).times(stakingTokenPrice)
@@ -89,13 +86,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const formattedAnnualRoi = formatNumber(annualRoi, annualRoi > 10000 ? 0 : 2, annualRoi > 10000 ? 0 : 2)
 
   const getTokenLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
-
-  useEffect(() => {
-    if (stakingLimit.gt(0) && !isRemovingStake) {
-      const fullDecimalStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
-      setHasReachedStakedLimit(fullDecimalStakeAmount.plus(userData.stakedBalance).gt(stakingLimit))
-    }
-  }, [stakeAmount, stakingLimit, userData, stakingToken, isRemovingStake, setHasReachedStakedLimit])
 
   const handleStakeInputChange = (input: string) => {
     if (input) {
@@ -181,14 +171,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
-      {stakingLimit.gt(0) && !isRemovingStake && (
-        <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
-          {t('Max stake for this pool: %amount% %token%', {
-            amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
-            token: stakingToken.symbol,
-          })}
-        </Text>
-      )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
@@ -210,14 +192,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
         isWarning={hasReachedStakeLimit}
         decimals={stakingToken.decimals}
       />
-      {hasReachedStakeLimit && (
-        <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
-          {t('Maximum total stake: %amount% %token%', {
-            amount: getFullDisplayBalance(new BigNumber(stakingLimit), stakingToken.decimals, 0),
-            token: stakingToken.symbol,
-          })}
-        </Text>
-      )}
       <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
         {t('Balance: %balance%', {
           balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),

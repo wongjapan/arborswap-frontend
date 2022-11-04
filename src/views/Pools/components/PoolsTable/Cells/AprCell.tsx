@@ -24,13 +24,14 @@ const AprCell: React.FC<AprCellProps> = ({ pool }) => {
   const { isMobile } = useMatchBreakpoints()
   const { userData } = pool
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
-
+  // console.log(userData)
   return (
     <StyledCell role="cell">
       <CellContent>
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('APR')}
         </Text>
+
         <Apr pool={pool} stakedBalance={stakedBalance} showIcon={!isMobile} />
       </CellContent>
     </StyledCell>

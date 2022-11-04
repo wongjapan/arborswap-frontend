@@ -118,18 +118,7 @@ const InfoSection = styled(Box)`
 `
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded, expanded, breakpoints }) => {
-  const {
-    sousId,
-    stakingToken,
-    earningToken,
-    totalStaked,
-    startBlock,
-    endBlock,
-    stakingLimit,
-    contractAddress,
-    userData,
-    isAutoVault,
-  } = pool
+  const { sousId, stakingToken, earningToken, totalStaked, contractAddress, userData, isAutoVault } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
   const cakeVaultContractAddress = getCakeVaultAddress()
@@ -137,8 +126,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 0
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
-    getPoolBlockInfo(pool, currentBlock)
+  const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
@@ -192,30 +180,30 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     placement: 'bottom-start',
   })
 
-  const maxStakeRow = stakingLimit.gt(0) ? (
-    <Flex mb="8px" justifyContent="space-between">
-      <Text>{t('Max. stake per user')}:</Text>
-      <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
-    </Flex>
-  ) : null
+  // const maxStakeRow = stakingLimit.gt(0) ? (
+  //   <Flex mb="8px" justifyContent="space-between">
+  //     <Text>{t('Max. stake per user')}:</Text>
+  //     <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
+  //   </Flex>
+  // ) : null
 
-  const blocksRow =
-    blocksRemaining || blocksUntilStart ? (
-      <Flex mb="8px" justifyContent="space-between">
-        <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
-        <Flex>
-          <Link external href={getBscScanLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
-            <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
-            <Text ml="4px" color="primary" textTransform="lowercase">
-              {t('Blocks')}
-            </Text>
-            <TimerIcon ml="4px" color="primary" />
-          </Link>
-        </Flex>
-      </Flex>
-    ) : (
-      <Skeleton width="56px" height="16px" />
-    )
+  // const blocksRow =
+  //   blocksRemaining || blocksUntilStart ? (
+  //     <Flex mb="8px" justifyContent="space-between">
+  //       <Text>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
+  //       <Flex>
+  //         <Link external href={getBscScanLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
+  //           <Balance fontSize="16px" value={blocksToDisplay} decimals={0} color="primary" />
+  //           <Text ml="4px" color="primary" textTransform="lowercase">
+  //             {t('Blocks')}
+  //           </Text>
+  //           <TimerIcon ml="4px" color="primary" />
+  //         </Link>
+  //       </Flex>
+  //     </Flex>
+  //   ) : (
+  //     <Skeleton width="56px" height="16px" />
+  //   )
 
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
