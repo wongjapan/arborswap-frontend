@@ -64,8 +64,9 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   margin-top: -10px;
   border-radius: 0 0 6px 6px;
   display: flex;
+  gap: 20px;
   flex-direction: column-reverse;
-  justify-content: center;
+  justify-content: space-between;
   padding: 22px 12px 12px 12px;
   width: 100%;
   max-width: 470px;

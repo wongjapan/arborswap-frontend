@@ -64,8 +64,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
       <ActionContainer>
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
-          <Heading>0</Heading>
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
+          <Heading>0 </Heading>
+          <Button disabled>{isCompoundPool ? t('Harvest') : t('Harvest')}</Button>
         </ActionContent>
       </ActionContainer>
     )
