@@ -11,7 +11,7 @@ import BigNumber from 'bignumber.js'
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
+const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
 const lockPools = poolsConfig.filter((p) => p.isLock === true)
 const normalPools = poolsConfig.filter((p) => p.isLock !== true)
 
@@ -53,13 +53,20 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'staker',
     params: [account],
   }))
-  const userInfo = await multicall(normalStakeABI, calls)
-  const userLockInfo = await multicall(lockStakeABI, calls)
+  const lockCalls = lockPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+
+  const userInfo = await multicall(normalStakeABI, normalCalls)
+  const userLockInfo = await multicall(lockStakeABI, lockCalls)
+
   const lockStakedBalances = lockPools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -80,13 +87,19 @@ export const fetchUserStakeBalances = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'getTotalRewards',
     params: [account],
   }))
 
-  const res = await multicall(normalStakeABI, calls)
+  const lockCalls = lockPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'getTotalRewards',
+    params: [account],
+  }))
+
+  const res = await multicall(normalStakeABI, normalCalls)
 
   const pendingRewards = normalPools.reduce(
     (acc, pool, index) => ({
@@ -95,7 +108,7 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
-  const resLock = await multicall(lockStakeABI, calls)
+  const resLock = await multicall(lockStakeABI, lockCalls)
 
   const pendingLockRewards = lockPools.reduce(
     (acc, pool, index) => ({
@@ -104,6 +117,5 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
-
   return { ...pendingRewards, ...pendingLockRewards }
 }

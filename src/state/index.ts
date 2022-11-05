@@ -3,13 +3,13 @@ import { save, load } from 'redux-localstorage-simple'
 import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
 import poolsReducer from './pools'
-import predictionsReducer from './predictions'
+// import predictionsReducer from './predictions'
 import profileReducer from './profile'
 import teamsReducer from './teams'
 import achievementsReducer from './achievements'
 import blockReducer from './block'
-import collectiblesReducer from './collectibles'
-import votingReducer from './voting'
+// import collectiblesReducer from './collectibles'
+// import votingReducer from './voting'
 import lotteryReducer from './lottery'
 import { updateVersion } from './global/actions'
 import user from './user/reducer'
@@ -29,11 +29,11 @@ const store = configureStore({
     block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,
-    predictions: predictionsReducer,
+    // predictions: predictionsReducer,
     profile: profileReducer,
     teams: teamsReducer,
-    collectibles: collectiblesReducer,
-    voting: votingReducer,
+    // collectibles: collectiblesReducer,
+    // voting: votingReducer,
     lottery: lotteryReducer,
 
     // Exchange
