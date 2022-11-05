@@ -3,7 +3,7 @@ import { PoolConfig, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
   {
-    sousId: 1,
+    sousId: 0,
     stakingToken: tokens.f4h,
     earningToken: tokens.f4h,
     contractAddress: {

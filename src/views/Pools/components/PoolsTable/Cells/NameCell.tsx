@@ -51,7 +51,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     subtitle = t('Automatic restaking')
   }
 
-  const src = `https://raw.githubusercontent.com/wongjapan/arbor-assets/master/images/${earningToken.address[56]}.png`
+  const src = `https://raw.githubusercontent.com/wongjapan/arbor-assets/master/images/${stakingToken.address[56]}.png`
 
   return (
     <StyledCell role="cell">

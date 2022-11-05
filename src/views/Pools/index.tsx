@@ -237,7 +237,7 @@ const Pools: React.FC = () => {
 
   chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
-
+  // console.log(pools)
   // const cardLayout = (
   //   <CardLayout>
   //     {chosenPools.map((pool) =>
@@ -249,7 +249,7 @@ const Pools: React.FC = () => {
   //     )}
   //   </CardLayout>
   // )
-
+  // console.log(chosenPools)
   const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
