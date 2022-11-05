@@ -52,14 +52,16 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, stakedBalance, performanceFee
     event.stopPropagation()
     onPresentApyModal()
   }
-  console.log(`earningsPercentageToDisplay`, rate)
+  // console.log(`earningsPercentageToDisplay`, rate)
   return (
     <AprLabelContainer alignItems="center" justifyContent="space-between" {...props}>
       {rate || isFinished ? (
         <>
           <Balance
-            onClick={openRoiModal}
+            // onClick={openRoiModal}
             fontSize="16px"
+            fontWeight="700"
+            color="#00783F"
             isDisabled={isFinished}
             value={isFinished ? 0 : rate}
             decimals={2}
