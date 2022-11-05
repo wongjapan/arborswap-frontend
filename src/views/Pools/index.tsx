@@ -100,7 +100,7 @@ const Pools: React.FC = () => {
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    // const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    // const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 100000000)
     // const cakeAutoVault = { ...cakePool, isAutoVault: true }
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
@@ -202,7 +202,7 @@ const Pools: React.FC = () => {
                   pool.stakingToken.decimals,
                 )
               }
-            } else if (pool.sousId === 0) {
+            } else if (pool.sousId === 100000000) {
               if (pool.totalStaked?.isFinite() && totalCakeInVault.isFinite()) {
                 const manualCakeTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
                   totalCakeInVault.toString(),

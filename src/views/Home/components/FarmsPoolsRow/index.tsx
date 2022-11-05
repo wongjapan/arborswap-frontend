@@ -54,7 +54,7 @@ const FarmsPoolsRow = () => {
       return t('Auto CAKE')
     }
 
-    // if (pool.sousId === 0) {
+    // if (pool.sousId === 100000000) {
     //   return t('Manual CAKE')
     // }
 

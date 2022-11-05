@@ -33,7 +33,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const hasEarnings = earnings.gt(0)
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
-  const isCompoundPool = sousId === 0
+  const isCompoundPool = sousId === 100000000
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
   const [onPresentCollect] = useModal(

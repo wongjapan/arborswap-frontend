@@ -77,7 +77,7 @@ const tokens = {
     symbol: 'F4H',
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0x21f0bB168a2C2128EB8B42283B33233ea47dB1B4',
+      97: '0x083295D160A243D0A850Bc75E317e1c56f935EA9',
     },
     decimals: 18,
     projectLink: 'https://fight4hope.io/',
