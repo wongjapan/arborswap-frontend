@@ -114,6 +114,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
     if (isRemovingStake) {
       // unstaking
+      // console.log(`stakeAmount :`, stakeAmount)
       try {
         await onUnstake(stakeAmount, stakingToken.decimals)
         toastSuccess(
