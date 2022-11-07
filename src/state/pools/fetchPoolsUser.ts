@@ -86,6 +86,40 @@ export const fetchUserStakeBalances = async (account) => {
   return { ...stakedBalances, ...lockStakedBalances }
 }
 
+export const fetchUserUnlockTimes = async (account) => {
+  const normalCalls = normalPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+  const lockCalls = lockPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+
+  const userInfo = await multicall(normalStakeABI, normalCalls)
+  const userLockInfo = await multicall(lockStakeABI, lockCalls)
+
+  const lockStakedBalances = lockPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userLockInfo[index].endTime._hex).toJSON(),
+    }),
+    {},
+  )
+
+  const stakedBalances = normalPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userInfo[index].startTime._hex).toJSON(),
+    }),
+    {},
+  )
+
+  return { ...stakedBalances, ...lockStakedBalances }
+}
+
 export const fetchUserPendingRewards = async (account) => {
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),

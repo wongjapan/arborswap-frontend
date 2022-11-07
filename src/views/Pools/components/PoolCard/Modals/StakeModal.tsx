@@ -213,19 +213,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
         <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
       </Flex>
-      {!isRemovingStake && (
-        <Flex mt="24px" alignItems="center" justifyContent="space-between">
-          <Text mr="8px" color="textSubtle">
-            {t('Annual ROI at current rates')}:
-          </Text>
-          <AnnualRoiContainer alignItems="center" onClick={() => setShowRoiCalculator(true)}>
-            <AnnualRoiDisplay>${formattedAnnualRoi}</AnnualRoiDisplay>
-            <IconButton variant="text" scale="sm">
-              <CalculateIcon color="textSubtle" width="18px" />
-            </IconButton>
-          </AnnualRoiContainer>
-        </Flex>
-      )}
+
       <Button
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}

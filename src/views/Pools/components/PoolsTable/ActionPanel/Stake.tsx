@@ -98,6 +98,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   const reachStakingLimit = false
 
+  const isEnableToUnstake = userData.unlockTime < Math.floor(Date.now() / 1000)
   if (!account) {
     return (
       <ActionContainer>
@@ -171,24 +172,16 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+            <IconButton variant="secondary" onClick={onUnstake} disabled={!isEnableToUnstake} mr="6px">
               <MinusIcon color="primary" width="14px" />
             </IconButton>
-            {reachStakingLimit ? (
-              <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
-                  <AddIcon color="textDisabled" width="24px" height="24px" />
-                </IconButton>
-              </span>
-            ) : (
-              <IconButton
-                variant="secondary"
-                onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-                disabled={isFinished}
-              >
-                <AddIcon color="primary" width="14px" />
-              </IconButton>
-            )}
+            <IconButton
+              variant="secondary"
+              onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
+              disabled={isFinished}
+            >
+              <AddIcon color="primary" width="14px" />
+            </IconButton>
           </IconButtonWrapper>
           {tooltipVisible && tooltip}
         </ActionContent>
