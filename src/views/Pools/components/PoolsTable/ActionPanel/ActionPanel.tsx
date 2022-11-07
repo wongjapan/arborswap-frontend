@@ -16,7 +16,6 @@ import {
 import { BASE_BSC_SCAN_URL } from 'config'
 import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
-import { useCakeVault } from 'state/pools/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -30,7 +29,6 @@ import { convertSharesToCake, getPoolBlockInfo } from 'views/Pools/helpers'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import Apr from '../Apr'
-import AutoHarvest from './AutoHarvest'
 
 const expandAnimation = keyframes`
   from {
@@ -132,31 +130,12 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
 
-  const {
-    totalCakeInVault,
-    userData: { userShares },
-    fees: { performanceFee },
-    pricePerFullShare,
-  } = useCakeVault()
-
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
-  const poolStakingTokenBalance = isAutoVault
-    ? cakeAsBigNumber.plus(stakingTokenBalance)
-    : stakedBalance.plus(stakingTokenBalance)
-
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+  const poolStakingTokenBalance = stakingTokenBalance
   const isManualCakePool = sousId === 100000000
 
   const getTotalStakedBalance = () => {
-    if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
-    }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
-    }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
 
@@ -209,12 +188,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
       <Text>{isAutoVault ? t('APY') : t('APR')}:</Text>
-      <Apr
-        pool={pool}
-        showIcon
-        stakedBalance={poolStakingTokenBalance}
-        performanceFee={isAutoVault ? performanceFeeAsDecimal : 0}
-      />
+      <Apr pool={pool} showIcon stakedBalance={poolStakingTokenBalance} performanceFee={0} />
     </Flex>
   )
 
@@ -239,61 +213,13 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   return (
     <StyledActionPanel expanded={expanded}>
-      {/* <InfoSection>
-        {maxStakeRow}
-        {(isXs || isSm) && aprRow}
-        {(isXs || isSm || isMd) && totalStakedRow}
-        {shouldShowBlockCountdown && blocksRow}
-        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
-            {t('See Token Info')}
-          </LinkExternal>
-        </Flex>
-        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={earningToken.projectLink} bold={false}>
-            {t('View Project Site')}
-          </LinkExternal>
-        </Flex>
-        {poolContractAddress && (
-          <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <LinkExternal
-              href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
-              bold={false}
-            >
-              {t('View Contract')}
-            </LinkExternal>
-          </Flex>
-        )}
-        {account && isMetaMaskInScope && tokenAddress && (
-          <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-            <Button
-              variant="text"
-              p="0"
-              height="auto"
-              onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals)}
-            >
-              <Text color="primary">{t('Add to Metamask')}</Text>
-              <MetamaskIcon ml="4px" />
-            </Button>
-          </Flex>
-        )}
-        {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
-        {tagTooltipVisible && tagTooltip}
-        <span ref={tagTargetRef}>
-          <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>
-      </InfoSection> */}
       <ActionContainer>
         {showSubtitle && (
           <Text mt="4px" mb="16px" color="textSubtle">
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
-        {pool.isAutoVault ? (
-          <AutoHarvest {...pool} userDataLoaded={userDataLoaded} />
-        ) : (
-          <Harvest {...pool} userDataLoaded={userDataLoaded} />
-        )}
+        <Harvest {...pool} userDataLoaded={userDataLoaded} />
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>
     </StyledActionPanel>

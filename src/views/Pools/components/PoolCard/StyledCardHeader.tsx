@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
-import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -37,12 +36,6 @@ const StyledCardHeader: React.FC<{
   }
 
   const getSubHeading = () => {
-    if (isAutoVault) {
-      return t('Automatic restaking')
-    }
-    if (isCakePool) {
-      return t('Earn CAKE, stake CAKE')
-    }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }
 
@@ -55,11 +48,8 @@ const StyledCardHeader: React.FC<{
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
-        {isAutoVault ? (
-          <CakeVaultTokenPairImage width={64} height={64} />
-        ) : (
-          <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
-        )}
+
+        <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
       </Flex>
     </Wrapper>
   )

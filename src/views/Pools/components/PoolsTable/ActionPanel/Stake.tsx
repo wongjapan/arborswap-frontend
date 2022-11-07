@@ -4,7 +4,6 @@ import BigNumber from 'bignumber.js'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@arborswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
-import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
@@ -17,7 +16,6 @@ import { convertSharesToCake } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
-import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
 import { useCheckVaultApprovalStatus, useApprovePool, useVaultApprove } from '../../../hooks/useApprove'
 
 const IconButtonWrapper = styled.div`
@@ -62,16 +60,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingToken.decimals,
   )
 
-  const {
-    userData: { userShares },
-    pricePerFullShare,
-  } = useCakeVault()
-
-  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
-  const hasSharesStaked = userShares && userShares.gt(0)
-  const isVaultWithShares = isAutoVault && hasSharesStaked
-  const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
-
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
@@ -85,8 +73,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     />,
   )
 
-  const [onPresentVaultStake] = useModal(<VaultStakeModal stakingMax={stakingTokenBalance} pool={pool} />)
-
   const [onPresentUnstake] = useModal(
     <StakeModal
       stakingTokenBalance={stakingTokenBalance}
@@ -97,22 +83,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     />,
   )
 
-  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
-
   const onStake = () => {
-    if (isAutoVault) {
-      onPresentVaultStake()
-    } else {
-      onPresentStake()
-    }
+    onPresentStake()
   }
 
   const onUnstake = () => {
-    if (isAutoVault) {
-      onPresentVaultUnstake()
-    } else {
-      onPresentUnstake()
-    }
+    onPresentUnstake()
   }
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
@@ -170,32 +146,26 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   }
 
   // Wallet connected, user data loaded and approved
-  if (isNotVaultAndHasStake || isVaultWithShares) {
+  if (isNotVaultAndHasStake) {
     return (
-      <ActionContainer isAutoVault={isAutoVault}>
+      <ActionContainer isAutoVault={false}>
         <ActionTitles>
           <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
             {stakingToken.symbol}{' '}
           </Text>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
-            {isAutoVault ? t('Staked (compounding)') : t('Staked')}
+            {t('Staked')}
           </Text>
         </ActionTitles>
         <ActionContent>
           <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
-            <Balance
-              lineHeight="1"
-              bold
-              fontSize="20px"
-              decimals={5}
-              value={isAutoVault ? cakeAsNumberBalance : stakedTokenBalance}
-            />
+            <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={stakedTokenBalance} />
             <Balance
               fontSize="12px"
               display="inline"
               color="textSubtle"
               decimals={2}
-              value={isAutoVault ? stakedAutoDollarValue : stakedTokenDollarBalance}
+              value={stakedTokenDollarBalance}
               unit=" USD"
               prefix="~"
             />

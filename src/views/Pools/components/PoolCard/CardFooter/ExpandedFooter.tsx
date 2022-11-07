@@ -18,7 +18,6 @@ import {
 } from '@arborswap/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { useBlock } from 'state/block/hooks'
-import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
@@ -41,10 +40,6 @@ const ExpandedWrapper = styled(Flex)`
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
-  const {
-    totalCakeInVault,
-    fees: { performanceFee },
-  } = useCakeVault()
 
   const { stakingToken, earningToken, totalStaked, contractAddress, sousId, isAutoVault } = pool
 
@@ -62,13 +57,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   )
 
   const getTotalStakedBalance = () => {
-    if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
-    }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
-    }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
 

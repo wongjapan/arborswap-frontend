@@ -3,11 +3,9 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Text, useMatchBreakpoints } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { TokenImage } from 'components/TokenImage'
-import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface NameCellProps {
@@ -28,11 +26,6 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault } = pool
-  const {
-    userData: { userShares },
-  } = useCakeVault()
-  const hasVaultShares = userShares && userShares.gt(0)
-
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
 
@@ -40,7 +33,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const isStaked = stakedBalance.gt(0)
   const isManualCakePool = sousId === 100000000
 
-  const showStakedTag = isAutoVault ? hasVaultShares : isStaked
+  const showStakedTag = isStaked
 
   let title = `${t('Earn')} ${earningTokenSymbol}`
   let subtitle = `${t('Stake')} ${stakingTokenSymbol}`
@@ -55,11 +48,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   return (
     <StyledCell role="cell">
-      {isAutoVault ? (
-        <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
-      ) : (
-        <TokenImage token={earningToken} title={earningTokenSymbol} src={src} mr="8px" width={40} height={40} />
-      )}
+      <TokenImage token={earningToken} title={earningTokenSymbol} src={src} mr="8px" width={40} height={40} />
+
       <CellContent>
         {showStakedTag && (
           <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">

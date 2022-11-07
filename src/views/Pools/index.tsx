@@ -13,7 +13,7 @@ import usePersistState from 'hooks/usePersistState'
 import { useFetchPublicPoolsData, usePools } from 'state/pools/hooks'
 import { usePollFarmsPublicData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
-import FlexLayout from 'components/Layout/Flex'
+// import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 // import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
@@ -27,7 +27,7 @@ import PoolTabButtons from './components/PoolTabButtons'
 // import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+// import { getAprData, getCakeVaultEarnings } from './helpers'
 
 // const CardLayout = styled(FlexLayout)`
 //   justify-content: center;
@@ -90,18 +90,8 @@ const Pools: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
-  // const {
-  //   userData: { cakeAtLastUserAction, userShares },
-  //   fees: { performanceFee },
-  //   pricePerFullShare,
-  //   totalCakeInVault,
-  // } = useCakeVault()
-  // const accountHasVaultShares = userShares && userShares.gt(0)
-  // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 100000000)
-    // const cakeAutoVault = { ...cakePool, isAutoVault: true }
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
@@ -124,7 +114,6 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsPublicData()
-  // useFetchCakeVault()
   useFetchPublicPoolsData()
 
   useEffect(() => {

@@ -20,26 +20,6 @@ import { getTokenPricesFromFarm } from './helpers'
 const initialState: PoolsState = {
   data: [...poolsConfig],
   userDataLoaded: false,
-  cakeVault: {
-    totalShares: null,
-    pricePerFullShare: null,
-    totalCakeInVault: null,
-    estimatedCakeBountyReward: null,
-    totalPendingCakeHarvest: null,
-    fees: {
-      performanceFee: null,
-      callFee: null,
-      withdrawalFee: null,
-      withdrawalFeePeriod: null,
-    },
-    userData: {
-      isLoading: true,
-      userShares: null,
-      cakeAtLastUserAction: null,
-      lastDepositedTime: null,
-      lastUserActionTime: null,
-    },
-  },
 }
 
 // Thunks
@@ -198,19 +178,11 @@ export const PoolsSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Vault public data that updates frequently
-    builder.addCase(fetchCakeVaultPublicData.fulfilled, (state, action: PayloadAction<CakeVault>) => {
-      state.cakeVault = { ...state.cakeVault, ...action.payload }
-    })
-    // Vault fees
-    builder.addCase(fetchCakeVaultFees.fulfilled, (state, action: PayloadAction<VaultFees>) => {
-      const fees = action.payload
-      state.cakeVault = { ...state.cakeVault, fees }
-    })
+
     // Vault user data
     builder.addCase(fetchCakeVaultUserData.fulfilled, (state, action: PayloadAction<VaultUser>) => {
       const userData = action.payload
       userData.isLoading = false
-      state.cakeVault = { ...state.cakeVault, userData }
     })
   },
 })

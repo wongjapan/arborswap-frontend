@@ -6,7 +6,6 @@ import { Pool, State } from 'state/types'
 import { fetchCakeVaultFees, fetchPoolsPublicDataAsync } from 'state/pools'
 import { simpleRpcProvider } from 'utils/providers'
 import { useSelector } from 'react-redux'
-import { useCakeVault } from 'state/pools/hooks'
 import { getAprData } from 'views/Pools/helpers'
 
 enum FetchStatus {
@@ -22,10 +21,8 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
     pools: state.pools.data,
     userDataLoaded: state.pools.userDataLoaded,
   }))
-  const {
-    fees: { performanceFee },
-  } = useCakeVault()
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+
+  const performanceFeeAsDecimal = 100
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED)
   const [topPools, setTopPools] = useState<Pool[]>([null, null, null, null, null])
 
