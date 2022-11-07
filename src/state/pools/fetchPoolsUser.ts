@@ -16,14 +16,14 @@ const lockPools = poolsConfig.filter((p) => p.isLock === true)
 const normalPools = poolsConfig.filter((p) => p.isLock !== true)
 
 export const fetchPoolsAllowance = async (account) => {
-  const calls = nonBnbPools.map((p) => ({
+  const calls = poolsConfig.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
 
   const allowances = await multicall(erc20ABI, calls)
-  return nonBnbPools.reduce(
+  return poolsConfig.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
   )
