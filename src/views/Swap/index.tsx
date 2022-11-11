@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@arborswap/sdk'
+import BigNumber from 'bignumber.js'
+
 import { Button, Text, ArrowDownIcon, Box, useModal } from '@arborswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -159,8 +161,10 @@ export default function Swap({ history }: RouteComponentProps) {
   }, [approval, approvalSubmitted])
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
+  // const halfAmountInput: maxAmountInput / 2
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
-
+  // const atHalfAmountInput = Boolean(halfAmountInput && parsedAmounts[Field.INPUT]?.equalTo(halfAmountInput))
+  // console.log(`maxAmountInput :`, maxAmountInput)
   // the callback to execute the swap
   const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
@@ -257,6 +261,14 @@ export default function Swap({ history }: RouteComponentProps) {
     }
   }, [maxAmountInput, onUserInput])
 
+  const handleHalfInput = useCallback(() => {
+    if (maxAmountInput) {
+      const halfVal = maxAmountInput.toExact()
+      const halfValue = new BigNumber(halfVal).dividedBy(2)
+      onUserInput(Field.INPUT, halfValue.toString())
+    }
+  }, [maxAmountInput, onUserInput])
+
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
@@ -314,6 +326,7 @@ export default function Swap({ history }: RouteComponentProps) {
               currency={currencies[Field.INPUT]}
               onUserInput={handleTypeInput}
               onMax={handleMaxInput}
+              onHalf={handleHalfInput}
               onCurrencySelect={handleInputSelect}
               otherCurrency={currencies[Field.OUTPUT]}
               id="swap-currency-input"
