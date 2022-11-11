@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@arborswap/sdk'
-import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC } from './tokens'
+import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC, F4H, RBA } from './tokens'
 
 export const ROUTER_ADDRESS = '0x4e1845Ab1d9D464150777a931Ce8FDaaD1cf8229'
 
@@ -11,7 +11,7 @@ type ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], F4H[ChainId.TESTNET], RBA[ChainId.TESTNET]],
   [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA], CAKE[ChainId.ROBURNA], BUSD[ChainId.ROBURNA]],
 }
 

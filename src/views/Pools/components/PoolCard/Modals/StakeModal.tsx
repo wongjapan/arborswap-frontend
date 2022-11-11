@@ -39,20 +39,7 @@ const StyledLink = styled(Link)`
   width: 100%;
 `
 
-const AnnualRoiContainer = styled(Flex)`
-  cursor: pointer;
-`
-
-const AnnualRoiDisplay = styled(Text)`
-  width: 72px;
-  max-width: 72px;
-  overflow: hidden;
-  text-align: right;
-  text-overflow: ellipsis;
-`
-
 const StakeModal: React.FC<StakeModalProps> = ({
-  isBnbPool,
   pool,
   stakingTokenBalance,
   stakingTokenPrice,
@@ -62,8 +49,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { sousId, stakingToken, earningTokenPrice, apr, userData, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const { onStake } = useStakePool(sousId, isBnbPool)
-  const { onUnstake } = useUnstakePool(sousId, pool.enableEmergencyWithdraw)
+  const { onStake } = useStakePool(sousId)
+  const { onUnstake } = useUnstakePool(sousId)
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
@@ -76,14 +63,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   const usdValueStaked = new BigNumber(stakeAmount).times(stakingTokenPrice)
   const formattedUsdValueStaked = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
-
-  const interestBreakdown = getInterestBreakdown({
-    principalInUSD: !usdValueStaked.isNaN() ? usdValueStaked.toNumber() : 0,
-    apr,
-    earningTokenPrice,
-  })
-  const annualRoi = interestBreakdown[3] * pool.earningTokenPrice
-  const formattedAnnualRoi = formatNumber(annualRoi, annualRoi > 10000 ? 0 : 2, annualRoi > 10000 ? 0 : 2)
 
   const getTokenLink = stakingToken.address ? `/swap?outputCurrency=${getAddress(stakingToken.address)}` : '/swap'
 

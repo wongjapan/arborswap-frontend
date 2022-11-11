@@ -16,6 +16,40 @@ export const CAKE: { [chainId: number]: Token } = {
     'ArborSwap Token',
   ),
 }
+
+export const RBA: { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    18,
+    'CAKE',
+    'ArborSwap Token',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x430EA547076C0051B252b1ab1ef83cd83F2D1aB4',
+    18,
+    'RBA',
+    'Roburna Token',
+  ),
+}
+
+export const F4H: { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    18,
+    'CAKE',
+    'ArborSwap Token',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x6Ef84972B6d58e78b9a4512D808eb87F18A308a6',
+    18,
+    'F4H',
+    'Fight4Hope Token',
+  ),
+}
 export const BUSD: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
