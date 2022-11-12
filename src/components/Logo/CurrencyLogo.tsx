@@ -1,5 +1,5 @@
 import { Currency, ETHER, Token } from '@arborswap/sdk'
-import { BinanceIcon } from '@arborswap/uikit'
+import { BinanceIcon, LogoIcon } from '@arborswap/uikit'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
@@ -36,7 +36,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <BinanceIcon width={size} style={style} />
+    return <LogoIcon width={size} style={style} />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
