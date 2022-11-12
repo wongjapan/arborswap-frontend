@@ -35,8 +35,8 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">{t('BNB Balance Low')}</Text>
-            <Text as="p">{t('You need BNB for transaction fees.')}</Text>
+            <Text fontWeight="bold">{t('RBA Balance Low')}</Text>
+            <Text as="p">{t('You need RBA for transaction fees.')}</Text>
           </Box>
         </Message>
       )}
