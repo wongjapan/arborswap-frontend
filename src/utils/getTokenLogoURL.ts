@@ -1,3 +1,4 @@
-const getTokenLogoURL = (address: string) => `https://rba.arborswap.org/assets/logo/${address}.png`
+const getTokenLogoURL = (address: string) =>
+  `https://raw.githubusercontent.com/wongjapan/arbor-assets/master/assets/logo/${address}.png`
 
 export default getTokenLogoURL
