@@ -107,9 +107,10 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
               ml="4px"
             />
           </Flex>
-          <PancakeToggleWrapper>
+          <Toggle id="toggle-disable-multihop-button" checked={audioPlay} scale="md" onChange={toggleSetAudioMode} />
+          {/* <PancakeToggleWrapper>
             <PancakeToggle checked={audioPlay} onChange={toggleSetAudioMode} scale="md" />
-          </PancakeToggleWrapper>
+          </PancakeToggleWrapper> */}
         </Flex>
       </Flex>
     </Modal>
