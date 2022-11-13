@@ -17,7 +17,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Liquidity'),
-        href: '/pool',
+        href: '/add',
       },
       {
         label: t('Limit Orders'),
@@ -42,15 +42,15 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Launchpad'),
-        href: '#',
+        href: '#1',
       },
       {
         label: t('Locker'),
-        href: '#',
+        href: '#2',
       },
       {
         label: t('Airdropper'),
-        href: '#',
+        href: '#3',
       },
     ],
   },

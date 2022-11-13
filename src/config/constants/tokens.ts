@@ -78,6 +78,7 @@ const tokens = {
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       97: '0x083295D160A243D0A850Bc75E317e1c56f935EA9',
+      159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
     },
     decimals: 18,
     projectLink: 'https://fight4hope.io/',

@@ -3,13 +3,13 @@ import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
+import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT, DEFAULT_GAS_LIMIT_STAKE } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useSousChef } from 'hooks/useContract'
 import getGasPrice from 'utils/getGasPrice'
 
 const options = {
-  gasLimit: DEFAULT_GAS_LIMIT,
+  gasLimit: DEFAULT_GAS_LIMIT_STAKE,
 }
 
 const sousStake = async (sousChefContract, amount, decimals = 18) => {
