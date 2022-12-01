@@ -2,6 +2,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@arborswap/sdk'
 import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC } from './tokens'
 
 export const ROUTER_ADDRESS = '0x2fAe743821Bbc2CfD025C7E6B3Ee01ae202dd48B'
+export const DEX_MANAGEMENT_ADDRESS = '0x2fAe743821Bbc2CfD025C7E6B3Ee01ae202dd48B'
 
 // a list of tokens by chain
 type ChainTokenList = {
