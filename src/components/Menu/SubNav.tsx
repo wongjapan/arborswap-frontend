@@ -39,7 +39,7 @@ const Nav = () => {
         <ButtonTabsItem id="pool-nav-link" to="/add" as={Link}>
           {t('Liquidity')}
         </ButtonTabsItem>
-        <ButtonTabsItem id="limits-nav-links" to="/pool" as={Link}>
+        <ButtonTabsItem id="limits-nav-links" to="#" as={Link}>
           {t('Limit Order')}
         </ButtonTabsItem>
       </ButtonTabs>
