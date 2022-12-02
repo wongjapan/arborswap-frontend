@@ -5,6 +5,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@arborswap/sdk'
+import dexAbi from '../config/abi/dexManagement.json'
 import { DEX_MANAGEMENT_ADDRESS, ROUTER_ADDRESS } from '../config/constants'
 import { BASE_BSC_SCAN_URLS } from '../config'
 import { TokenAddressMap } from '../state/lists/hooks'
@@ -96,7 +97,7 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 }
 
 export function getManagementContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(DEX_MANAGEMENT_ADDRESS, IUniswapV2Router02ABI, library, account)
+  return getContract(DEX_MANAGEMENT_ADDRESS, dexAbi, library, account)
 }
 
 export function escapeRegExp(string: string): string {

@@ -3,6 +3,7 @@ import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC } from './tokens'
 
 export const ROUTER_ADDRESS = '0x2fAe743821Bbc2CfD025C7E6B3Ee01ae202dd48B'
 export const DEX_MANAGEMENT_ADDRESS = '0x2fAe743821Bbc2CfD025C7E6B3Ee01ae202dd48B'
+export const WRAPPED_ADDRESS = '0x238F5666A0f12c571B7B3fBd5b5a434146dFa0C5'
 
 // a list of tokens by chain
 type ChainTokenList = {
