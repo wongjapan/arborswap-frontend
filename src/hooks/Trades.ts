@@ -12,12 +12,12 @@ import {
   BETTER_TRADE_LESS_HOPS_THRESHOLD,
   ADDITIONAL_BASES,
 } from '../config/constants'
-import { PairState, usePairs } from './usePairs'
+import { PairState, usePairs, usePairsNew } from './usePairs'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
 import { useUnsupportedTokens } from './Tokens'
 
-function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
+function useInternalPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   const { chainId } = useActiveWeb3React()
 
   const [tokenA, tokenB] = chainId
@@ -71,9 +71,80 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
         : [],
     [tokenA, tokenB, bases, basePairs, chainId],
   )
-
   const allPairs = usePairs(allPairCombinations)
 
+  // only pass along valid pairs, non-duplicated pairs
+  return useMemo(
+    () =>
+      Object.values(
+        allPairs
+          // filter out invalid pairs
+          .filter((result): result is [PairState.EXISTS, Pair] => Boolean(result[0] === PairState.EXISTS && result[1]))
+          // filter out duplicated pairs
+          .reduce<{ [pairAddress: string]: Pair }>((memo, [, curr]) => {
+            memo[curr.liquidityToken.address] = memo[curr.liquidityToken.address] ?? curr
+            return memo
+          }, {}),
+      ),
+    [allPairs],
+  )
+}
+
+function useExternalPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
+  const { chainId } = useActiveWeb3React()
+
+  const [tokenA, tokenB] = chainId
+    ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
+    : [undefined, undefined]
+
+  const bases: Token[] = useMemo(() => {
+    if (!chainId) return []
+
+    const common = BASES_TO_CHECK_TRADES_AGAINST[chainId] ?? []
+    const additionalA = tokenA ? ADDITIONAL_BASES[chainId]?.[tokenA.address] ?? [] : []
+    const additionalB = tokenB ? ADDITIONAL_BASES[chainId]?.[tokenB.address] ?? [] : []
+
+    return [...common, ...additionalA, ...additionalB]
+  }, [chainId, tokenA, tokenB])
+
+  const basePairs: [Token, Token][] = useMemo(
+    () => flatMap(bases, (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])),
+    [bases],
+  )
+
+  const allPairCombinations: [Token, Token][] = useMemo(
+    () =>
+      tokenA && tokenB
+        ? [
+            // the direct pair
+            [tokenA, tokenB],
+            // token A against all bases
+            ...bases.map((base): [Token, Token] => [tokenA, base]),
+            // token B against all bases
+            ...bases.map((base): [Token, Token] => [tokenB, base]),
+            // each base against all bases
+            ...basePairs,
+          ]
+            .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
+            .filter(([t0, t1]) => t0.address !== t1.address)
+            .filter(([tokenA_, tokenB_]) => {
+              if (!chainId) return true
+              const customBases = CUSTOM_BASES[chainId]
+
+              const customBasesA: Token[] | undefined = customBases?.[tokenA_.address]
+              const customBasesB: Token[] | undefined = customBases?.[tokenB_.address]
+
+              if (!customBasesA && !customBasesB) return true
+
+              if (customBasesA && !customBasesA.find((base) => tokenB_.equals(base))) return false
+              if (customBasesB && !customBasesB.find((base) => tokenA_.equals(base))) return false
+
+              return true
+            })
+        : [],
+    [tokenA, tokenB, bases, basePairs, chainId],
+  )
+  const allPairs = usePairsNew(allPairCombinations)
   // only pass along valid pairs, non-duplicated pairs
   return useMemo(
     () =>
@@ -97,14 +168,15 @@ const MAX_HOPS = 3
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
-  const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
+  const internalPairs = useInternalPairs(currencyAmountIn?.currency, currencyOut)
+  const externalPairs = useExternalPairs(currencyAmountIn?.currency, currencyOut)
   const [singleHopOnly] = useUserSingleHopOnly()
 
   return useMemo(() => {
-    if (currencyAmountIn && currencyOut && allowedPairs.length > 0) {
+    if (currencyAmountIn && currencyOut && internalPairs.length > 0) {
       if (singleHopOnly) {
         return (
-          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, { maxHops: 1, maxNumResults: 1 })[0] ??
+          Trade.bestTradeExactIn(internalPairs, currencyAmountIn, currencyOut, { maxHops: 1, maxNumResults: 1 })[0] ??
           null
         )
       }
@@ -112,7 +184,28 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?:
       let bestTradeSoFar: Trade | null = null
       for (let i = 1; i <= MAX_HOPS; i++) {
         const currentTrade: Trade | null =
-          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, { maxHops: i, maxNumResults: 1 })[0] ??
+          Trade.bestTradeExactIn(internalPairs, currencyAmountIn, currencyOut, { maxHops: i, maxNumResults: 1 })[0] ??
+          null
+        // if current trade is best yet, save it
+        if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
+          bestTradeSoFar = currentTrade
+        }
+      }
+      return bestTradeSoFar
+    }
+
+    if (currencyAmountIn && currencyOut && externalPairs.length > 0) {
+      if (singleHopOnly) {
+        return (
+          Trade.bestTradeExactIn(externalPairs, currencyAmountIn, currencyOut, { maxHops: 1, maxNumResults: 1 })[0] ??
+          null
+        )
+      }
+      // search through trades with varying hops, find best trade out of them
+      let bestTradeSoFar: Trade | null = null
+      for (let i = 1; i <= MAX_HOPS; i++) {
+        const currentTrade: Trade | null =
+          Trade.bestTradeExactIn(externalPairs, currencyAmountIn, currencyOut, { maxHops: i, maxNumResults: 1 })[0] ??
           null
         // if current trade is best yet, save it
         if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
@@ -123,22 +216,23 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?:
     }
 
     return null
-  }, [allowedPairs, currencyAmountIn, currencyOut, singleHopOnly])
+  }, [internalPairs, externalPairs, currencyAmountIn, currencyOut, singleHopOnly])
 }
 
 /**
  * Returns the best trade for the token in to the exact amount of token out
  */
 export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: CurrencyAmount): Trade | null {
-  const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
+  const internalPairs = useInternalPairs(currencyIn, currencyAmountOut?.currency)
+  const externalPairs = useExternalPairs(currencyIn, currencyAmountOut?.currency)
 
   const [singleHopOnly] = useUserSingleHopOnly()
 
   return useMemo(() => {
-    if (currencyIn && currencyAmountOut && allowedPairs.length > 0) {
+    if (currencyIn && currencyAmountOut && internalPairs.length > 0) {
       if (singleHopOnly) {
         return (
-          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: 1, maxNumResults: 1 })[0] ??
+          Trade.bestTradeExactOut(internalPairs, currencyIn, currencyAmountOut, { maxHops: 1, maxNumResults: 1 })[0] ??
           null
         )
       }
@@ -146,7 +240,30 @@ export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: Curr
       let bestTradeSoFar: Trade | null = null
       for (let i = 1; i <= MAX_HOPS; i++) {
         const currentTrade =
-          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: i, maxNumResults: 1 })[0] ??
+          Trade.bestTradeExactOut(internalPairs, currencyIn, currencyAmountOut, { maxHops: i, maxNumResults: 1 })[0] ??
+          null
+        if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
+          bestTradeSoFar = currentTrade
+        }
+      }
+      return bestTradeSoFar
+    }
+
+    if (currencyIn && currencyAmountOut && externalPairs.length > 0) {
+      /**
+       * use external pair
+       */
+      if (singleHopOnly) {
+        return (
+          Trade.bestTradeExactOut(externalPairs, currencyIn, currencyAmountOut, { maxHops: 1, maxNumResults: 1 })[0] ??
+          null
+        )
+      }
+      // search through trades with varying hops, find best trade out of them
+      let bestTradeSoFar: Trade | null = null
+      for (let i = 1; i <= MAX_HOPS; i++) {
+        const currentTrade =
+          Trade.bestTradeExactOut(externalPairs, currencyIn, currencyAmountOut, { maxHops: i, maxNumResults: 1 })[0] ??
           null
         if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
           bestTradeSoFar = currentTrade
@@ -155,7 +272,7 @@ export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: Curr
       return bestTradeSoFar
     }
     return null
-  }, [currencyIn, currencyAmountOut, allowedPairs, singleHopOnly])
+  }, [currencyIn, currencyAmountOut, externalPairs, internalPairs, singleHopOnly])
 }
 
 export function useIsTransactionUnsupported(currencyIn?: Currency, currencyOut?: Currency): boolean {

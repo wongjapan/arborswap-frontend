@@ -10,9 +10,9 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@arborswap/sdk@wongjapan/arborswap-sdk-rba#5aa9663":
-  version "0.1.7"
-  resolved "https://codeload.github.com/wongjapan/arborswap-sdk-rba/tar.gz/5aa96630fa5518bfa85fab53c12822ec80068180"
+"@arborswap/sdk@wongjapan/arborswap-sdk-rba#601b7c9":
+  version "0.2.2"
+  resolved "https://codeload.github.com/wongjapan/arborswap-sdk-rba/tar.gz/601b7c9c444142b16cd95fb1325f445928cdb73a"
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"

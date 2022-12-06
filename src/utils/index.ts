@@ -8,6 +8,7 @@ import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '
 import { DEX_MANAGEMENT_ADDRESS, ROUTER_ADDRESS } from '../config/constants'
 import { BASE_BSC_SCAN_URLS } from '../config'
 import { TokenAddressMap } from '../state/lists/hooks'
+import dexManagementAbi from '../config/abi/dexManagement.json'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -96,7 +97,7 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 }
 
 export function getManagementContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(DEX_MANAGEMENT_ADDRESS, IUniswapV2Router02ABI, library, account)
+  return getContract(DEX_MANAGEMENT_ADDRESS, dexManagementAbi, library, account)
 }
 
 export function escapeRegExp(string: string): string {
