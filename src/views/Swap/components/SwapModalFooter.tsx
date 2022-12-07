@@ -89,7 +89,7 @@ export default function SwapModalFooter({
             </Text>
           </RowFixed>
         </RowBetween>
-        {/* <RowBetween>
+        <RowBetween>
           <RowFixed>
             <Text fontSize="14px">Price Impact</Text>
             <QuestionHelper text="The difference between the market price and your price due to trade size." ml="4px" />
@@ -114,7 +114,7 @@ export default function SwapModalFooter({
           <Text fontSize="14px">
             {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
           </Text>
-        </RowBetween> */}
+        </RowBetween>
       </SwapModalFooterContainer>
 
       <AutoRow>

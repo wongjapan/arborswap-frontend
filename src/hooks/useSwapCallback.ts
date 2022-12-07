@@ -93,9 +93,7 @@ export function useSwapCallback(
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
   const { account, chainId, library } = useActiveWeb3React()
   const gasPrice = useGasPrice()
-  console.log(trade)
   const swapCalls = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName)
-
   const addTransaction = useTransactionAdder()
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)

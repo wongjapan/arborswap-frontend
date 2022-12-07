@@ -15,7 +15,7 @@ import ConfirmSwapModal from './components/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/Layout/Row'
 import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
-import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
+// import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import TradePrice from './components/TradePrice'
 import ImportTokenWarningModal from './components/ImportTokenWarningModal'
@@ -139,7 +139,6 @@ export default function Swap({ history }: RouteComponentProps) {
   }
 
   const route = trade?.route
-
   const userHasSpecifiedInputOutput = Boolean(
     currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0)),
   )
@@ -169,9 +168,6 @@ export default function Swap({ history }: RouteComponentProps) {
   const [singleHopOnly] = useUserSingleHopOnly()
 
   const handleSwap = useCallback(() => {
-    if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
-      return
-    }
     if (!swapCallback) {
       return
     }
@@ -188,7 +184,29 @@ export default function Swap({ history }: RouteComponentProps) {
           txHash: undefined,
         })
       })
-  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm])
+  }, [swapCallback, tradeToConfirm])
+
+  // const handleSwap = useCallback(() => {
+  //   if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
+  //     return
+  //   }
+  //   if (!swapCallback) {
+  //     return
+  //   }
+  //   setSwapState({ attemptingTxn: true, tradeToConfirm, swapErrorMessage: undefined, txHash: undefined })
+  //   swapCallback()
+  //     .then((hash) => {
+  //       setSwapState({ attemptingTxn: false, tradeToConfirm, swapErrorMessage: undefined, txHash: hash })
+  //     })
+  //     .catch((error) => {
+  //       setSwapState({
+  //         attemptingTxn: false,
+  //         tradeToConfirm,
+  //         swapErrorMessage: error.message,
+  //         txHash: undefined,
+  //       })
+  //     })
+  // }, [priceImpactWithoutFee, swapCallback, tradeToConfirm])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)

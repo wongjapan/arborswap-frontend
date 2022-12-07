@@ -11,7 +11,7 @@ import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
-  // const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
+  const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
@@ -36,7 +36,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           </Text>
         </RowFixed>
       </RowBetween>
-      {/* <RowBetween>
+      <RowBetween>
         <RowFixed>
           <Text fontSize="14px" color="textSubtle">
             Price Impact
@@ -47,9 +47,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           />
         </RowFixed>
         <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-      </RowBetween> */}
+      </RowBetween>
 
-      {/* <RowBetween>
+      <RowBetween>
         <RowFixed>
           <Text fontSize="14px" color="textSubtle">
             Liquidity Provider Fee
@@ -69,7 +69,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <Text fontSize="14px">
           {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
         </Text>
-      </RowBetween> */}
+      </RowBetween>
     </AutoColumn>
   )
 }
@@ -88,7 +88,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
       {trade && (
         <>
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
-          {/* {showRoute && (
+          {showRoute && (
             <>
               <RowBetween style={{ padding: '0 16px' }}>
                 <span style={{ display: 'flex', alignItems: 'center' }}>
@@ -103,7 +103,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                 <SwapRoute trade={trade} />
               </RowBetween>
             </>
-          )} */}
+          )}
         </>
       )}
     </AutoColumn>
