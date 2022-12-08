@@ -216,57 +216,7 @@
         "type": "uint256"
       }
     ],
-    "name": "LogSwapExactETHForTokensEx",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
     "name": "LogSwapExactTokenForETH",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "LogSwapExactTokenForETHEx",
     "type": "event"
   },
   {
@@ -298,37 +248,6 @@
       }
     ],
     "name": "LogSwapExactTokensForTokens",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "LogSwapExactTokensForTokensEx",
     "type": "event"
   },
   {
@@ -463,6 +382,19 @@
   },
   {
     "inputs": [],
+    "name": "DUST_VALUE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "SWAP_FEE",
     "outputs": [
       {
@@ -530,122 +462,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "tokenIn",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenOut",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOut",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAmountIn",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenIn",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenOut",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOut",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAmountInEx",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenIn",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenOut",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAmountOut",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenIn",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenOut",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAmountOutEx",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "_tokenA",
         "type": "address"
       },
@@ -653,6 +469,11 @@
         "internalType": "address",
         "name": "_tokenB",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
+        "type": "uint256"
       }
     ],
     "name": "isPairExists",
@@ -677,57 +498,14 @@
         "internalType": "address",
         "name": "_tokenB",
         "type": "address"
-      }
-    ],
-    "name": "isPairExistsEx",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_tokenA",
-        "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_tokenB",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_type",
+        "type": "uint256"
       }
     ],
     "name": "isPathExists",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_tokenA",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_tokenB",
-        "type": "address"
-      }
-    ],
-    "name": "isPathExistsEx",
     "outputs": [
       {
         "internalType": "bool",
@@ -871,37 +649,14 @@
         "internalType": "uint256",
         "name": "deadline",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
+        "type": "uint256"
       }
     ],
     "name": "swapETHForExactTokens",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "token",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amountOut",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapETHForExactTokensEx",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -926,6 +681,11 @@
       {
         "internalType": "uint256",
         "name": "deadline",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
         "type": "uint256"
       }
     ],
@@ -943,34 +703,6 @@
       },
       {
         "internalType": "uint256",
-        "name": "_amountOutMin",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapExactETHForTokensEx",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "token",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
         "name": "_amountIn",
         "type": "uint256"
       },
@@ -987,6 +719,11 @@
       {
         "internalType": "uint256",
         "name": "deadline",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
         "type": "uint256"
       }
     ],
@@ -999,39 +736,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "token",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOutMin",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapExactTokenForETHEx",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "tokenA",
         "type": "address"
       },
@@ -1058,6 +762,11 @@
       {
         "internalType": "uint256",
         "name": "deadline",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
         "type": "uint256"
       }
     ],
@@ -1070,44 +779,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "tokenA",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenB",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOutMin",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapExactTokensForTokensEx",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "token",
         "type": "address"
       },
@@ -1129,6 +800,11 @@
       {
         "internalType": "uint256",
         "name": "deadline",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
         "type": "uint256"
       }
     ],
@@ -1141,39 +817,6 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "token",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOut",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapTokensForExactETHEx",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
         "name": "tokenA",
         "type": "address"
       },
@@ -1200,48 +843,15 @@
       {
         "internalType": "uint256",
         "name": "deadline",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_type",
         "type": "uint256"
       }
     ],
     "name": "swapTokensForExactTokens",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "tokenA",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tokenB",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountOut",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapTokensForExactTokensEx",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
