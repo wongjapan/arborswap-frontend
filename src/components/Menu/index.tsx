@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
+import { useRBAPrice } from 'hooks/useRBAPrice'
 import config from './config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
@@ -14,7 +15,7 @@ const Menu = (props) => {
   const cakePriceUsd = usePriceCakeBusd()
   const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
-
+  const rbaPriceBnb = useRBAPrice()
   return (
     <UikitMenu
       userMenu={<UserMenu />}
@@ -24,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      cakePriceUsd={rbaPriceBnb?.rbaPriceUsd}
       links={config(t)}
       profile={{
         username: profile?.username,

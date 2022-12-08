@@ -31,7 +31,7 @@
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
     "@arborswap/sdk": "wongjapan/arborswap-sdk-rba#b6dde38",
-    "@arborswap/uikit": "^0.50.4",
+    "@arborswap/uikit": "^0.51.2",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",
