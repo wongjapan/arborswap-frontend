@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <Header />
       <PopularPool />
       <TrendingNft />
-      <FeaturedIdo />
+      {/* <FeaturedIdo /> */}
       <Footer />
     </>
   )
