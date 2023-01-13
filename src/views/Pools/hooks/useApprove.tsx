@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useSousChef, useCakeVaultContract } from 'hooks/useContract'
+import { useCake, useCakeVaultContract, useDepositWallet } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
@@ -18,7 +18,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const sousChefContract = useSousChef(sousId)
+  const sousChefContract = useDepositWallet(sousId)
 
   const handleApprove = useCallback(async () => {
     try {
