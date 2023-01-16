@@ -273,7 +273,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || 'RBA'}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB],
@@ -311,7 +311,7 @@ export default function AddLiquidity({
           title={t('Add Liquidity')}
           subtitle={t('Add liquidity to receive LP tokens')}
           helper={t(
-            'To make ArborSwap the best option for you, we’re providing the lowest service fees on the market: just 0.1% for swaps on the native DEX, and 0.05% for external DEX service requests.',
+            'Liquidity providers earn a 0.17% trading fee on all trades made for that token pair, proportional to their share of the liquidity pool.',
           )}
           backTo="/pool"
         />

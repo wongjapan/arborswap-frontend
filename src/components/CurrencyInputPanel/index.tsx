@@ -38,9 +38,7 @@ const LabelRow = styled.div`
 const ButtonDivider = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   align-items: center;
-  padding-left: 10px;
   border-left: 1px dashed ${({ theme }) => theme.colors.textSubtle};
 `
 
@@ -185,10 +183,10 @@ export default function CurrencyInputPanel({
               {/* @TODO add danger variant */}
               {account && currency && showMaxButton && label !== 'To' && (
                 <ButtonDivider>
-                  <Button width="100%" onClick={onHalf} scale="sm" variant="half">
+                  <Button onClick={onHalf} scale="sm" variant="text">
                     Half
                   </Button>
-                  <Button width="100%" onClick={onMax} scale="sm" variant="max">
+                  <Button onClick={onMax} scale="sm" variant="text">
                     MAX
                   </Button>
                 </ButtonDivider>

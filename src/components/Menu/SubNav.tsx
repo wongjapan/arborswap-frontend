@@ -27,15 +27,6 @@ const getActiveIndex = (pathname: string): number => {
   return 0
 }
 
-const ComingSoon = styled.span`
-  background: ${({ theme }) => theme.colors.gradients.roburna};
-  padding: 3px 8px;
-  color: #ffffff;
-  font-size: 10px;
-  border-radius: 8px;
-  margin-top: 3px;
-`
-
 const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
@@ -48,7 +39,7 @@ const Nav = () => {
         <ButtonTabsItem id="pool-nav-link" to="/add" as={Link}>
           {t('Liquidity')}
         </ButtonTabsItem>
-        <ButtonTabsItem icons={<ComingSoon>Coming Soon</ComingSoon>} id="limits-nav-links" to="#" as={Link}>
+        <ButtonTabsItem id="limits-nav-links" to="#" as={Link}>
           {t('Limit Order')}
         </ButtonTabsItem>
       </ButtonTabs>

@@ -6,7 +6,7 @@ export const CAKE: { [chainId: number]: Token } = {
     '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
     18,
     'CAKE',
-    'Pancake Token',
+    'ArborSwap Token',
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
@@ -33,7 +33,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
 }
 
-export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB')
+export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WRBA', 'Wrapped RBA')
 export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
 export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
 export const BTCB = new Token(ChainId.MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
@@ -61,7 +61,7 @@ export const USDC = new Token(
 
 const tokens = {
   bnb: {
-    symbol: 'BNB',
+    symbol: 'RBA',
     projectLink: 'https://www.binance.com/',
   },
   cake: {
@@ -76,7 +76,7 @@ const tokens = {
   f4h: {
     symbol: 'F4H',
     address: {
-      56: '0xa5F8128d04692656a60f17B349C2146c48e6863a',
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       97: '0x083295D160A243D0A850Bc75E317e1c56f935EA9',
       159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
     },
@@ -86,7 +86,7 @@ const tokens = {
   rba: {
     symbol: 'RBA',
     address: {
-      56: '0xDD534480782eCf53e4A5257B0f3C37702A0bAD61',
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       97: '0x430EA547076C0051B252b1ab1ef83cd83F2D1aB4',
     },
     decimals: 18,
@@ -696,7 +696,7 @@ const tokens = {
     projectLink: 'https://venus.io/',
   },
   wbnb: {
-    symbol: 'WBNB',
+    symbol: 'wBNB',
     address: {
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',

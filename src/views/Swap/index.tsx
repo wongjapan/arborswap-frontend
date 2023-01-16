@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@arborswap/sdk'
 import { Button, Text, ArrowDownIcon, Box, useModal } from '@arborswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
-import { halfAmountSpend } from 'utils/halfAmountSpend'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { RouteComponentProps } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
@@ -158,7 +157,6 @@ export default function Swap({ history }: RouteComponentProps) {
   }, [approval, approvalSubmitted])
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
-  const halfAmountInput: CurrencyAmount | undefined = halfAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
   // the callback to execute the swap
@@ -276,12 +274,6 @@ export default function Swap({ history }: RouteComponentProps) {
     }
   }, [maxAmountInput, onUserInput])
 
-  const handleHalfInput = useCallback(() => {
-    if (halfAmountInput) {
-      onUserInput(Field.INPUT, halfAmountInput.toExact())
-    }
-  }, [halfAmountInput, onUserInput])
-
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
@@ -339,7 +331,6 @@ export default function Swap({ history }: RouteComponentProps) {
               currency={currencies[Field.INPUT]}
               onUserInput={handleTypeInput}
               onMax={handleMaxInput}
-              onHalf={handleHalfInput}
               onCurrencySelect={handleInputSelect}
               otherCurrency={currencies[Field.OUTPUT]}
               id="swap-currency-input"
