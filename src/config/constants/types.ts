@@ -71,6 +71,7 @@ export interface PoolConfig {
   earningToken: Token
   stakingToken: Token
   contractAddress: Address
+  depositAddress: Address
   poolCategory: PoolCategory
   tokenPerBlock: string
   isLock?: boolean
