@@ -46,7 +46,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Locker'),
-        href: '#2',
+        href: 'http://lock.arborswap.org/',
       },
       {
         label: t('Airdropper'),
