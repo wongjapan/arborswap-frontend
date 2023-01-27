@@ -232,7 +232,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           mt="20px"
         >
           <Text bold>Unlock Date:</Text>
-          <Text bold>{unlockDate}</Text>
+          <Text bold>{pool.lockInfo ? pool.lockInfo : unlockDate}</Text>
         </Flex>
       ) : (
         <></>

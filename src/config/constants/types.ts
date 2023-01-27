@@ -77,6 +77,7 @@ export interface PoolConfig {
   isLock?: boolean
   rate?: number
   lockTime?: number
+  lockInfo?: string
   sortOrder?: number
   harvest?: boolean
   isFinished?: boolean
