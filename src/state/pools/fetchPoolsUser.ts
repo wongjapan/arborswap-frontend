@@ -9,8 +9,8 @@ import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // RBA pools use the native RBA token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'RBA')
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'RBA')
+const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
+const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
 const lockPools = poolsConfig.filter((p) => p.isLock === true)
 const normalPools = poolsConfig.filter((p) => p.isLock !== true)

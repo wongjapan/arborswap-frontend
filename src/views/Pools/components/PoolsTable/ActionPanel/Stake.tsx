@@ -63,7 +63,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
-
+  console.log(`stakingTokenBalance`, stakingTokenBalance.toString())
   const [onPresentStake] = useModal(
     <StakeModal
       isBnbPool={isBnbPool}
