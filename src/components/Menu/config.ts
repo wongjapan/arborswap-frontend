@@ -40,17 +40,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('More Products'),
     icon: 'MoreIcon',
     items: [
-      {
-        label: t('Launchpad'),
-        href: '#1',
-      },
+      // {
+      //   label: t('Launchpad'),
+      //   href: '#1',
+      // },
       {
         label: t('Locker'),
         href: 'http://lock.arborswap.org/',
       },
       {
         label: t('Airdropper'),
-        href: '#3',
+        href: 'http://airdrop.arborswap.org/',
       },
     ],
   },
