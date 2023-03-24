@@ -96,5 +96,10 @@
     "prettier": "^2.3.0",
     "source-map-explorer": "^2.5.2",
     "ts-node": "^9.1.1"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "node": "16",
+    "yarn": ">=1.22"
   }
 }
