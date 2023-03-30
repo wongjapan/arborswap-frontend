@@ -50,6 +50,7 @@ const StyledNav = styled.nav`
   transform: translate3d(0, 0, 0);
   padding-left: 16px;
   padding-right: 16px;
+  color: #fff;
 `
 
 const Logos = styled.a`
@@ -94,6 +95,91 @@ const StatsColumn = styled(Flex)`
   flex-direction: row;
 `
 
+const navLinkStyle = styled(Flex)`
+  position: relative;
+  width: 380px;
+  flex-direction: row;
+`
+const StyledUl = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+`;
+
+const StyledLi = styled.li`
+  float: left;
+`;
+
+const Dropbtn = styled.div`
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+`;
+
+const DropDownContent = styled.div`
+  display: none;
+  position: absolute;
+  background: #FFFFFF;
+  border: 3px solid rgba(255, 229, 176, 0.2);
+  box-shadow: 10px 10px 20px rgba(166, 159, 159, 0.3);
+  border-radius: 10px;
+  padding:20px;
+`;
+
+const DropDownLi = styled(StyledLi)`
+  display: inline-block;
+  &:hover ${DropDownContent} {
+    display: block;
+  }
+`;
+
+const StyledA = styled.a`
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  cursor: pointer;
+`;
+
+const SubA = styled.a`
+  display: block;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #464754;
+  padding: 12px 0px;
+`;
+const Arrowd = styled.div`
+  padding: 5px;
+  display:inline;
+`;
+const Dptxt = styled.div`
+display:inline;
+`;
+
 const Header = () => {
   const { t } = useTranslation()
   return (
@@ -105,34 +191,56 @@ const Header = () => {
               <img src={Logo} alt="logo" />
             </Logos>
             <MenuWrapper>
-              <SubMenu
-                component={
-                  <Text textAlign="left" color="white">
-                    Products
-                  </Text>
-                }
-              >
-                <SubMenuItem as={Link} to="/swap">
-                  Oke
-                </SubMenuItem>
-                <SubMenuItem as={LinkExternal} href="https://bscscan.com" bold={false} color="text">
-                  Okes
-                </SubMenuItem>
-              </SubMenu>
-              <Text textAlign="left" color="white">
-                RBA Token
-              </Text>
-              <Text textAlign="left" color="white">
-                Community
-              </Text>
-              <Text textAlign="left" color="white">
-                About
-              </Text>
+            <StyledUl>
+            <StyledLi>
+              <StyledA onClick={() => ''}>Protocols</StyledA>
+            </StyledLi>
+            <StyledLi>
+              <StyledA onClick={() => ''}>RBA Token</StyledA>
+            </StyledLi>
+            <DropDownLi>
+              <Dropbtn>
+                <Dptxt>Resources</Dptxt> 
+                <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+              </Dropbtn>
+              <DropDownContent>
+                {" "}
+                <SubA>
+                  <Link to='/' >Docs & User Guides</Link>
+                </SubA>
+                <SubA>
+                  <Link to='/' >Roadmap</Link>
+                </SubA>
+                <SubA>
+                  <Link to='/' >Apply for listing</Link>
+                </SubA>
+              </DropDownContent>
+            </DropDownLi>
+            <DropDownLi>
+              <Dropbtn>
+                <Dptxt>Socials</Dptxt> 
+                <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+              </Dropbtn>
+              <DropDownContent>
+                {" "}
+                <SubA>
+                  <Link to='/' >Twitter</Link>
+                </SubA>
+                <SubA>
+                  <Link to='/' >Telegram</Link>
+                </SubA>
+                <SubA>
+                  <Link to='/' >Gitbook</Link>
+                </SubA>
+              </DropDownContent>
+            </DropDownLi>
+          </StyledUl>
             </MenuWrapper>
             <Button as={Link} to="/swap" startIcon={<DashboardIcon color="#FFFFFF" />}>
               Launch APP
             </Button>
           </StyledNav>
+          
         </InnerWrapper>
         <StatsWrapper>
           <InnerStatsWrapper>
