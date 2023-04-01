@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Link } from 'react-router-dom'
+import useAuth from 'hooks/useAuth'
 import {
   Flex,
   Heading,
@@ -11,10 +12,10 @@ import {
   SubMenu,
   SubMenuItem,
   Grid,
+  useWalletModal,
   Box,
 } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-
 import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
 import Dividers from '../assets/dividers.png'
@@ -193,7 +194,7 @@ const Header = () => {
             <MenuWrapper>
             <StyledUl>
             <StyledLi>
-              <StyledA onClick={() => ''}>Protocols</StyledA>
+              <StyledA >Protocols</StyledA>
             </StyledLi>
             <StyledLi>
               <StyledA onClick={() => ''}>RBA Token</StyledA>
@@ -224,13 +225,13 @@ const Header = () => {
               <DropDownContent>
                 {" "}
                 <SubA>
-                  <Link to='/' >Twitter</Link>
+                  <a href='https://twitter.com/arborswap_defi' >Twitter</a>
                 </SubA>
                 <SubA>
-                  <Link to='/' >Telegram</Link>
+                    <a href='https://t.me/arborswap' >Telegram</a>
                 </SubA>
                 <SubA>
-                  <Link to='/' >Gitbook</Link>
+                  <a href='https://www.instagram.com/arborswapofficial' >Instagram</a>
                 </SubA>
               </DropDownContent>
             </DropDownLi>
@@ -266,6 +267,7 @@ const Header = () => {
             </StatsColumn>
           </InnerStatsWrapper>
         </StatsWrapper>
+        
       </Wrapper>
     </>
   )
