@@ -21,21 +21,6 @@ import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
 import Dividers from '../assets/dividers.png'
 import ProtocolModal from './ProtocolModal'
-import Navigation from './Navigation'
-
-const Wrapper = styled(Flex)`
-  z-index: 1;
-  position: relative;
-  padding-top: 36px;
-  min-height: 1200px;
-  background: url(${FooterBg});
-  background-size: cover;
-  flex-direction: column;
-`
-const InnerWrapper = styled(Flex)`
-  width: 1200px;
-  margin: 0 auto;
-`
 
 const MenuWrapper = styled(Flex)`
   gap: 20px;
@@ -53,7 +38,7 @@ const StyledNav = styled.div`
   background-color: transparent;
   padding-left: 16px;
   padding-right: 16px;
-  color: #fff;
+  color: #464754;
 `
 
 const Logos = styled.a`
@@ -67,41 +52,6 @@ const Logos = styled.a`
   font-size: 22px;
   margin-top: 10px;
   margin-left: 20px;
-`
-
-const StatsWrapper = styled(Flex)`
-  position: relative;
-  flex-wrap: wrap;
-  border-radius: 10px;
-  border: 1px solid #ffffff;
-  padding: 35px;
-  margin: 600px auto 0 auto;
-  background: rgba(68, 54, 20, 0.08);
-  box-shadow: inset 11.9333px -11.9333px 11.9333px rgba(200, 156, 52, 0.08),
-    inset -11.9333px 11.9333px 11.9333px rgba(200, 156, 52, 0.08);
-  backdrop-filter: blur(6.5px);
-`
-
-const InnerStatsWrapper = styled(Flex)`
-  position: relative;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 800px;
-  height: 270px;
-  background-image: url(${Dividers});
-  background-size: cover;
-`
-const StatsColumn = styled(Flex)`
-  position: relative;
-  width: 380px;
-  flex-direction: row;
-`
-
-const navLinkStyle = styled(Flex)`
-  position: relative;
-  width: 380px;
-  flex-direction: row;
 `
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -128,13 +78,13 @@ const Dropbtn = styled.div`
   line-height: 120%;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #464754;
 `;
 
 const DropDownContent = styled.div`
   display: none;
   position: absolute;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 3px solid rgba(255, 229, 176, 0.2);
   box-shadow: 10px 10px 20px rgba(166, 159, 159, 0.3);
   border-radius: 10px;
@@ -162,7 +112,7 @@ const StyledA = styled.a`
   line-height: 120%;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #464754;
   cursor: pointer;
 `;
 
@@ -183,43 +133,66 @@ const Dptxt = styled.div`
 display:inline;
 `;
 
-const Header = () => {
+const NavigationLite = () => {
   const { t } = useTranslation()
   return (
     <>
-      <Wrapper>
-        <InnerWrapper>
-          <Navigation />
-          
-        </InnerWrapper>
-        <StatsWrapper>
-          <InnerStatsWrapper>
-            <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Trading Volume
-              </Box>
-            </StatsColumn>
-            <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Value Locked
-              </Box>
-            </StatsColumn>
-            <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Projects Launched
-              </Box>
-            </StatsColumn>
-            <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Tickets Won
-              </Box>
-            </StatsColumn>
-          </InnerStatsWrapper>
-          
-        </StatsWrapper>
-      </Wrapper>
+      <StyledNav>
+        <Logos href="#">
+            <img src={Logo} alt="logo" />
+        </Logos>
+        <MenuWrapper>
+        <StyledUl>
+        <StyledLi>
+            <ProtocolModal fontColor="#464754" />
+        </StyledLi>
+        <StyledLi>
+            <StyledA onClick={() => ''}>RBA Token</StyledA>
+        </StyledLi>
+        <DropDownLi>
+            <Dropbtn>
+            <Dptxt>Resources</Dptxt> 
+            <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+            </Dropbtn>
+            <DropDownContent>
+            {" "}
+            <SubA>
+                <Link to='/' >Docs & User Guides</Link>
+            </SubA>
+            <SubA>
+                <Link to='/roadmap' >Roadmap</Link>
+            </SubA>
+            <SubA>
+                <Link to='/applylisting' >Apply for listing</Link>
+            </SubA>
+            </DropDownContent>
+        </DropDownLi>
+        <DropDownLi>
+            <Dropbtn>
+            <Dptxt>Socials</Dptxt> 
+            <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+            </Dropbtn>
+            <DropDownContent>
+            {" "}
+            <SubA>
+                <a href='https://twitter.com/arborswap_defi' >Twitter</a>
+            </SubA>
+            <SubA>
+                <a href='https://t.me/arborswap' >Telegram</a>
+            </SubA>
+            <SubA>
+                <a href='https://www.instagram.com/arborswapofficial' >Instagram</a>
+            </SubA>
+            </DropDownContent>
+        </DropDownLi>
+        </StyledUl>
+        </MenuWrapper>
+        <Button as={Link} to="/swap" startIcon={<DashboardIcon color="#FFFFFF" />}>
+            Launch APP
+        </Button>
+        </StyledNav>
     </>
   )
 }
 
-export default Header
+export default NavigationLite

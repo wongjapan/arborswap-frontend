@@ -6,6 +6,8 @@ import { useTranslation } from 'contexts/Localization'
 
 import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
+import '../assets/Home.css'
+
 
 const Wrapper = styled(Flex)`
   z-index: 1;
@@ -55,13 +57,7 @@ const PopularPool = () => {
   const { t } = useTranslation()
   return (
     <>
-      <Wrapper>
-        <InnerWrapper>
-          <Heading textAlign="center" scale="lg">
-            Popular Pools
-          </Heading>
-        </InnerWrapper>
-      </Wrapper>
+      
     </>
   )
 }

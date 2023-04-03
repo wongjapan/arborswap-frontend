@@ -5,7 +5,7 @@ import useTheme from 'hooks/useTheme'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import PopularPool from './components/PopularPool'
-
+import Partners from './components/Partners'
 import TrendingNft from './components/TrendingNft'
 import FeaturedIdo from './components/FeaturedIdo'
 
@@ -17,6 +17,7 @@ const Home: React.FC = () => {
       <PopularPool />
       <TrendingNft />
       <FeaturedIdo />
+      <Partners />
       <Footer />
     </>
   )
