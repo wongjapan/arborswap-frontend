@@ -132,7 +132,7 @@
 
 /* ================ check box design ==================  */
 .labelContainer {
-    display: block;
+    display: inline-block;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -183,7 +183,7 @@
     /* Show the checkmark when checked */
 .labelContainer input:checked ~ .checkmark:after {
     display: block;
-    }
+}
 
     /* Style the checkmark/indicator */
 .labelContainer .checkmark:after {
@@ -197,7 +197,13 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
+.list-item img{
+    position: relative;
+    top: 4px;
+}
+.list-item .labelContainer{
+    padding: 0px 10px;
+}
 /* Media Query */
 @media (max-width: 584px) {
     .wrapper{

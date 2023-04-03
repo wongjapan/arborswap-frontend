@@ -74,27 +74,31 @@ const RoadmapItems = ()=>{
 
                                     <div className="card-list">
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-checked.png" alt="" />
                                             <label htmlFor="item1" className="labelContainer checked" > 
-                                                <input type="checkbox" checked id="item1" name="" value="" /> Decentralized Exchange v.1
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" checked id="item1" name="" value="" /> */} Decentralized Exchange v.1
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-checked.png" alt="" />
                                             <label htmlFor="item2" className="labelContainer checked" > 
-                                                <input type="checkbox" checked id="item2" name="" value="" /> Staking Protocol
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" checked id="item2" name="" value="" /> */} Staking Protocol
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item3" className="labelContainer" > 
-                                                <input type="checkbox" id="item3" name="" value="" /> Token & Liquidity Locker
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item3" name="" value="" /> */} Token & Liquidity Locker
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item4" className="labelContainer" > 
-                                                <input type="checkbox" id="item4" name="" value="" /> NFT Marketplace
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item4" name="" value="" /> */} NFT Marketplace
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                     </div>
@@ -118,27 +122,31 @@ const RoadmapItems = ()=>{
 
                                     <div className="card-list">
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item1" className="labelContainer" > 
-                                                <input type="checkbox" id="item1" name="" value="" /> Launchpad
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item1" name="" value="" /> */} Launchpad
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item2" className="labelContainer" > 
-                                                <input type="checkbox" id="item2" name="" value="" /> Decentralized Exchange v.2
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item2" name="" value="" /> */} Decentralized Exchange v.2
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item3" className="labelContainer" > 
-                                                <input type="checkbox" id="item3" name="" value="" /> Airdrop Feature for partner projects
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item3" name="" value="" /> */} Airdrop Feature for partner projects
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item4" className="labelContainer" > 
-                                                <input type="checkbox" id="item4" name="" value="" /> Lottery platform
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item4" name="" value="" /> */} Lottery platform
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                     </div>
@@ -162,15 +170,17 @@ const RoadmapItems = ()=>{
 
                                     <div className="card-list">
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item1" className="labelContainer checked" > 
-                                                <input type="checkbox" id="item1" name="" value="" /> E-Commerce Platform ( Shops )
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item1" name="" value="" /> */} E-Commerce Platform ( Shops )
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item2" className="labelContainer checked" > 
-                                                <input type="checkbox" id="item2" name="" value="" /> Development Tools
-                                                <span className="checkmark" />
+                                                {/* <input type="checkbox" id="item2" name="" value="" /> */} Development Tools
+                                                {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
                                         

@@ -2,16 +2,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
+import '../assets/Partners.css';
 
 const PartnersW = styled.div`
     background: #FFFFFF;  
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 120px 0px;
+    padding: 80px 0px;
 `
 const PartnersInner = styled.div`
 `
 const PartnersTitle = styled.div`
-    font-family: 'Gilroy';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
@@ -30,7 +30,7 @@ const Partners = () => {
         <PartnersInner>
             <PartnersTitle>Partners</PartnersTitle>
             <PartnersList>
-                {/* <div className="grid grid-cols-4 gap-5 content-center">
+                <div className="partners">
                     <div className="partner-item text-center">
                         <img src="/images/home/imgnew/partners/bsc.png" alt="" />
                     </div>
@@ -52,7 +52,7 @@ const Partners = () => {
                     <div className="partner-item text-center">
                         <img src="/images/home/imgnew/partners/CoinGecko.png" alt="" />
                     </div>
-                </div>  */}
+                </div> 
             </PartnersList>
         </PartnersInner>
       </PartnersW>

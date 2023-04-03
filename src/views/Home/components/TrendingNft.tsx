@@ -12,6 +12,7 @@ const Wrapper = styled(Flex)`
   position: relative;
   padding-top: 36px;
   min-height: 700px;
+  background: #F5F6F7;
 `
 const InnerWrapper = styled(Flex)`
   width: 1200px;

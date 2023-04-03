@@ -138,7 +138,7 @@ const Navigation = () => {
   return (
     <>
       <StyledNav>
-        <Logos href="#">
+        <Logos href="/">
             <img src={Logo} alt="logo" />
         </Logos>
         <MenuWrapper>

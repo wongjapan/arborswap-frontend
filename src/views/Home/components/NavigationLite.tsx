@@ -138,7 +138,7 @@ const NavigationLite = () => {
   return (
     <>
       <StyledNav>
-        <Logos href="#">
+        <Logos href="/">
             <img src={Logo} alt="logo" />
         </Logos>
         <MenuWrapper>
@@ -152,7 +152,7 @@ const NavigationLite = () => {
         <DropDownLi>
             <Dropbtn>
             <Dptxt>Resources</Dptxt> 
-            <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+            <Arrowd><img src='/images/home/imgnew/arrowd-black.png' alt='' /></Arrowd>
             </Dropbtn>
             <DropDownContent>
             {" "}
@@ -170,7 +170,7 @@ const NavigationLite = () => {
         <DropDownLi>
             <Dropbtn>
             <Dptxt>Socials</Dptxt> 
-            <Arrowd><img src='/images/home/imgnew/arrowd.png' alt='' /></Arrowd>
+            <Arrowd><img src='/images/home/imgnew/arrowd-black.png' alt='' /></Arrowd>
             </Dropbtn>
             <DropDownContent>
             {" "}

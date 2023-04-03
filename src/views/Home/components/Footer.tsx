@@ -3,18 +3,22 @@ import styled from 'styled-components'
 import { Flex, Heading, Text, Link } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Container from 'components/Layout/Container'
-
+import FooterContact from './Footer/FooterContact';
+import SubscriptionForm from './Footer/SubscriptionForm'
 import FooterBg from '../assets/footer-bg.png'
 import LogoWhite from '../assets/logo-white.svg'
 
+const WrapperUp = styled.div`
+  background: url(${FooterBg});
+  background-size: cover;
+`
 const Wrapper = styled(Flex)`
   z-index: 1;
   position: relative;
   padding-top: 166px;
   overflow: hidden;
-  min-height: 666px;
-  background: url(${FooterBg});
-  background-size: cover;
+  padding-bottom: 40px;
+  background: transparent;
 `
 
 const WrapperInner = styled(Flex)`
@@ -44,6 +48,7 @@ const Footer = () => {
   const { t } = useTranslation()
   return (
     <>
+      <WrapperUp>
       <Wrapper>
         <WrapperInner>
           <FirstColumn>
@@ -51,6 +56,7 @@ const Footer = () => {
             <Text textAlign="left" color="white" marginTop="64px">
               Want to join Arbor on this new Journey?
             </Text>
+            <SubscriptionForm />
           </FirstColumn>
           <SecondColumn>
             <ProductColumn>
@@ -80,16 +86,18 @@ const Footer = () => {
               <Link href="/#" color="white">
                 User Guides
               </Link>
-              <Link href="/#" color="white">
+              <Link href="/roadmap" color="white">
                 Roadmap
               </Link>
-              <Link href="/#" color="white">
+              <Link href="/applylisting" color="white">
                 Apply Listing
               </Link>
             </ProductColumn>
           </SecondColumn>
         </WrapperInner>
-      </Wrapper>
+      </Wrapper>  
+      <FooterContact />
+      </WrapperUp>
     </>
   )
 }

@@ -17,20 +17,23 @@ import {
   Box,
 } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import FooterBg from '../assets/header-bg.png'
+import FooterBg from '../assets/banner-bg.png'
 import Logo from '../assets/logo.svg'
 import Dividers from '../assets/dividers.png'
 import ProtocolModal from './ProtocolModal'
 import Navigation from './Navigation'
+import BannerLinks from './Header/BannerLinks'
 
 const Wrapper = styled(Flex)`
   z-index: 1;
   position: relative;
   padding-top: 36px;
-  min-height: 1200px;
+  min-height: 1350px;
   background: url(${FooterBg});
   background-size: cover;
   flex-direction: column;
+  background-color: #f5f6f7;
+  background-position: center;
 `
 const InnerWrapper = styled(Flex)`
   width: 1200px;
@@ -75,7 +78,7 @@ const StatsWrapper = styled(Flex)`
   border-radius: 10px;
   border: 1px solid #ffffff;
   padding: 35px;
-  margin: 600px auto 0 auto;
+  margin: 480px auto 0 auto;
   background: rgba(68, 54, 20, 0.08);
   box-shadow: inset 11.9333px -11.9333px 11.9333px rgba(200, 156, 52, 0.08),
     inset -11.9333px 11.9333px 11.9333px rgba(200, 156, 52, 0.08);
@@ -190,8 +193,8 @@ const Header = () => {
       <Wrapper>
         <InnerWrapper>
           <Navigation />
-          
         </InnerWrapper>
+        <BannerLinks />
         <StatsWrapper>
           <InnerStatsWrapper>
             <StatsColumn>

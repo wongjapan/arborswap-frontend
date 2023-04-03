@@ -114,7 +114,7 @@ const ListingForm = ()=>{
 
                             <div className="input-box">
                                 <span className="details">Name *</span>
-                                <input type="number" placeholder="E.g James Joe" />
+                                <input type="text" placeholder="E.g James Joe" />
                             </div>
                             <div className="input-box">
                                 <span className="details">Email Address *</span>

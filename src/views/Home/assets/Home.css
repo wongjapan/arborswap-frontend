@@ -5,3 +5,49 @@
 .imgClose{
     width: 50px;
 }
+
+.banner-links{
+    background-image: url('../assets/banner-links-bg.png');
+    background-size: 100% 100%;
+    padding-bottom: 100px;
+    width: 751px;
+    margin: 0px auto;
+    position: relative;
+    top: 219px;
+    left: -12px;
+    height: 212px;
+  }
+.link-buttons a{
+    background: #C89C34;
+    box-shadow: 0px 4px 4px rgba(200, 156, 52, 0.2);
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #fff;
+}
+.link-row{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2em;
+}
+.lb1 {
+    position: relative;
+    left: -26px;
+    top: 83px;
+}
+.lb2 {
+    position: relative;
+    top: 82px;
+    right: -295px;
+}
+.lb3 {
+    position: relative;
+    top: 184px;
+    left: -78px;
+}
+.lb4 {
+    position: relative;
+    top: 185px;
+    right: -357px;
+    max-width: 100px;
+}
+  

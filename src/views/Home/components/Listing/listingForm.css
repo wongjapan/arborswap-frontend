@@ -61,6 +61,10 @@ form .user-details .input-box-full{
     border: 1.5px solid rgba(166, 159, 159, 0.4);
     border-radius: 8px;
 }
+.user-details .input-box-full textarea:hover, .user-details .input-box-full textarea:focus, .user-details .input-box-full textarea:focus-visible{
+    border: 1.5px solid rgba(166, 159, 159, 0.4);
+    outline: none;
+}
 
 .user-details .input-box-full input{
     height: 45px;

@@ -163,7 +163,7 @@ const ProtocolModal = ({fontColor})=>{
     
     return (
         <>
-            <Pbtn style={{'color': fontColor}} onClick={()=>setShowModal(true)} >Protocal</Pbtn>
+            <Pbtn style={{'color': fontColor}} onClick={()=>setShowModal(true)} >Protocols</Pbtn>
             {showModal && < ModalArea/> }
         </>
     );
