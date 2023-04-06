@@ -3,15 +3,33 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
 import '../assets/Partners.css';
+import partnerBg from '../assets/partners-bg.png'
 
 const PartnersW = styled.div`
-    background: #FFFFFF;  
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-image: url(${partnerBg});  
+    background-size: cover;
     padding: 80px 0px;
+    @media (min-width: 768px) and (max-width: 1024px) {
+        box-shadow: none;
+        background: #fff;
+    }
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        box-shadow: none;
+        background: #fff;
+    }
+    @media (min-width: 481px) and (max-width: 767px) {
+        box-shadow: none;
+        background: #fff;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        box-shadow: none;
+        background: #fff;
+    }
 `
 const PartnersInner = styled.div`
 `
 const PartnersTitle = styled.div`
+    font-family: GilroyHome;
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
@@ -19,9 +37,10 @@ const PartnersTitle = styled.div`
     letter-spacing: 0.02em;
     color: #464754;
     text-align:center;
+    margin-bottom: 60px;
 `
 const PartnersList = styled.div`
-    margin: 60px 180px;
+    margin: 20px;
 `
 
 const Partners = () => {

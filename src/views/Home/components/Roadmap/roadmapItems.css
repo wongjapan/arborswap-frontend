@@ -7,6 +7,7 @@
     border-radius: 5px;
 }
 .wrapper .title{
+    font-family: GilroyHome;
     position: relative;
     width: 100%;
     font-style: normal;
@@ -27,17 +28,20 @@
 .wrapper-content{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1.5em;
+    grid-gap: 2em;
 }
 .card{
+    font-family: GilroyHome;
     background: #FFFFFF;
     border-radius: 10px;
+    min-height: 350px;
 }
 .card-header-btn{
     width: 50%;
     float: left;
 }
 .card-header-btn button{
+    font-family: GilroyHome;
     background: #00783F;
     border-radius: 4px;
     color: #fff;
@@ -45,6 +49,7 @@
     padding: 7px;
 }
 .card-header-status{
+    font-family: GilroyHome;
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
@@ -57,6 +62,7 @@
     padding: 20px;
 }
 .progress-txt{
+    font-family: GilroyHome;
     width: 50%;
     float: left;
     font-style: normal;
@@ -66,9 +72,11 @@
     color: #807373;
 }
 .card2 .card-header-status, .card-header-status{
+    font-family: GilroyHome;
     color: #807373;
 }
 .progress-count{
+    font-family: GilroyHome;
     text-align: right;
     font-style: normal;
     font-weight: 700;
@@ -85,6 +93,7 @@
     padding: 10px 0px;
 }
 .card-list .list-item label{
+    font-family: GilroyHome;
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -96,9 +105,7 @@
 .card-list .list-item label.checked{
     color: #464754;
 }
-.card3{
-    margin-top: 20px;
-}
+
 .card1 .card .card-header{
     background: rgba(0, 120, 63, 0.08);
     border-bottom: 0.5px solid #D7D9DD;
@@ -132,6 +139,7 @@
 
 /* ================ check box design ==================  */
 .labelContainer {
+    font-family: GilroyHome;
     display: inline-block;
     position: relative;
     padding-left: 35px;
@@ -205,8 +213,56 @@
     padding: 0px 10px;
 }
 /* Media Query */
-@media (max-width: 584px) {
+
+@media (min-width: 768px) and (max-width: 1024px) {
     .wrapper{
         max-width: 100%;
+    }
+    .card{
+        margin-bottom: 2em;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .wrapper{
+        max-width: 100%;
+    }
+    .card{
+        margin-bottom: 2em;
+    }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+    .wrapper{
+        max-width: 100%;
+    }
+    .card{
+        margin-bottom: 2em;
+    }
+    .card3 .card{
+        width: 100%;
+    }
+    .wrapper-content {
+        grid-template-columns: 100%;
+        grid-gap: 0em;
+    }
+    .card3{
+        grid-column: 1;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .wrapper{
+        max-width: 100%;
+    }
+    .card{
+        margin-bottom: 2em;
+    }
+    .card3 .card{
+        width: 100%;
+    }
+    .wrapper-content {
+        grid-template-columns: 100%;
+        grid-gap: 0em;
+    }
+    .card3{
+        grid-column: 1;
     }
 }

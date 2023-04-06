@@ -11,9 +11,22 @@ import './roadmapItems.css';
 const ListingHeader = styled.div`
     width: 900px;
     margin: 0 auto;
-    text-align:center;
+    text-align: center;
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width:100%;
+    }
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        width:100%;
+    }
+    @media (min-width: 481px) and (max-width: 767px) {
+        width:100%;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        width:100%;
+    }
 `
 const ListingTitle = styled.h1`
+    font-family: GilroyHome;
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
@@ -23,14 +36,6 @@ const ListingTitle = styled.h1`
     padding-top:100px;
     padding-bottom: 5px;
 `
-const ListingSubTitle = styled.p`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0.02em;
-    color: #807373;
-`
 const FormWrapper = styled.div`
     width: 800px;
     margin: 0 auto;
@@ -38,9 +43,18 @@ const FormWrapper = styled.div`
     border-radius: 20px;
     margin-top: 20px;
     padding: 20px;
-`
-const FormTitle = styled.div`
-
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width:100%;
+    }
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        width:100%;
+    }
+    @media (min-width: 481px) and (max-width: 767px) {
+        width:100%;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        width:100%;
+    }
 `
 const FormContent = styled.div`
     margin: 0 auto;
@@ -106,7 +120,7 @@ const RoadmapItems = ()=>{
                             </div>
                         </div>
                         <div className="card2">
-                        <div className="card">
+                            <div className="card">
                                 <div className="card-header">
                                     <div className="card-header-btn">
                                         <button type="button">Stage 02</button>
@@ -154,7 +168,7 @@ const RoadmapItems = ()=>{
                             </div>
                         </div>
                         <div className="card3">
-                        <div className="card">
+                            <div className="card">
                                 <div className="card-header">
                                     <div className="card-header-btn">
                                         <button type="button">Stage 03</button>

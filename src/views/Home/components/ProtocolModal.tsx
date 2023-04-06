@@ -16,6 +16,7 @@ const StatsColumn = styled(Flex)`
 `
 
 const Pbtn = styled.button`
+    font-family: GilroyHome;
     display: inline-block;
     color: white;
     text-align: center;
@@ -64,6 +65,7 @@ const PModalHeader = styled.div`
 `;
 
 const PModalTitle = styled.div`
+    font-family: GilroyHome;
     width: 50%;
     display: inline-block;
     float:left;
@@ -75,6 +77,7 @@ const PModalTitle = styled.div`
     letter-spacing: 0.02em;
 `;
 const PModalClose = styled.div`
+    font-family: GilroyHome;
     display: inline-block;
     font-style: normal;
     font-weight: 600;
@@ -87,6 +90,7 @@ const PModalClose = styled.div`
     cursor: pointer;
 `;
 const BoxItemName = styled.span`
+    font-family: GilroyHome;
     display: inline-block;
     position: relative;
     top: -7px;
@@ -102,7 +106,8 @@ const PModalBody = styled.div`
   padding: 20px;
 `;
 const PModalCloseSpan = styled.span`
-
+    position: relative;
+    top: 6px;
 `;
 
 const ProtocolModal = ({fontColor})=>{
@@ -116,7 +121,7 @@ const ProtocolModal = ({fontColor})=>{
                 <PModal>
                     <PModalHeader>
                         <PModalTitle>Choose Protocol</PModalTitle>
-                        <PModalClose onClick={hideModal} >Close <PModalCloseSpan><img src="/images/home/imgnew/close.png" alt="" /></PModalCloseSpan></PModalClose>
+                        <PModalClose onClick={hideModal} >Close <PModalCloseSpan><img src="/images/home/imgnew/close-circle.png" alt="" /></PModalCloseSpan></PModalClose>
                     </PModalHeader>
                     <PModalBody>
                         <InnerStatsWrapper>

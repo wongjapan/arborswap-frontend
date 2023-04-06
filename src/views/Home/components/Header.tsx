@@ -25,6 +25,7 @@ import Navigation from './Navigation'
 import BannerLinks from './Header/BannerLinks'
 
 const Wrapper = styled(Flex)`
+  font-family: GilroyHome;
   z-index: 1;
   position: relative;
   padding-top: 36px;
@@ -38,38 +39,22 @@ const Wrapper = styled(Flex)`
 const InnerWrapper = styled(Flex)`
   width: 1200px;
   margin: 0 auto;
-`
-
-const MenuWrapper = styled(Flex)`
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-`
-
-const StyledNav = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-  padding-left: 16px;
-  padding-right: 16px;
-  color: #fff;
-`
-
-const Logos = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display:inline;
+    width: 750px;
   }
-  display: inline-block;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 20px;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    width: 100%;
+  }
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    background-image: none;
+  }
 `
 
 const StatsWrapper = styled(Flex)`
@@ -94,97 +79,63 @@ const InnerStatsWrapper = styled(Flex)`
   height: 270px;
   background-image: url(${Dividers});
   background-size: cover;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    background-image: none;
+    display: grid;
+    grid-template-columns: 100%;
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    background-image: none;
+    display: grid;
+    grid-template-columns: 100%;
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    background-image: none;
+    display: grid;
+    grid-template-columns: 100%;
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    background-image: none;
+    display: grid;
+    grid-template-columns: 100%;
+    width: 100%;
+    height: auto;
+  }
 `
 const StatsColumn = styled(Flex)`
   position: relative;
   width: 380px;
   flex-direction: row;
-`
-
-const navLinkStyle = styled(Flex)`
-  position: relative;
-  width: 380px;
-  flex-direction: row;
-`
-const StyledUl = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-`;
-
-const StyledLi = styled.li`
-  float: left;
-`;
-
-const Dropbtn = styled.div`
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  cursor: pointer
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 120%;
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: #FFFFFF;
-`;
-
-const DropDownContent = styled.div`
-  display: none;
-  position: absolute;
-  background: #FFFFFF;
-  border: 3px solid rgba(255, 229, 176, 0.2);
-  box-shadow: 10px 10px 20px rgba(166, 159, 159, 0.3);
-  border-radius: 10px;
-  padding:20px;
-`;
-
-const DropDownLi = styled(StyledLi)`
-  display: inline-block;
-  &:hover ${DropDownContent} {
-    display: block;
+  border-bottom: none;
+  width:100%;
+  &:nth-child(4){
+    border-bottom:none;
+  };
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    border-bottom: 2px dotted #545454;
   }
-`;
-
-const StyledA = styled.a`
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  cursor: pointer
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 120%;
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: #FFFFFF;
-  cursor: pointer;
-`;
-
-const SubA = styled.a`
-  display: block;
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  color: #464754;
-  padding: 12px 0px;
-`;
-const Arrowd = styled.div`
-  padding: 5px;
-  display:inline;
-`;
-const Dptxt = styled.div`
-display:inline;
-`;
+  @media (min-width: 481px) and (max-width: 767px) {
+    border-bottom: 2px dotted #545454;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    border-bottom: 2px dotted #545454;
+  }
+`
+const Box2 = styled(Box)`
+  margin: auto;
+  font-family: GilroyHome;
+`
+const BoxIcon = styled.img`
+  float:left;
+`
 
 const Header = () => {
   const { t } = useTranslation()
@@ -198,24 +149,48 @@ const Header = () => {
         <StatsWrapper>
           <InnerStatsWrapper>
             <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Trading Volume
-              </Box>
+              <Box2 as="div" style={{ color: '#A69F9F', padding: '10px' }}>
+                <BoxIcon src='images/home/imgnew/activity.png' alt='' />
+                <span style={{ 
+                  fontFamily: 'GilroyHome', 
+                  paddingTop: '15px', 
+                  position: 'relative',
+                  top: '24px',
+                  paddingLeft: '10px' }} >Total Trading Volume</span>
+              </Box2>
             </StatsColumn>
             <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Value Locked
-              </Box>
+              <Box2 as="div" style={{ color: '#A69F9F', padding: '10px' }}>
+                <BoxIcon src='images/home/imgnew/icon-locked.png' alt='' />
+                  <span style={{ 
+                    fontFamily: 'GilroyHome', 
+                    paddingTop: '15px', 
+                    position: 'relative',
+                    top: '24px',
+                    paddingLeft: '10px' }} >Total Value Locked</span>
+              </Box2>
             </StatsColumn>
             <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Projects Launched
-              </Box>
+              <Box2 as="div" style={{ color: '#A69F9F', padding: '10px' }}>
+                <BoxIcon src='images/home/imgnew/icon-projects.png' alt='' />
+                <span style={{ 
+                      fontFamily: 'GilroyHome', 
+                      paddingTop: '15px', 
+                      position: 'relative',
+                      top: '24px',
+                      paddingLeft: '10px' }} > Total Projects Launched </span>
+              </Box2>
             </StatsColumn>
             <StatsColumn>
-              <Box as="div" style={{ color: '#A69F9F', padding: '50px' }}>
-                Total Tickets Won
-              </Box>
+              <Box2 as="div" style={{ color: '#A69F9F', padding: '10px' }}>
+                <BoxIcon src='images/home/imgnew/icon-ticket-star.png' alt='' />
+                <span style={{ 
+                        fontFamily: 'GilroyHome', 
+                        paddingTop: '15px', 
+                        position: 'relative',
+                        top: '24px',
+                        paddingLeft: '10px' }} > Total Tickets Won </span>
+              </Box2>
             </StatsColumn>
           </InnerStatsWrapper>
           

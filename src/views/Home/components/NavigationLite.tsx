@@ -21,12 +21,29 @@ import FooterBg from '../assets/header-bg.png'
 import Logo from '../assets/logo.svg'
 import Dividers from '../assets/dividers.png'
 import ProtocolModal from './ProtocolModal'
+import MobileMenu from './MobileMenu'
 
 const MenuWrapper = styled(Flex)`
   gap: 20px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  display:block;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display:block;
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    display:none;
+  }
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    display:none;
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    display:none;
+  }
 `
 
 const StyledNav = styled.div`
@@ -38,20 +55,35 @@ const StyledNav = styled.div`
   background-color: transparent;
   padding-left: 16px;
   padding-right: 16px;
-  color: #464754;
+  color: #fff;
 `
 
 const Logos = styled.a`
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
-  }
   display: inline-block;
   font-size: 22px;
   margin-top: 10px;
   margin-left: 20px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin: 0px 10px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    display: block;
+    margin: 0px 10px;
+    width: 150px;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    display: block;
+    margin: 0px 10px;
+    width: 150px;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: block;
+    margin: 0px 10px;
+    width: 150px;
+  }
 `
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -78,13 +110,13 @@ const Dropbtn = styled.div`
   line-height: 120%;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #464754;
+  color: #FFFFFF;
 `;
 
 const DropDownContent = styled.div`
   display: none;
   position: absolute;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 3px solid rgba(255, 229, 176, 0.2);
   box-shadow: 10px 10px 20px rgba(166, 159, 159, 0.3);
   border-radius: 10px;
@@ -99,6 +131,7 @@ const DropDownLi = styled(StyledLi)`
 `;
 
 const StyledA = styled.a`
+  font-family: GilroyHome;
   display: inline-block;
   color: white;
   text-align: center;
@@ -115,10 +148,9 @@ const StyledA = styled.a`
   color: #464754;
   cursor: pointer;
 `;
-
 const SubA = styled.a`
+  font-family: GilroyHome;
   display: block;
-  font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -130,10 +162,27 @@ const Arrowd = styled.div`
   display:inline;
 `;
 const Dptxt = styled.div`
-display:inline;
+  font-family: GilroyHome;
+  display:inline;
+  color: #464754;
+`;
+const LunchApp = styled.div`
+  display:inline;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display:inline;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    display:none;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    display:none;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    display:none;
+  }
 `;
 
-const NavigationLite = () => {
+const Navigation = () => {
   const { t } = useTranslation()
   return (
     <>
@@ -156,14 +205,14 @@ const NavigationLite = () => {
             </Dropbtn>
             <DropDownContent>
             {" "}
-            <SubA>
-                <Link to='/' >Docs & User Guides</Link>
+            <SubA as={Link} to='/' >
+              Docs & User Guides
             </SubA>
-            <SubA>
-                <Link to='/roadmap' >Roadmap</Link>
+            <SubA as={Link} to='/roadmap' >
+                Roadmap
             </SubA>
-            <SubA>
-                <Link to='/applylisting' >Apply for listing</Link>
+            <SubA as={Link} to='/applylisting' >
+                Apply for listing
             </SubA>
             </DropDownContent>
         </DropDownLi>
@@ -174,25 +223,28 @@ const NavigationLite = () => {
             </Dropbtn>
             <DropDownContent>
             {" "}
-            <SubA>
-                <a href='https://twitter.com/arborswap_defi' >Twitter</a>
+            <SubA as={Link} to={{pathname: 'https://twitter.com/arborswap_defi'}} >
+                Twitter
             </SubA>
-            <SubA>
-                <a href='https://t.me/arborswap' >Telegram</a>
+            <SubA as={Link} to={{pathname: 'https://t.me/arborswap' }} >
+                Telegram
             </SubA>
-            <SubA>
-                <a href='https://www.instagram.com/arborswapofficial' >Instagram</a>
+            <SubA as={Link} to={{pathname: 'https://www.instagram.com/arborswapofficial' }} >
+                Instagram
             </SubA>
             </DropDownContent>
         </DropDownLi>
         </StyledUl>
         </MenuWrapper>
-        <Button as={Link} to="/swap" startIcon={<DashboardIcon color="#FFFFFF" />}>
-            Launch APP
-        </Button>
+        <LunchApp> 
+          <Button as={Link} to="/swap" startIcon={<DashboardIcon color="#FFFFFF" />} style={{fontFamily: 'GilroyHome'}} >
+              Launch APP
+          </Button>  
+        </LunchApp>
+        <MobileMenu fontColor="#ffffff" />
         </StyledNav>
     </>
   )
 }
 
-export default NavigationLite
+export default Navigation
