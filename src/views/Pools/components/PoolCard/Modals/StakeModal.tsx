@@ -13,6 +13,9 @@ import {
   CalculateIcon,
   IconButton,
 } from '@arborswap/uikit'
+
+import dayjs from 'dayjs'
+
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
@@ -144,6 +147,10 @@ const StakeModal: React.FC<StakeModalProps> = ({
     )
   }
 
+  const unlockDate = dayjs().add(pool.lockTime, 'day').format('YYYY-MM-DD')
+  // console.log(`unlockDate`, unlockDate)
+  // console.log(`pool`, pool)
+
   return (
     <Modal
       minWidth="346px"
@@ -155,7 +162,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
+            src={`https://raw.githubusercontent.com/wongjapan/arbor-assets/master/images/${getAddress(
+              stakingToken.address,
+            )}.png`}
             width={24}
             height={24}
             alt={stakingToken.symbol}
@@ -192,6 +201,21 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
         <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
       </Flex>
+      {!isRemovingStake && pool.isLock ? (
+        <Flex
+          background="#F5F1EB"
+          borderRadius="6px"
+          padding="20px"
+          alignItems="center"
+          justifyContent="space-between"
+          mt="20px"
+        >
+          <Text bold>Unlock Date:</Text>
+          <Text bold>{pool.lockInfo ? pool.lockInfo : unlockDate}</Text>
+        </Flex>
+      ) : (
+        <></>
+      )}
 
       <Button
         isLoading={pendingTx}

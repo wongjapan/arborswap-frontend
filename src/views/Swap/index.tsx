@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js'
 
 import { Button, Text, ArrowDownIcon, Box, useModal } from '@arborswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
+import { halfAmountSpend } from 'utils/halfAmountSpend'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { RouteComponentProps } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
@@ -17,7 +18,7 @@ import ConfirmSwapModal from './components/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/Layout/Row'
 import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
-import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
+// import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import TradePrice from './components/TradePrice'
 import ImportTokenWarningModal from './components/ImportTokenWarningModal'
@@ -93,7 +94,6 @@ export default function Swap({ history }: RouteComponentProps) {
   } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
-
   const parsedAmounts = showWrap
     ? {
         [Field.INPUT]: parsedAmount,
@@ -146,7 +146,6 @@ export default function Swap({ history }: RouteComponentProps) {
     currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0)),
   )
   const noRoute = !route
-
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
 
@@ -161,7 +160,7 @@ export default function Swap({ history }: RouteComponentProps) {
   }, [approval, approvalSubmitted])
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
-  // const halfAmountInput: maxAmountInput / 2
+  const halfAmountInput: CurrencyAmount | undefined = halfAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
   // const atHalfAmountInput = Boolean(halfAmountInput && parsedAmounts[Field.INPUT]?.equalTo(halfAmountInput))
   // console.log(`maxAmountInput :`, maxAmountInput)
@@ -173,9 +172,6 @@ export default function Swap({ history }: RouteComponentProps) {
   const [singleHopOnly] = useUserSingleHopOnly()
 
   const handleSwap = useCallback(() => {
-    if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
-      return
-    }
     if (!swapCallback) {
       return
     }
@@ -192,7 +188,29 @@ export default function Swap({ history }: RouteComponentProps) {
           txHash: undefined,
         })
       })
-  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm])
+  }, [swapCallback, tradeToConfirm])
+
+  // const handleSwap = useCallback(() => {
+  //   if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
+  //     return
+  //   }
+  //   if (!swapCallback) {
+  //     return
+  //   }
+  //   setSwapState({ attemptingTxn: true, tradeToConfirm, swapErrorMessage: undefined, txHash: undefined })
+  //   swapCallback()
+  //     .then((hash) => {
+  //       setSwapState({ attemptingTxn: false, tradeToConfirm, swapErrorMessage: undefined, txHash: hash })
+  //     })
+  //     .catch((error) => {
+  //       setSwapState({
+  //         attemptingTxn: false,
+  //         tradeToConfirm,
+  //         swapErrorMessage: error.message,
+  //         txHash: undefined,
+  //       })
+  //     })
+  // }, [priceImpactWithoutFee, swapCallback, tradeToConfirm])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
@@ -262,12 +280,10 @@ export default function Swap({ history }: RouteComponentProps) {
   }, [maxAmountInput, onUserInput])
 
   const handleHalfInput = useCallback(() => {
-    if (maxAmountInput) {
-      const halfVal = maxAmountInput.toExact()
-      const halfValue = new BigNumber(halfVal).dividedBy(2)
-      onUserInput(Field.INPUT, halfValue.toString())
+    if (halfAmountInput) {
+      onUserInput(Field.INPUT, halfAmountInput.toExact())
     }
-  }, [maxAmountInput, onUserInput])
+  }, [halfAmountInput, onUserInput])
 
   const handleOutputSelect = useCallback(
     (outputCurrency) => {

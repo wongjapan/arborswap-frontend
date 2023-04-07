@@ -6,10 +6,10 @@ import { harvestFarm } from 'utils/calls'
 import { BIG_ZERO } from 'utils/bigNumber'
 import getGasPrice from 'utils/getGasPrice'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
-import { STAKE_DEFAULT_GAS_LIMIT } from 'config'
+import { DEFAULT_GAS_LIMIT_STAKE } from 'config'
 
 const options = {
-  gasLimit: STAKE_DEFAULT_GAS_LIMIT,
+  gasLimit: DEFAULT_GAS_LIMIT_STAKE,
 }
 
 const harvestPool = async (sousChefContract) => {

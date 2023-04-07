@@ -47,7 +47,8 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
         {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-        {isDesktop && <EndsInCell pool={pool} />}
+        <EndsInCell pool={pool} />
+        {/* {isDesktop && <EndsInCell pool={pool} />} */}
         <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
       </StyledRow>
       {shouldRenderActionPanel && (

@@ -8,7 +8,7 @@ import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
-// BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
+// RBA pools use the native RBA token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
@@ -19,7 +19,7 @@ export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'allowance',
-    params: [account, getAddress(p.contractAddress)],
+    params: [account, getAddress(p.depositAddress)],
   }))
 
   const allowances = await multicall(erc20ABI, calls)
@@ -30,7 +30,7 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non BNB pools
+  // Non RBA pools
   const calls = nonBnbPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'balanceOf',
@@ -42,7 +42,7 @@ export const fetchUserBalances = async (account) => {
     {},
   )
 
-  // BNB pools
+  // RBA pools
   const bnbBalance = await simpleRpcProvider.getBalance(account)
   const bnbBalances = bnbPools.reduce(
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(bnbBalance.toString()).toJSON() }),
@@ -55,12 +55,12 @@ export const fetchUserBalances = async (account) => {
 export const fetchUserStakeBalances = async (account) => {
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'staker',
+    name: 'stakingBalance',
     params: [account],
   }))
   const lockCalls = lockPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'staker',
+    name: 'stakingBalance',
     params: [account],
   }))
 
@@ -70,7 +70,7 @@ export const fetchUserStakeBalances = async (account) => {
   const lockStakedBalances = lockPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userLockInfo[index].amount._hex).toJSON(),
+      [pool.sousId]: new BigNumber(userLockInfo[index]).toJSON(),
     }),
     {},
   )
@@ -78,7 +78,7 @@ export const fetchUserStakeBalances = async (account) => {
   const stakedBalances = normalPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userInfo[index].amount._hex).toJSON(),
+      [pool.sousId]: new BigNumber(userInfo[index]).toJSON(),
     }),
     {},
   )
@@ -89,12 +89,12 @@ export const fetchUserStakeBalances = async (account) => {
 export const fetchUserUnlockTimes = async (account) => {
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'staker',
+    name: 'startTime',
     params: [account],
   }))
   const lockCalls = lockPools.map((p) => ({
     address: getAddress(p.contractAddress),
-    name: 'staker',
+    name: 'userEndTime',
     params: [account],
   }))
 
@@ -104,7 +104,7 @@ export const fetchUserUnlockTimes = async (account) => {
   const lockStakedBalances = lockPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userLockInfo[index].endTime._hex).toJSON(),
+      [pool.sousId]: new BigNumber(userLockInfo[index]).toJSON(),
     }),
     {},
   )
@@ -112,7 +112,7 @@ export const fetchUserUnlockTimes = async (account) => {
   const stakedBalances = normalPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userInfo[index].startTime._hex).toJSON(),
+      [pool.sousId]: new BigNumber(userInfo[index]).toJSON(),
     }),
     {},
   )

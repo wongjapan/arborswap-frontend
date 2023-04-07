@@ -1,5 +1,5 @@
 import { Currency, ETHER, Token } from '@arborswap/sdk'
-import { BinanceIcon } from '@arborswap/uikit'
+import { BinanceIcon, LogoIcon } from '@arborswap/uikit'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'

@@ -18,6 +18,7 @@ const Home: React.FC = () => {
       <TrendingNft />
       <FeaturedIdo />
       <Partners />
+      {/* <FeaturedIdo /> */}
       <Footer />
     </>
   )

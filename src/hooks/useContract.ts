@@ -25,6 +25,7 @@ import {
   getBunnySpecialPredictionContract,
   getFarmAuctionContract,
   getBunnySpecialLotteryContract,
+  getDepositContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 
@@ -100,6 +101,11 @@ export const useMasterchef = () => {
 export const useSousChef = (id) => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getSouschefContract(id, library.getSigner()), [id, library])
+}
+
+export const useDepositWallet = (id) => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getDepositContract(id, library.getSigner()), [id, library])
 }
 
 export const useSousChefV2 = (id) => {

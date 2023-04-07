@@ -17,7 +17,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Liquidity'),
-        href: '/pool',
+        href: '/add',
       },
       {
         label: t('Limit Orders'),
@@ -40,17 +40,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('More Products'),
     icon: 'MoreIcon',
     items: [
-      {
-        label: t('Launchpad'),
-        href: '#',
-      },
+      // {
+      //   label: t('Launchpad'),
+      //   href: '#1',
+      // },
       {
         label: t('Locker'),
-        href: '#',
+        href: 'http://lock.arborswap.org/',
       },
       {
         label: t('Airdropper'),
-        href: '#',
+        href: 'http://airdrop.arborswap.org/',
       },
     ],
   },

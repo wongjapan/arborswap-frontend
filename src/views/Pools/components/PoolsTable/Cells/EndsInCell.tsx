@@ -17,7 +17,7 @@ const StyledCell = styled(BaseCell)`
 `
 
 const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
-  const { lockTime, isLock } = pool
+  const { lockTime, isLock, lockInfo } = pool
   const { t } = useTranslation()
 
   return (
@@ -28,6 +28,9 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
         </Text>
         <Text fontSize="14px" fontWeight="700">
           {isLock ? lockTime : '-'}
+        </Text>
+        <Text fontSize="12px" color="textSubtle">
+          {lockInfo}
         </Text>
       </CellContent>
     </StyledCell>

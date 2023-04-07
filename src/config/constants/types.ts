@@ -47,7 +47,7 @@ export interface Ifo {
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
-  'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
+  'BINANCE' = 'Binance', // Pools using native RBA behave differently than pools using a token
   'AUTO' = 'Auto',
 }
 
@@ -71,11 +71,13 @@ export interface PoolConfig {
   earningToken: Token
   stakingToken: Token
   contractAddress: Address
+  depositAddress: Address
   poolCategory: PoolCategory
   tokenPerBlock: string
   isLock?: boolean
   rate?: number
   lockTime?: number
+  lockInfo?: string
   sortOrder?: number
   harvest?: boolean
   isFinished?: boolean

@@ -6,7 +6,7 @@ export const CAKE: { [chainId: number]: Token } = {
     '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
     18,
     'CAKE',
-    'ArborSwap Token',
+    'Pancake Token',
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
@@ -110,8 +110,9 @@ const tokens = {
   f4h: {
     symbol: 'F4H',
     address: {
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0x6Ef84972B6d58e78b9a4512D808eb87F18A308a6',
+      56: '0xa5F8128d04692656a60f17B349C2146c48e6863a',
+      97: '0x083295D160A243D0A850Bc75E317e1c56f935EA9',
+      159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
     },
     decimals: 18,
     projectLink: 'https://fight4hope.io/',
@@ -119,7 +120,7 @@ const tokens = {
   rba: {
     symbol: 'RBA',
     address: {
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+      56: '0xDD534480782eCf53e4A5257B0f3C37702A0bAD61',
       97: '0x430EA547076C0051B252b1ab1ef83cd83F2D1aB4',
     },
     decimals: 18,
@@ -729,7 +730,7 @@ const tokens = {
     projectLink: 'https://venus.io/',
   },
   wbnb: {
-    symbol: 'wBNB',
+    symbol: 'WBNB',
     address: {
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
