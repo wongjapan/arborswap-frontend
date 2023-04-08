@@ -7,18 +7,18 @@ const BannerLinks = () => {
         <div className="link-buttons" >
           <div className="link-row">
             <div className="lb1">
-                <a href="/">Exchange</a>
+                <a href="https://airdrop.arborswap.org/">Airdrop</a>
             </div>
             <div className="lb2">
-                <a href="/">Marketplace</a>
+                <a href="https://lock.arborswap.org/">Lock</a>
             </div>
           </div> 
           <div className="link-row">
             <div className="lb3">
-                <a href="/">Lottery</a>
+                <a href="https://www.arborswap.org/swap">Swap</a>
             </div>
             <div className="lb4">
-                <a href="/">Launchpad</a>
+                <a href="https://www.arborswap.org/pools">Stake</a>
             </div>
           </div> 
         </div>

@@ -9,12 +9,10 @@ const Wrapper = styled(Flex)`
   z-index: 0;
   position: relative;
   padding-top: 36px;
-  min-height: 700px;
-  background-image: url(${PartnersBg});
-  background-size: cover;
-  background-color: #F5F6F7;
+  min-height: 500px;
+  background: trasparent;
 `
-const InnerWrapper = styled(Flex)`
+const InnerWrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
   justify-content: center;

@@ -33,8 +33,9 @@ const Wrapper = styled(Flex)`
   background: url(${FooterBg});
   background-size: cover;
   flex-direction: column;
-  background-color: #f5f6f7;
+  background-color: trasparent;
   background-position: center;
+  margin-bottom: -130px;
 `
 const InnerWrapper = styled(Flex)`
   width: 1200px;
@@ -132,6 +133,15 @@ const StatsColumn = styled(Flex)`
 const Box2 = styled(Box)`
   margin: auto;
   font-family: GilroyHome;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    margin: 10px;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    margin: 10px;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin: 10px;
+  }
 `
 const BoxIcon = styled.img`
   float:left;

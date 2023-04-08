@@ -3,61 +3,45 @@ import styled from 'styled-components'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-
-import FooterBg from '../assets/header-bg.png'
-import Logo from '../assets/logo.svg'
-import '../assets/Home.css'
-
+import PartnersBg from '../assets/trending-bg.png'
+import BoxHeader from './PopularPool/BoxHeader'
+import ListBox from './PopularPool/ListBox'
 
 const Wrapper = styled(Flex)`
-  z-index: 1;
+  z-index: 0;
   position: relative;
   padding-top: 36px;
-  min-height: 700px;
+  min-height: 500px;
+  background: trasparent;
+  padding-top: 180px;
+  padding-bottom: 80px;
 `
-const InnerWrapper = styled(Flex)`
+const InnerWrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
   justify-content: center;
 `
-
-const MenuWrapper = styled(Flex)`
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+const PoolWrap = styled.div`
 `
-
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-  transform: translate3d(0, 0, 0);
-  padding-left: 16px;
-  padding-right: 16px;
-`
-
-const Logos = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
-  }
-  display: inline-block;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 20px;
+const HeadingEx = styled(Heading)`
+  padding-bottom: 60px;
 `
 
 const PopularPool = () => {
   const { t } = useTranslation()
   return (
     <>
-      
+      <Wrapper>
+        <InnerWrapper>
+          <HeadingEx textAlign="center" scale="lg" style={{ fontFamily : 'GilroyHome', fontSize: '40px' }} >
+            Popular Pools
+          </HeadingEx>
+          <PoolWrap>
+            <BoxHeader />
+            <ListBox />
+          </PoolWrap>
+        </InnerWrapper>
+      </Wrapper>
     </>
   )
 }
