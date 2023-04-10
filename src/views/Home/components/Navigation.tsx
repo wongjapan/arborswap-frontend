@@ -196,7 +196,9 @@ const Navigation = () => {
             <ProtocolModal fontColor="#ffffff" />
         </StyledLi>
         <StyledLi>
-            <StyledA onClick={() => ''}>RBA Token</StyledA>
+            <StyledA as={Link} to={{pathname: 'https://roburna.com' }} target="_blank" >
+              RBA Token
+            </StyledA>
         </StyledLi>
         <DropDownLi>
             <Dropbtn>
@@ -223,13 +225,13 @@ const Navigation = () => {
             </Dropbtn>
             <DropDownContent>
             {" "}
-            <SubA as={Link} to={{pathname: 'https://twitter.com/arborswap_defi'}} >
+            <SubA as={Link} to={{pathname: 'https://twitter.com/arborswap_defi'}} target="_blank" >
                 Twitter
             </SubA>
-            <SubA as={Link} to={{pathname: 'https://t.me/arborswap' }} >
+            <SubA as={Link} to={{pathname: 'https://t.me/arborswap' }} target="_blank" >
                 Telegram
             </SubA>
-            <SubA as={Link} to={{pathname: 'https://www.instagram.com/arborswapofficial' }} >
+            <SubA as={Link} to={{pathname: 'https://www.instagram.com/arborswapofficial' }} target="_blank" >
                 Instagram
             </SubA>
             </DropDownContent>

@@ -22,16 +22,25 @@ const Wrapper = styled(Grid)`
         grid-template-columns: 100%;
     }
 `
+const PoolLink = styled.a``
 
 const ListBox = () => {
   const { t } = useTranslation()
   return (
     <>
       <Wrapper>
-        <PoolListItem img="images/home/imgnew/poolicons/ARB.png" title="ARB" />
-        <PoolListItem img="images/home/imgnew/poolicons/SXP.png" title="SXP" />
-        <PoolListItem img="images/home/imgnew/poolicons/GUSD.png" title="GUSD" />
-        <PoolListItem img="images/home/imgnew/poolicons/HUSD.png" title="HUSD" />
+        <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+          <PoolListItem img="images/home/imgnew/poolicons/ARB.png" title="ARB" />  
+        </PoolLink>
+        <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+          <PoolListItem img="images/home/imgnew/poolicons/SXP.png" title="SXP" />
+        </PoolLink>
+        <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+          <PoolListItem img="images/home/imgnew/poolicons/GUSD.png" title="GUSD" />
+        </PoolLink>
+        <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+          <PoolListItem img="images/home/imgnew/poolicons/HUSD.png" title="HUSD" />
+        </PoolLink>
       </Wrapper>
     </>
   )

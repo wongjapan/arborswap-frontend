@@ -45,6 +45,7 @@ const ViewLink = styled.div`
     text-align: right;
     padding-top: 10px;
 `
+const PoolLink = styled.a``
 
 const BoxHeader = () => {
   const { t } = useTranslation()
@@ -56,7 +57,9 @@ const BoxHeader = () => {
                 <TitleIcon><img src="images/home/imgnew/lock-green.png" alt="" /></TitleIcon>
                 <Title>Staking</Title>
             </TitleWrap>
-            <ViewLink>{"View all >"} </ViewLink>
+            <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+                <ViewLink>{"View all >"} </ViewLink>
+            </PoolLink>
         </HeaderWrap>
       </Wrapper>
     </>

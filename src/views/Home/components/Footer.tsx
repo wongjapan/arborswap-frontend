@@ -194,10 +194,10 @@ const Footer = () => {
             <SecondColumn>
               <ProductColumn>
                   <MenuTitle>Products</MenuTitle>
-                  <LinkEx href="/#" >Launchpad</LinkEx>
-                  <LinkEx href="/#" >Marketplace</LinkEx>
                   <LinkEx href="/#" >Exchange</LinkEx>
-                  <LinkEx href="/#" >Lottery</LinkEx>
+                  <LinkEx href="https://www.arborswap.org/pools" >Staking</LinkEx>
+                  <LinkEx href="https://airdrop.arborswap.org/" >Airdrop</LinkEx>
+                  <LinkEx href="https://lock.arborswap.org/" >Lock</LinkEx>
               </ProductColumn>
               <ProductColumn>
                   <MenuTitle>Resources</MenuTitle>

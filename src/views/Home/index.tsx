@@ -10,6 +10,7 @@ import Partners from './components/Partners'
 import TrendingNft from './components/TrendingNft'
 import FeaturedIdo from './components/FeaturedIdo'
 
+
 const PopularTrending = styled.div`
   background-image: url(${PartnersBg});
   background-size: cover;
@@ -23,7 +24,7 @@ const Home: React.FC = () => {
       <Header />
       <PopularTrending>
         <PopularPool />
-        {/* <TrendingNft /> */}
+        <TrendingNft />
       </PopularTrending>
       <FeaturedIdo />
       <Partners />
