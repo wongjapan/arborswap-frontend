@@ -195,14 +195,14 @@ const Footer = () => {
               <ProductColumn>
                   <MenuTitle>Products</MenuTitle>
                   <LinkEx href="/#" >Exchange</LinkEx>
-                  <LinkEx href="https://www.arborswap.org/pools" >Staking</LinkEx>
-                  <LinkEx href="https://airdrop.arborswap.org/" >Airdrop</LinkEx>
-                  <LinkEx href="https://lock.arborswap.org/" >Lock</LinkEx>
+                  <LinkEx href="https://www.arborswap.org/pools" target='_blank' >Staking</LinkEx>
+                  <LinkEx href="https://airdrop.arborswap.org/" target='_blank' >Airdrop</LinkEx>
+                  <LinkEx href="https://lock.arborswap.org/" target='_blank' >Lock</LinkEx>
               </ProductColumn>
               <ProductColumn>
                   <MenuTitle>Resources</MenuTitle>
-                  <LinkEx href="/#" >Docs</LinkEx>
-                  <LinkEx href="/#" >User Guides</LinkEx>
+                  <LinkEx href="https://roburna.com/blog" target='_blank' >Docs</LinkEx>
+                  <LinkEx href="https://roburna.com/blog" target='_blank' >User Guides</LinkEx>
                   <LinkEx href="/roadmap" >Roadmap</LinkEx>
                   <LinkEx href="/applylisting" >Apply Listing</LinkEx>
               </ProductColumn>

@@ -92,7 +92,7 @@ const FeaturedIdo = () => {
       <Wrapper>
         <InnerWrapper>
           <HeadingEx textAlign="center" scale="lg" style={{ fontFamily : 'GilroyHome', fontSize: '40px' }} >
-            Featured IDOs
+            Featured Airdrops
           </HeadingEx>
           <IdoWraper>
             <IdoItems>
