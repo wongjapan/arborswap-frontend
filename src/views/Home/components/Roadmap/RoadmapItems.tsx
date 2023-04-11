@@ -83,7 +83,7 @@ const RoadmapItems = ()=>{
                                     
                                     <div className="progress">
                                         <div className="progress-txt">Features progress :</div>
-                                        <div className="progress-count">2 of 4</div>
+                                        <div className="progress-count">3 of 4</div>
                                     </div>
 
                                     <div className="card-list">
@@ -102,8 +102,8 @@ const RoadmapItems = ()=>{
                                             </label>
                                         </div>
                                         <div className="list-item">
-                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
-                                            <label htmlFor="item3" className="labelContainer" > 
+                                            <img src="images/home/imgnew/checkbox-checked.png" alt="" />
+                                            <label htmlFor="item3" className="labelContainer checked" > 
                                                 {/* <input type="checkbox" id="item3" name="" value="" /> */} Token & Liquidity Locker
                                                 {/* <span className="checkmark" /> */}
                                             </label>
@@ -125,16 +125,23 @@ const RoadmapItems = ()=>{
                                     <div className="card-header-btn">
                                         <button type="button">Stage 02</button>
                                     </div>
-                                    <div className="card-header-status">Upcoming</div>
+                                    <div className="card-header-status">In Progress</div>
                                 </div>
                                 <div className="card-body">
                                     
                                     <div className="progress">
                                         <div className="progress-txt">Features progress :</div>
-                                        <div className="progress-count">0 of 4</div>
+                                        <div className="progress-count">1 of 4</div>
                                     </div>
 
                                     <div className="card-list">
+                                        <div className="list-item">
+                                            <img src="images/home/imgnew/checkbox-checked.png" alt="" />
+                                            <label htmlFor="item3" className="labelContainer checked" > 
+                                                {/* <input type="checkbox" id="item3" name="" value="" /> */} Airdrop Feature for partner projects
+                                                {/* <span className="checkmark" /> */}
+                                            </label>
+                                        </div>
                                         <div className="list-item">
                                             <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item1" className="labelContainer" > 
@@ -146,13 +153,6 @@ const RoadmapItems = ()=>{
                                             <img src="images/home/imgnew/checkbox-disable.png" alt="" />
                                             <label htmlFor="item2" className="labelContainer" > 
                                                 {/* <input type="checkbox" id="item2" name="" value="" /> */} Decentralized Exchange v.2
-                                                {/* <span className="checkmark" /> */}
-                                            </label>
-                                        </div>
-                                        <div className="list-item">
-                                            <img src="images/home/imgnew/checkbox-disable.png" alt="" />
-                                            <label htmlFor="item3" className="labelContainer" > 
-                                                {/* <input type="checkbox" id="item3" name="" value="" /> */} Airdrop Feature for partner projects
                                                 {/* <span className="checkmark" /> */}
                                             </label>
                                         </div>
