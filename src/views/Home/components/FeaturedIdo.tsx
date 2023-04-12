@@ -5,6 +5,7 @@ import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubM
 import { useTranslation } from 'contexts/Localization'
 import FeaturedBg from '../assets/featured-bg.png'
 import IdoCard from './FeaturedIdo/IdoCard'
+import Airdrops from './AirDropperPage/Airdrops'
 
 const Wrapper = styled(Flex)`
   z-index: 0;
@@ -54,36 +55,6 @@ const HeadingEx = styled(Heading)`
     padding-bottom: 40px;
   }
 `
-const IdoWraper = styled.div``
-const IdoItems = styled(Grid)`
-  grid-template-columns: 30% 30% 30%;
-  gap: 40px;
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    grid-template-columns: 100%;
-  }
-  @media (min-width: 481px) and (max-width: 767px) {
-    grid-template-columns: 100%;
-  }
-  @media (min-width: 320px) and (max-width: 480px) {
-    grid-template-columns: 100%;
-  }
-`
-const ViewAll = styled.a`
-  width: 276px;
-  display: block;
-  margin: 60px auto;
-  background: #00783F;
-  border-radius: 6px;
-  font-family: 'GilroyHome';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: 0.02em;
-  color: #FFFFFF;
-  text-align:center;
-  padding: 18px 0px;
-`
 
 const FeaturedIdo = () => {
   const { t } = useTranslation()
@@ -94,17 +65,7 @@ const FeaturedIdo = () => {
           <HeadingEx textAlign="center" scale="lg" style={{ fontFamily : 'GilroyHome', fontSize: '40px' }} >
             Featured Airdrops
           </HeadingEx>
-          <IdoWraper>
-            <IdoItems>
-              <IdoCard />
-              <IdoCard />
-              <IdoCard />
-              <IdoCard />
-              <IdoCard />
-              <IdoCard />
-            </IdoItems>
-            <ViewAll>View All</ViewAll>
-          </IdoWraper>
+          <Airdrops />
         </InnerWrapper>
       </Wrapper>
     </>
