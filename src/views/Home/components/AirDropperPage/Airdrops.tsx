@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import CircleLoader from 'components/Loader/CircleLoader'
+import styled from 'styled-components'
 import { getAirdropList, getAirdropInfos, sortAirdrops, getPublicAirdrops } from '../../utils/getAirdropList'
 import AirdropsBase from '../Airdropper/Airdrops'
 import { useDocumentTitle } from '../../hooks/setDocumentTitle'
-
 
 const Tabs = [
   {
@@ -19,6 +20,10 @@ const Tabs = [
   },
 ]
 
+const LoaderWrap = styled.div`
+  text-align:center;
+`
+
 export default function Airdrops() {
   useDocumentTitle('Airdrops')
 
@@ -28,6 +33,7 @@ export default function Airdrops() {
   const [timedList, setTimedList] = useState([])
   const [liveList, setLiveList] = useState([])
   const [publicList, setPublicList] = useState([])
+  const [loader, setLoader] = useState(true)
 
   const handleFetch = async () => {
     setReady(false)
@@ -62,7 +68,7 @@ export default function Airdrops() {
         if (infoEnded.success) {
           setEndedList(infoEnded.data)
         }
-        
+        setLoader(false)
       }
       setReady(true)
 
@@ -76,6 +82,8 @@ export default function Airdrops() {
 
 
   return (
+    loader ? <LoaderWrap><CircleLoader size="30px" /></LoaderWrap>
+      :
       <AirdropsBase publicList={publicList} timedList={timedList} endedList={endedList} liveList={liveList} activeTab={activeTab} />
   )
 }
