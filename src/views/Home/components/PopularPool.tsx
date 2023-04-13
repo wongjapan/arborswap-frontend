@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter, Link } from 'react-router-dom'
-import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
+import { Flex, Heading } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import PartnersBg from '../assets/trending-bg.png'
 import BoxHeader from './PopularPool/BoxHeader'
-import ListBox from './PopularPool/ListBox'
+import PoolsHome from './PopularPool/PoolsHome'
 
 const Wrapper = styled(Flex)`
   z-index: 0;
@@ -38,7 +36,7 @@ const PopularPool = () => {
           </HeadingEx>
           <PoolWrap>
             <BoxHeader />
-            <ListBox />
+            <PoolsHome />
           </PoolWrap>
         </InnerWrapper>
       </Wrapper>

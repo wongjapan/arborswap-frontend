@@ -512,9 +512,11 @@ export default function AirdropCard({ data, status,  privateCard }) {
     filledPerc = "NotStartedYet";
   }
 
+  const airdropBase = 'https://airdrop.arborswap.org'
+
   return (
       
-      <Link to="/" > {/* <Link to={`/airdropper/airdrops/${data.address}`} > */}
+      <Link to={{pathname: `${airdropBase}/airdropper/airdrops/${data.address}` }} target="_blank" >
           <CardWrap>
             <Card>
                 <CardHeader>
