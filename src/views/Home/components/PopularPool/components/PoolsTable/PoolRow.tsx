@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Flex, useMatchBreakpoints } from '@arborswap/uikit'
 import { Pool } from 'state/types'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
+import { BrowserRouter, Link } from 'react-router-dom'
 import NameCell from './Cells/NameCell'
 // import EarningsCell from './Cells/EarningsCell'
 import AprCell from './Cells/AprCell'
@@ -46,23 +47,25 @@ const StakeTitle = styled.span`
     padding-top: 5px;
     padding-right: 10px;
 `
-const StakeIcon = styled.img`
+const StakeIcon = styled.img``
 
-`
+const SubA = styled.a``
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
 
   return (
-    <StyledGrid>
-      <StyledRow role="row" >
-        <NameCell pool={pool} />
-        <EndsInCell pool={pool} />
-        <Stake>
-            <StakeTitle>Stake</StakeTitle>
-            <StakeIcon src="images/home/imgnew/poolicons/arrow-left.png" alt="" />
-        </Stake>
-      </StyledRow>
-    </StyledGrid>
+    <Link to='pools' >
+      <StyledGrid>
+        <StyledRow role="row" >
+          <NameCell pool={pool} />
+          <EndsInCell pool={pool} />
+          <Stake>
+              <StakeTitle>Stake</StakeTitle>
+              <StakeIcon src="images/home/imgnew/poolicons/arrow-left.png" alt="" />
+          </Stake>
+        </StyledRow>
+      </StyledGrid>
+    </Link>
   )
   
 }
