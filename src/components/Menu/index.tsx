@@ -9,6 +9,7 @@ import { useRBAPrice } from 'hooks/useRBAPrice'
 import config from './config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
+import NetworkDropdown from './NetworkDropdown'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
@@ -19,7 +20,7 @@ const Menu = (props) => {
   return (
     <UikitMenu
       userMenu={<UserMenu />}
-      globalMenu={<GlobalSettings />}
+      globalMenu={<><NetworkDropdown /><GlobalSettings /></>}
       isDark={isDark}
       toggleTheme={toggleTheme}
       currentLang={currentLanguage.code}
