@@ -195,7 +195,7 @@ const Footer = () => {
               <ProductColumn>
                   <MenuTitle>Products</MenuTitle>
                   <LinkEx href="/#" >Exchange</LinkEx>
-                  <LinkEx href="https://www.arborswap.org/pools" target='_blank' >Staking</LinkEx>
+                  <LinkEx href="/pools" target='_blank' >Staking</LinkEx>
                   <LinkEx href="https://airdrop.arborswap.org/" target='_blank' >Airdrop</LinkEx>
                   <LinkEx href="https://lock.arborswap.org/" target='_blank' >Lock</LinkEx>
               </ProductColumn>

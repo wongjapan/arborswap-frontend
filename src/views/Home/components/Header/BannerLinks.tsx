@@ -15,10 +15,10 @@ const BannerLinks = () => {
           </div> 
           <div className="link-row">
             <div className="lb3">
-                <a href="https://www.arborswap.org/swap">Swap</a>
+                <a href="/swap">Swap</a>
             </div>
             <div className="lb4">
-                <a href="https://www.arborswap.org/pools">Stake</a>
+                <a href="/pools">Stake</a>
             </div>
           </div> 
         </div>

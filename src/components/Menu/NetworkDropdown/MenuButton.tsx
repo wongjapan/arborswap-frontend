@@ -45,30 +45,31 @@ const MenuButton = () => {
     
     const [toggle, setToggle] = useState(false)
     const [activeItem, setActiveItem] = useState({
-        img: '/images/headericons/BinanceSmartChainBadge.png',
+        img: '/images/headericons/BinanceSmartChainBadge.svg',
         title: 'Binance Smart Chain'
     })
 
     const [itemData, setItemData] = useState([
         {
-            iconimg: "/images/headericons/BinanceSmartChainBadge.png",
+            iconimg: "/images/headericons/BinanceSmartChainBadge.svg",
             title: "Binance Smart Chain", 
             subtitle: "Connected", 
             status: true, 
             isActive: true
         },{
-            iconimg: "/images/headericons/EthereumChain.png",
+            iconimg: "/images/headericons/EthereumChain.svg",
             title: "Ethereum Chain", 
             subtitle: "Not Connected", 
             status: false, 
             isActive: false
-        },{
-            iconimg: "/images/headericons/BinanceSmartChainBadge.png",
+        },
+/*         {
+            iconimg: "/images/headericons/PolygonChain.svg",
             title: "Polygon Chain", 
             subtitle: "Not Connected", 
             status: false, 
             isActive: false
-        }
+        } */
     ])
     
     const toggleNetworkDropdown = ()=>{
@@ -84,10 +85,12 @@ const MenuButton = () => {
 
         let temItem = [...itemData]
         temItem = temItem.map((item)=>{ 
-            return {...item, isActive: false }
+            return {...item, isActive: false, status: false, subtitle: "Not Connected",  }
         })
         
         temItem[index].isActive = true;
+        temItem[index].status = true;
+        temItem[index].subtitle = "Connected";
     
         setItemData(temItem);
 
@@ -109,7 +112,7 @@ const MenuButton = () => {
                     <ItemText> {activeItem.title} </ItemText>
                 </MenuItemLeft>
                 <MenuItemRight>
-                    <img src="/images/headericons/arrow-up.png" alt="" />
+                    <img style={ ! toggle ? {transform: "rotate(180deg)"} : {} } src="/images/headericons/arrow-up.svg" alt="" />
                 </MenuItemRight>
             </MenuItem>
             {toggle ? <Ndropdown updateMenuItem={updateMenuItem} itemData={itemData} /> : ''}

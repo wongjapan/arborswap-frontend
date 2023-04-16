@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
   * {
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'GilroyHome', sans-serif;
   }
   body {
     background-color: ${({ theme }) => theme.colors.background};

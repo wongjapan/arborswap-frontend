@@ -57,7 +57,7 @@ const BoxHeader = () => {
                 <TitleIcon><img src="images/home/imgnew/lock-green.png" alt="" /></TitleIcon>
                 <Title>Staking</Title>
             </TitleWrap>
-            <PoolLink as={Link} to={{pathname: 'https://www.arborswap.org/pools' }} target="_blank"  >
+            <PoolLink as={Link} to={{pathname: '/pools' }} target="_blank"  >
                 <ViewLink>{"View all >"} </ViewLink>
             </PoolLink>
         </HeaderWrap>

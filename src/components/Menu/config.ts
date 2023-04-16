@@ -8,6 +8,38 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/',
   },
   {
+    label: t('Locker'),
+    icon: 'PoolIcon',
+    items: [
+      {
+        label: t('Locked Assets'),
+        href: 'https://lock.arborswap.org/locked-assets',
+      },
+      {
+        label: t('Token Locker'),
+        href: 'https://lock.arborswap.org/locker/token-locker',
+      },
+      {
+        label: t('LP Locker'),
+        href: 'https://lock.arborswap.org/locker/lp-locker',
+      },
+    ],
+  },
+  {
+    label: t('Airdropper'),
+    icon: 'TicketIcon',
+    items: [
+      {
+        label: t('Airdrops'),
+        href: 'https://airdrop.arborswap.org/airdropper/airdrops',
+      },
+      {
+        label: t('Create Airdrop'),
+        href: 'https://airdrop.arborswap.org/airdropper/create-airdrop',
+      }
+    ],
+  },
+  {
     label: t('Trade'),
     icon: 'TradeIcon',
     items: [
@@ -35,7 +67,6 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/pools',
   },
-
   {
     label: t('More Products'),
     icon: 'MoreIcon',

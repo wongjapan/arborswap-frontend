@@ -144,7 +144,7 @@ const ProtocolModal = ({fontColor})=>{
                             <StatsColumn>
                                 <Box as="div" style={{ color: '#A69F9F', padding: '0px 40px 40px 40px' }}>
                                     <img src="/images/home/imgnew/trade.png" alt="" /> 
-                                    <a href='https://www.arborswap.org/swap'>
+                                    <a href='/swap'>
                                         <BoxItemName>Dex</BoxItemName>
                                     </a>
                                 </Box>
@@ -152,7 +152,7 @@ const ProtocolModal = ({fontColor})=>{
                             <StatsColumn>
                                 <Box as="div" style={{ color: '#A69F9F', padding: '0px 40px 40px 40px' }}>
                                     <img src="/images/home/imgnew/lock.png" alt="" /> 
-                                    <a href='https://www.arborswap.org/pools'>
+                                    <a href='/pools'>
                                         <BoxItemName>Staking</BoxItemName>
                                     </a>
                                 </Box>
