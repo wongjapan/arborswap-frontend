@@ -67,7 +67,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/pools',
   },
-  {
+  /* {
     label: t('More Products'),
     icon: 'MoreIcon',
     items: [
@@ -84,7 +84,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         href: 'http://airdrop.arborswap.org/',
       },
     ],
-  },
+  }, */
 ]
 
 export default config
