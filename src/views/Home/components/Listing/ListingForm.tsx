@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components'
+import axios from 'axios'
+import {useFormik} from 'formik'
 
 import {
-  Flex
+    Flex
 } from '@arborswap/uikit'
 
 import { useTranslation } from 'contexts/Localization'
 import './listingForm.css';
+import { FormSchema } from "./FormSchema";
+// eslint-disable-next-line import/extensions
+import CircleLoader from '../../../../components/Loader/CircleLoader'
 
 const ListingWrap = styled.div`
     padding: 20px;
@@ -95,66 +100,220 @@ const FormWrapper = styled.div`
 const FormContent = styled.div`
     margin: 0 auto;
 `
+const LoaderWrap = styled.div`
+    position: relative;
+    top: 200px;
+    min-height: 400px;
+    text-align: center;
+`
 
 const ListingForm = ()=>{
     const { t } = useTranslation();
+    
+    const initialValues = {
+        project_name:   "",
+        website:        "",
+        description:    "",
+        name:           "",
+        email:          "",
+        phone:          "",
+        telegram:       "",
+        message:        "",
+    }
+
+    const [feedback, setFeedback] = useState({
+        hasFeed: false,
+        cssClass: '',
+        message: ''
+    });
+
+    const removeFeed = ()=>{
+        setTimeout(()=>{
+            setFeedback({...feedback, hasFeed: false})
+        }, 3000)
+    }
+
+    const [hasPendingRequest, setHasPendingRequest] = useState(false)
+
+    const apiroot = process.env.REACT_APP_API_ROOT
+    const {values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
+
+        initialValues,
+        validationSchema: FormSchema,
+        onSubmit: ( formValues , actions )=>{
+            
+            setHasPendingRequest(true)
+            window.scrollTo(0, 0)
+
+            axios.post( `${apiroot}/api/applylisting` , {
+                token:          process.env.REACT_APP_API_TOKEN,
+                project_name:   formValues.project_name,
+                website:        formValues.website,
+                description:    formValues.description,
+                name:           formValues.name,
+                email:          formValues.email,
+                phone:          formValues.phone,
+                telegram:       formValues.telegram,
+                message:        formValues.message
+
+            }).then( ( response ) => {
+                if(response.data.status === 200 ){
+                    setFeedback({
+                        hasFeed: true,
+                        cssClass: 'alert-success',
+                        message: 'Data submitted successfully!.'
+                    })
+                }else{
+                    setFeedback({
+                        hasFeed: true,
+                        cssClass: 'alert-error',
+                        message: 'Something went wrong. Please try again.'
+                    })
+                }
+                resetForm();
+                setHasPendingRequest(false)
+                removeFeed()
+            }).catch( (error)=> {
+                if(error){
+                    setFeedback({
+                        hasFeed: true,
+                        cssClass: 'alert-error',
+                        message: 'Something went wrong. Please try again.'
+                    })
+                }
+                setHasPendingRequest(false)
+                removeFeed()
+            });
+        }
+
+      })
+      
     return (
         <>
             <ListingWrap>
                 <ListingHeader>
-                    <ListingTitle>Apply For Listing</ListingTitle>
-                    <ListingSubTitle>Fill the form below carefully to apply.</ListingSubTitle>
+                    <ListingTitle>{t('Apply For Listing')}</ListingTitle>
+                    <ListingSubTitle>{t('Fill the form below carefully to apply.')}</ListingSubTitle>
                 </ListingHeader>
                 <FormWrapper>
                     <FormContent>
-                    <div className="wrapper">
-                        
-                        <form action="#">
+                    { feedback.hasFeed ? (
+                        <div className={ feedback.cssClass} >{feedback.message}</div>
+                    ) : '' }    
+                    { ! hasPendingRequest ? (
+                        <div className="wrapper">
+                        <form onSubmit={handleSubmit} >
                             <div className="user-details">
                                 <div className="title">Project Details</div>
                                 <div className="input-box">
-                                    <span className="details">Name *</span>
-                                    <input type="text" />
+                                    <span className="details">{t('Name')} *</span>
+                                    <input 
+                                        type="text" 
+                                        name="project_name" 
+                                        value={values.project_name}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    { touched.project_name && errors.project_name ? (<p className = "form-error" >{errors.project_name}</p>) : "" }
                                 </div>
                                 <div className="input-box">
-                                    <span className="details">Website URL (optional )</span>
-                                    <input type="text" />
+                                    <span className="details"> {t('Website URL (optional )')} </span>
+                                    <input 
+                                        type="text" 
+                                        name="website" 
+                                        value={values.website}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.website && errors.website ? (<p className = "form-error" >{errors.website}</p>) : "" }
                                 </div>
                                 <div className="input-box-full">
-                                    <span className="details">Description * </span>
-                                    <input type="text" />
+                                    <span className="details">{t('Description')} * </span>
+                                    <input 
+                                        type="text" 
+                                        name="description"
+                                        value={values.description}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.description && errors.description ? (<p className = "form-error" >{errors.description}</p>) : "" }
                                 </div>
                                 
-                                <div className="title mt40">Contact Info</div>
+                                <div className="title mt40">{t('Contact Info')}</div>
 
                                 <div className="input-box">
-                                    <span className="details">Name *</span>
-                                    <input type="text" placeholder="E.g James Joe" />
+                                    <span className="details">{t('Name')} *</span>
+                                    <input 
+                                        type="text" 
+                                        placeholder="E.g James Joe" 
+                                        name="name" 
+                                        value={values.name}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.name && errors.name ? (<p className = "form-error" >{errors.name}</p>) : "" }
                                 </div>
                                 <div className="input-box">
-                                    <span className="details">Email Address *</span>
-                                    <input type="text" placeholder="Enter email" />
+                                    <span className="details">{t('Email Address')} *</span>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Enter email" 
+                                        name="email" 
+                                        value={values.email}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.email && errors.email ? (<p className = "form-error" >{errors.email}</p>) : "" }
                                 </div>
                                 <div className="input-box">
-                                    <span className="details">Telegram Handle *</span>
-                                    <input type="text" placeholder="E.g @larry" />
+                                    <span className="details">{t('Telegram Handle')} *</span>
+                                    <input 
+                                        type="text" 
+                                        placeholder="E.g @larry" 
+                                        name="telegram"
+                                        value={values.telegram}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.telegram && errors.telegram ? (<p className = "form-error" >{errors.telegram}</p>) : "" }
                                 </div>
                                 <div className="input-box">
-                                    <span className="details">Phone Number (optional)</span>
-                                    <input type="text" placeholder="E.g +147" />
+                                    <span className="details">{t('Phone Number (optional)')}</span>
+                                    <input 
+                                        type="text" 
+                                        placeholder="E.g +147" 
+                                        name="phone"
+                                        value={values.phone}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.phone && errors.phone ? (<p className = "form-error" >{errors.phone}</p>) : "" }
                                 </div>
                                 <div className="input-box-full">
-                                    <span className="details">Message / Comments</span>
-                                    <textarea id="comment" />
+                                    <span className="details">{t('Message / Comments')}</span>
+                                    <textarea 
+                                        id="comment" 
+                                        name="message"
+                                        value={values.message}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
+                                    { touched.message && errors.message ? (<p className = "form-error" >{errors.message}</p>) : "" }
                                 </div>
 
                             </div>
 
                             <div className="button">
-                                <input type="submit" value="Register" />
+                                <input type="submit" className={errors ? 'submitDisable' : 'submitActive' } value="Register" />
                             </div>
                         </form>
                     </div>
+                    ) : (
+                        <LoaderWrap>
+                            <CircleLoader width="100" />    
+                        </LoaderWrap>
+                    )}
+                    
                     </FormContent>
                 </FormWrapper>
             </ListingWrap>
