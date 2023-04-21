@@ -13,15 +13,15 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Locked Assets'),
-        href: 'https://lock.arborswap.org/locked-assets',
+        href: 'https://protocol.arborswap.org/locked-assets',
       },
       {
         label: t('Token Locker'),
-        href: 'https://lock.arborswap.org/locker/token-locker',
+        href: 'https://protocol.arborswap.org/locker/token-locker',
       },
       {
         label: t('LP Locker'),
-        href: 'https://lock.arborswap.org/locker/lp-locker',
+        href: 'https://protocol.arborswap.org/locker/lp-locker',
       },
     ],
   },
@@ -31,11 +31,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Airdrops'),
-        href: 'https://airdrop.arborswap.org/airdropper/airdrops',
+        href: 'https://protocol.arborswap.org/airdropper/airdrops',
       },
       {
         label: t('Create Airdrop'),
-        href: 'https://airdrop.arborswap.org/airdropper/create-airdrop',
+        href: 'https://protocol.arborswap.org/airdropper/create-airdrop',
       }
     ],
   },
