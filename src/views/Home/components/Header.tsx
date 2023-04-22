@@ -187,7 +187,8 @@ const Header = () => {
                       fontFamily: 'GilroyHome', 
                       paddingTop: '15px', 
                       position: 'relative',
-                      top: '24px',
+                      top: '16px',
+                      lineHeight: '24px',
                       paddingLeft: '10px' }} > Total Projects Launched </span>
               </Box2>
             </StatsColumn>

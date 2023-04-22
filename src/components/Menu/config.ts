@@ -27,7 +27,8 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
   {
     label: t('Airdropper'),
-    icon: 'TicketIcon',
+    icon: 'AirdroopIcon',
+    calloutClass: 'airdropper',
     items: [
       {
         label: t('Airdrops'),
@@ -42,6 +43,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Trade'),
     icon: 'TradeIcon',
+    calloutClass: 'tradeIcon',
     items: [
       {
         label: t('Exchange'),
