@@ -301,7 +301,7 @@ const MobileMenu = ({fontColor})=>{
                                         <StatsColumn>
                                             <Box as="div" style={{ color: '#A69F9F', padding: '10px' }}>
                                                 <img src="/images/home/imgnew/staking.png" alt="" /> 
-                                                <a href='https://airdrop.arborswap.org/'>
+                                                <a href='https://protocol.arborswap.org/airdropper/airdrops'>
                                                     <BoxItemName>Airdrop</BoxItemName>
                                                 </a>
                                             </Box>
@@ -309,7 +309,7 @@ const MobileMenu = ({fontColor})=>{
                                         <StatsColumn>
                                             <Box as="div" style={{ color: '#A69F9F', padding: '10px' }}>
                                                 <img src="/images/home/imgnew/bag-tick.png" alt="" /> 
-                                                <a href='https://lock.arborswap.org/'>
+                                                <a href='https://protocol.arborswap.org/locked-assets'>
                                                     <BoxItemName>Locker</BoxItemName>
                                                 </a>
                                             </Box>
@@ -317,7 +317,7 @@ const MobileMenu = ({fontColor})=>{
                                         <StatsColumn>
                                             <Box as="div" style={{ color: '#A69F9F', padding: '10px' }}>
                                                 <img src="/images/home/imgnew/trade.png" alt="" /> 
-                                                <a href='https://www.arborswap.org/swap'>
+                                                <a href='/swap'>
                                                     <BoxItemName>Dex</BoxItemName>
                                                 </a>
                                             </Box>
@@ -325,7 +325,7 @@ const MobileMenu = ({fontColor})=>{
                                         <StatsColumn>
                                             <Box as="div" style={{ color: '#A69F9F', padding: '10px' }}>
                                                 <img src="/images/home/imgnew/lock.png" alt="" /> 
-                                                <a href='https://www.arborswap.org/pools'>
+                                                <a href='/pools'>
                                                     <BoxItemName>Staking</BoxItemName>
                                                 </a>
                                             </Box>
