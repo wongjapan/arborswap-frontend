@@ -87,11 +87,13 @@ export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => 
 export const fetchPoolsUserDataAsync =
   (account: string): AppThunk =>
   async (dispatch) => {
+  
     const allowances = await fetchPoolsAllowance(account)
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
     const unlockTimes = await fetchUserUnlockTimes(account)
+   console.log(stakedBalances, 'stakedBalances')
 
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
@@ -126,12 +128,12 @@ export const updateUserStakedBalance =
     dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
   }
 
-export const updateUserunlockTime =
-  (sousId: number, account: string): AppThunk =>
-  async (dispatch) => {
-    const unlockTimes = await fetchUserPendingRewards(account)
-    dispatch(updatePoolsUserData({ sousId, field: 'unlockTime', value: unlockTimes[sousId] }))
-  }
+// export const updateUserunlockTime =
+//   (sousId: number, account: string): AppThunk =>
+//   async (dispatch) => {
+//     const unlockTimes = await fetchUserPendingRewards(account)
+//     dispatch(updatePoolsUserData({ sousId, field: 'unlockTime', value: unlockTimes[sousId] }))
+// }
 
 export const updateUserPendingReward =
   (sousId: number, account: string): AppThunk =>

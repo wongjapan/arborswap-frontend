@@ -12,7 +12,7 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT_STAKE,
 }
 
-const sousStake = async (sousChefContract, amount, decimals = 18) => {
+const sousStake = async (sousId,sousChefContract, amount, decimals = 18) => {
   const gasPrice = getGasPrice()
   const tx = await sousChefContract.stake(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
     ...options,
@@ -29,7 +29,7 @@ const useStakePool = (sousId: number) => {
 
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
-      await sousStake(sousChefContract, amount, decimals)
+      await sousStake(sousId, sousChefContract, amount, decimals)
 
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))

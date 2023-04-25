@@ -117,6 +117,21 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://fight4hope.io/',
   },
+  TTN: {
+    symbol: 'TTN',
+    // address: {
+    //   56: '0x5353A64D9231C6c541183c70Ef245295b73EF4FF',
+    //   97: '0x5353A64D9231C6c541183c70Ef245295b73EF4FF',
+    //   159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
+    // },
+    address: {
+      56: '0x50a9eb8a53f2c2993f46b354bd5f24f1c880bf24',
+      97: '0x50a9eb8a53f2c2993f46b354bd5f24f1c880bf24',
+      159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
+    },
+    decimals: 9,
+    projectLink: 'http://teletreon.com/',
+  },
   rba: {
     symbol: 'RBA',
     address: {

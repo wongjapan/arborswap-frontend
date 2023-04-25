@@ -25,6 +25,7 @@ export const useFetchPublicPoolsData = () => {
 }
 
 export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {
+  
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
   useEffect(() => {

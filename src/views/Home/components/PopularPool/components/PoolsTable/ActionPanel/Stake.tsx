@@ -99,7 +99,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   const reachStakingLimit = false
   const unlockDate = dayjs(userData.unlockTime * 1000).format('YYYY-MM-DD')
-  // console.log(`unlocktime =`, unlockDate)
+
   const isEnableToUnstake = userData.unlockTime < Math.floor(Date.now() / 1000)
   if (!account) {
     return (

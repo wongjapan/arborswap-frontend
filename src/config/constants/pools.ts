@@ -109,6 +109,31 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
   },
+  {
+    sousId: 7,
+    stakingToken: tokens.TTN,
+    earningToken: tokens.TTN,
+    // contractAddress: {
+    //   97: '0xfDD1977EE2B1ae19D907FfD13277610870B209Ed',
+    //   56: '0xfDD1977EE2B1ae19D907FfD13277610870B209Ed',
+    // },
+    depositAddress: {
+      97: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+      56: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+    },
+    contractAddress: {
+      97: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+      56: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    isLock: false,
+    lockTime: 365,
+    rate: 10, // 10%
+    tokenPerBlock: '10', // not important
+    sortOrder: 0,
+    isFinished: false,
+  },
 ]
 
 export default pools

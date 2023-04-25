@@ -1,6 +1,7 @@
 import poolsConfig from 'config/constants/pools'
 import normalStakeABI from 'config/abi/normalStake.json'
 import lockStakeABI from 'config/abi/lockStake.json'
+import ttnStakeABI from 'config/abi/ttnStakeAbi.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
@@ -12,8 +13,9 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
-const lockPools = poolsConfig.filter((p) => p.isLock === true)
-const normalPools = poolsConfig.filter((p) => p.isLock !== true)
+const lockPools = poolsConfig.filter((p) => p.isLock === true && p.sousId !== 7)
+const normalPools = poolsConfig.filter((p) => p.isLock !== true && p.sousId !== 7)
+const ttnPools = poolsConfig.filter((p) => p.sousId === 7)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
@@ -64,8 +66,15 @@ export const fetchUserStakeBalances = async (account) => {
     params: [account],
   }))
 
+  const ttnCalls = ttnPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+
   const userInfo = await multicall(normalStakeABI, normalCalls)
   const userLockInfo = await multicall(lockStakeABI, lockCalls)
+  const userTtnInfo = await multicall(ttnStakeABI, ttnCalls)
 
   const lockStakedBalances = lockPools.reduce(
     (acc, pool, index) => ({
@@ -83,10 +92,24 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  return { ...stakedBalances, ...lockStakedBalances }
+  const TtnStakedBalances = ttnPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userTtnInfo[index].amount._hex).toJSON(),
+    }),
+    {},
+  )
+
+  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances}
 }
 
 export const fetchUserUnlockTimes = async (account) => {
+  const ttnCalls = ttnPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'staker',
+    params: [account],
+  }))
+  
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'startTime',
@@ -100,6 +123,7 @@ export const fetchUserUnlockTimes = async (account) => {
 
   const userInfo = await multicall(normalStakeABI, normalCalls)
   const userLockInfo = await multicall(lockStakeABI, lockCalls)
+  const userTtnInfo = await multicall(ttnStakeABI, ttnCalls)
 
   const lockStakedBalances = lockPools.reduce(
     (acc, pool, index) => ({
@@ -116,11 +140,20 @@ export const fetchUserUnlockTimes = async (account) => {
     }),
     {},
   )
+  const TtnStakedBalances = ttnPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userTtnInfo[index].startTime._hex).toJSON(),
+    }),
+    {},
+  )
 
-  return { ...stakedBalances, ...lockStakedBalances }
+  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances }
 }
 
 export const fetchUserPendingRewards = async (account) => {
+  
+
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'getTotalRewards',
@@ -128,6 +161,12 @@ export const fetchUserPendingRewards = async (account) => {
   }))
 
   const lockCalls = lockPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'getTotalRewards',
+    params: [account],
+  }))
+
+  const ttnCalls = ttnPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'getTotalRewards',
     params: [account],
@@ -151,5 +190,15 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
-  return { ...pendingRewards, ...pendingLockRewards }
+
+  const ttnRes = await multicall(ttnStakeABI, ttnCalls)
+
+  const ttnPendingRewards = ttnPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(ttnRes[index]).toJSON(),
+    }),
+    {},
+  )
+  return { ...pendingRewards, ...pendingLockRewards, ...ttnPendingRewards }
 }
