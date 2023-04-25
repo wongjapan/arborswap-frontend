@@ -207,7 +207,7 @@ const Navigation = () => {
             </Dropbtn>
             <DropDownContent>
             {" "}
-            <SubA as={Link} to={{pathname: 'https://roburna.com/blog' }} target="_blank" >
+            <SubA as={Link} to={{pathname: 'https://arborswap.gitbook.io/product-docs/' }} target="_blank" >
               Docs & User Guides
             </SubA>
             <SubA as={Link} to='/roadmap' >

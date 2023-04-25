@@ -201,8 +201,8 @@ const Footer = () => {
               </ProductColumn>
               <ProductColumn>
                   <MenuTitle>Resources</MenuTitle>
-                  <LinkEx href="https://roburna.com/blog" target='_blank' >Docs</LinkEx>
-                  <LinkEx href="https://roburna.com/blog" target='_blank' >User Guides</LinkEx>
+                  <LinkEx href="https://arborswap.gitbook.io/product-docs/introducing/arborswap" target='_blank' >Docs</LinkEx>
+                  <LinkEx href="https://arborswap.gitbook.io/product-docs/arborswap-dex/exchange-a-token" target='_blank' >User Guides</LinkEx>
                   <LinkEx href="/roadmap" >Roadmap</LinkEx>
                   <LinkEx href="/applylisting" >Apply Listing</LinkEx>
               </ProductColumn>
