@@ -13,16 +13,45 @@ const MenuItem = styled.div`
     background: #F5F1EB;
     cursor: pointer;
     box-shadow: 0px 0px 2px #dcdcdc;
+    @media (min-width: 481px) and (max-width: 767px) {
+        width: 80px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        width: 80px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+    }
 `
 const MenuItemLeft = styled.div`
     display: inline-block;
     padding: 10px;
+    @media (min-width: 481px) and (max-width: 767px) {
+        width: 41px;
+        float:left;
+        padding: 0px;
+        margin-left: 10px;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        width: 41px;
+        float:left;
+        padding: 0px;
+        margin-left: 8px;
+    }
 `
 const MenuItemRight = styled.div`
     display: inline-block;
     background: #FFFFFF;
     border-radius: 6px;
-    padding: 12px;
+    @media (min-width: 481px) and (max-width: 767px) {
+        padding: 0px;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        padding: 0px;
+    }
 `
 const ItemIcon = styled.span`
     display: inline-block;
@@ -37,6 +66,12 @@ const ItemText = styled.span`
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 0.02em;
+    @media (min-width: 481px) and (max-width: 767px) {
+        display: none
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        display: none
+    }
 `
 
 

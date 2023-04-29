@@ -13,6 +13,12 @@ const ItemWrap = styled.div`
     border-radius: 8px;
     padding: 20px;
     min-width: 300px;
+    @media (min-width: 481px) and (max-width: 767px) {
+        left: -40px;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+        left: -40px;
+    }
 `
 
 const MenuItems = styled.div`
