@@ -12,8 +12,13 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT_STAKE,
 }
 
-const sousStake = async (sousChefContract, amount, decimals = 18) => {
-  const gasPrice = getGasPrice()
+const sousStake = async (sousId, sousChefContract, amount, decimals = 18) => {
+
+  let gasPrice = getGasPrice()
+  if(sousId === 7){
+    gasPrice = '250000000000000000'
+  }
+  console.log(gasPrice, 'gasPrice')
   const tx = await sousChefContract.stake(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
     ...options,
     gasPrice,
@@ -23,13 +28,14 @@ const sousStake = async (sousChefContract, amount, decimals = 18) => {
 }
 
 const useStakePool = (sousId: number) => {
+  debugger
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
-      await sousStake(sousChefContract, amount, decimals)
+      await sousStake(sousId,sousChefContract, amount, decimals)
 
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
