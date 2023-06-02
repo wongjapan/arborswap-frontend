@@ -191,8 +191,8 @@ const StyledA = styled.a`
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  cursor: pointer
-  font-family: 'Gilroy';
+  cursor: pointer;
+  font-family: 'GilroyHome';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -205,7 +205,7 @@ const StyledA = styled.a`
 
 const SubA = styled.a`
   display: block;
-  font-family: 'Gilroy';
+  font-family: 'GilroyHome';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -335,7 +335,9 @@ const MobileMenu = ({fontColor})=>{
                             </DropDownContent>
                         </DropDownLi>
                         <StyledLi>
-                            <StyledA onClick={() => ''}>RBA Token</StyledA>
+                        <StyledA as={Link} to={{pathname: 'https://roburna.com' }} target="_blank" >
+                            RBA Token
+                        </StyledA>
                         </StyledLi>
                         <DropDownLi>
                             <Dropbtn>
@@ -344,8 +346,8 @@ const MobileMenu = ({fontColor})=>{
                             </Dropbtn>
                             <DropDownContent>
                                 {" "}
-                                <SubA>
-                                    <Link to='/' >Docs & User Guides</Link>
+                                <SubA as={Link} to={{pathname: 'https://arborswap.gitbook.io/product-docs/' }} target="_blank" >
+                                  Docs & User Guides
                                 </SubA>
                                 <SubA>
                                     <Link to='/roadmap' >Roadmap</Link>

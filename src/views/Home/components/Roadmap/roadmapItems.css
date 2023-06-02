@@ -97,10 +97,11 @@
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
-    line-height: 120%;
+    line-height: 26px;
     letter-spacing: 0.02em;
     text-transform: capitalize;
     color: #A69F9F;
+
 }
 .card-list .list-item label.checked{
     color: #464754;
@@ -140,7 +141,6 @@
 /* ================ check box design ==================  */
 .labelContainer {
     font-family: GilroyHome;
-    display: inline-block;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
