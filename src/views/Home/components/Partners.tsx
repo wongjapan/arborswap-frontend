@@ -54,9 +54,15 @@ const Partners = () => {
                         <img src="/images/home/imgnew/partners/bsc.png" alt="" />
                     </div>
                     <div className="partner-item text-center">
-                        <img src="/images/home/imgnew/partners/Prime_Logotype_2.png" alt="" />
+                        <img src="/images/home/imgnew/partners/esumen.png" alt="" />
                     </div>
                     <div className="partner-item text-center">
+                        <img src="/images/home/imgnew/partners/etherssc.png" alt="" />
+                    </div>
+                    <div className="partner-item text-center">
+                        <img src="/images/home/imgnew/partners/bscscann.png" alt="" />
+                    </div>
+                    {/* <div className="partner-item text-center">
                         <img src="/images/home/imgnew/partners/Ten-Traced.png" alt="" />
                     </div>
                     <div className="partner-item text-center">
@@ -70,7 +76,7 @@ const Partners = () => {
                     </div>
                     <div className="partner-item text-center">
                         <img src="/images/home/imgnew/partners/CoinGecko.png" alt="" />
-                    </div>
+                    </div> */}
                 </div> 
             </PartnersList>
         </PartnersInner>
