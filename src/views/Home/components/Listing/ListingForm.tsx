@@ -304,7 +304,7 @@ const ListingForm = ()=>{
                             </div>
 
                             <div className="button">
-                                <input type="submit" className={errors ? 'submitDisable' : 'submitActive' } value="Register" />
+                                <input type="submit" className={errors ? 'submitDisable' : 'submitActive' } value="Apply" />
                             </div>
                         </form>
                     </div>
