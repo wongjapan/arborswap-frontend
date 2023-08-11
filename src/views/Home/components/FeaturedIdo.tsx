@@ -1,54 +1,59 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
+import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem, Grid } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-
-import FooterBg from '../assets/header-bg.png'
-import Logo from '../assets/logo.svg'
+import FeaturedBg from '../assets/featured-bg.png'
+import IdoCard from './FeaturedIdo/IdoCard'
+import Airdrops from './AirDropperPage/Airdrops'
 
 const Wrapper = styled(Flex)`
-  z-index: 1;
+  z-index: 0;
   position: relative;
-  padding-top: 36px;
-  min-height: 700px;
-`
-const InnerWrapper = styled(Flex)`
+  background-image: url(${FeaturedBg});
+  background-size: cover;
+  background-color: #F5F6F7;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  `
+  const InnerWrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
   justify-content: center;
-`
-
-const MenuWrapper = styled(Flex)`
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-`
-
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-  transform: translate3d(0, 0, 0);
-  padding-left: 16px;
-  padding-right: 16px;
-`
-
-const Logos = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
+  background: transparent;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    width: 100%;
   }
-  display: inline-block;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 20px;
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
+`
+const HeadingEx = styled(Heading)`
+  padding-bottom: 80px;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    padding-bottom: 40px;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    padding-bottom: 40px;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding-bottom: 40px;
+  }
 `
 
 const FeaturedIdo = () => {
@@ -57,9 +62,10 @@ const FeaturedIdo = () => {
     <>
       <Wrapper>
         <InnerWrapper>
-          <Heading textAlign="center" scale="lg">
-            Featured IDOs
-          </Heading>
+          <HeadingEx textAlign="center" scale="lg" style={{ fontFamily : 'GilroyHome', fontSize: '40px' }} >
+            Featured Airdrops
+          </HeadingEx>
+          <Airdrops />
         </InnerWrapper>
       </Wrapper>
     </>

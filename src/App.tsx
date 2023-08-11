@@ -7,6 +7,8 @@ import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
+import Applylisting from 'views/Home/components/Listing/Applylisting'
+import RoadmapCom from 'views/Home/components/Roadmap/RoadmapCom'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -18,6 +20,7 @@ import history from './routerHistory'
 import Pools from './views/Pools'
 import Swap from './views/Swap'
 import Home from './views/Home'
+
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -55,6 +58,12 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Route path="/" exact>
         <Home />
+      </Route>
+      <Route path="/applylisting" exact>
+        <Applylisting />
+      </Route>
+      <Route path="/roadmap" exact>
+        <RoadmapCom />
       </Route>
       <Route
         path={[

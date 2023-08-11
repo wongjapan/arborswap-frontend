@@ -41,8 +41,8 @@ export const usePollFarmsWithUserData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = CAKE-BNB LP
- * 252 = BUSD-BNB LP
+ * 251 = CAKE-RBA LP
+ * 252 = BUSD-RBA LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Trade, TradeType } from '@arborswap/sdk'
+import { Trade, TradeType, PairType } from '@arborswap/sdk'
 import { Button, Text, AutoRenewIcon } from '@arborswap/uikit'
 import { Field } from 'state/swap/actions'
 import {
@@ -43,7 +43,9 @@ export default function SwapModalFooter({
   )
   const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
-
+  const routeType = trade.route.pairs[0].pairType
+  const routeTypeText = routeType === PairType.INTERNAL ? 'Internal' : 'External'
+  const routeTypeFee = routeType === PairType.INTERNAL ? '0.1 %' : '0.05 %'
   return (
     <>
       <SwapModalFooterContainer>
@@ -91,29 +93,19 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Price Impact</Text>
-            <QuestionHelper text="The difference between the market price and your price due to trade size." ml="4px" />
-          </RowFixed>
-          <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <Text fontSize="14px">Liquidity Provider Fee</Text>
+            <Text fontSize="14px">Fee</Text>
             <QuestionHelper
               text={
                 <>
-                  <Text mb="12px">For each trade a 0.25% fee is paid</Text>
-                  <Text>- 0.17% to LP token holders</Text>
-                  <Text>- 0.03% to the Treasury</Text>
-                  <Text>- 0.05% towards CAKE buyback and burn</Text>
+                  <Text>
+                    {routeTypeText} trade a {routeTypeFee} fee is paid
+                  </Text>
                 </>
               }
               ml="4px"
             />
           </RowFixed>
-          <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
-          </Text>
+          <Text fontSize="14px">{routeTypeFee}</Text>
         </RowBetween>
       </SwapModalFooterContainer>
 

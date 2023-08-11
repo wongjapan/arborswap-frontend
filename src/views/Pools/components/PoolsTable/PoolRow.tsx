@@ -37,6 +37,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
   const { isXs, isSm, isMd, isLg, isXl, isXxl, isTablet, isDesktop } = useMatchBreakpoints()
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
+  console.log(pool, 'poool')
 
   const toggleExpanded = () => {
     setExpanded((prev) => !prev)
@@ -47,7 +48,8 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
         {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-        {isDesktop && <EndsInCell pool={pool} />}
+        <EndsInCell pool={pool} />
+        {/* {isDesktop && <EndsInCell pool={pool} />} */}
         <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
       </StyledRow>
       {shouldRenderActionPanel && (

@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strictNullChecks": false,
+    "typeRoots": ["./node_modules/@types", "./types"],
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true

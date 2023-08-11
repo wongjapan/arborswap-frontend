@@ -1,7 +1,8 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@arborswap/sdk'
 import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC, F4H, RBA } from './tokens'
 
-export const ROUTER_ADDRESS = '0x4e1845Ab1d9D464150777a931Ce8FDaaD1cf8229'
+export const ROUTER_ADDRESS = '0x3027Ae348394349886f963D35786e5F468A221DE'
+export const DEX_MANAGEMENT_ADDRESS = '0x1A55251C7aeD192f038e20572f1d6596FEa87154'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -10,9 +11,9 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], F4H[ChainId.TESTNET], RBA[ChainId.TESTNET]],
-  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA], CAKE[ChainId.ROBURNA], BUSD[ChainId.ROBURNA]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, USDC],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA]],
 }
 
 /**
@@ -34,21 +35,20 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], CAKE[ChainId.MAINNET], BTCB],
+  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], USDT, USDC],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
-  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA], CAKE[ChainId.ROBURNA], BUSD[ChainId.ROBURNA]],
+  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
-  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA], CAKE[ChainId.ROBURNA], BUSD[ChainId.ROBURNA]],
+  [ChainId.ROBURNA]: [WETH[ChainId.ROBURNA]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [CAKE[ChainId.MAINNET], WBNB],
     [BUSD[ChainId.MAINNET], USDT],
     [DAI, USDT],
   ],
@@ -75,8 +75,8 @@ export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.Bi
 // for non expert mode disable swaps above this
 export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
 
-// used to ensure the user doesn't send so much BNB so they end up with <.01
-export const MIN_BNB: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 BNB
+// used to ensure the user doesn't send so much RBA so they end up with <.01
+export const MIN_BNB: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 RBA
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
 
 export const ZERO_PERCENT = new Percent('0')

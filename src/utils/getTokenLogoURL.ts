@@ -1,4 +1,4 @@
 const getTokenLogoURL = (address: string) =>
-  `https://assets.trustwalletapp.com/blockchains/smartchain/assets/${address}/logo.png`
+  `https://raw.githubusercontent.com/urrbn/arbor-assets/master/assets/logo/${address}.png`
 
 export default getTokenLogoURL

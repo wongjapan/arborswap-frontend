@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
+import dayjs from 'dayjs'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@arborswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
@@ -63,7 +64,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
-
+  // console.log(`stakingTokenBalance`, stakingTokenBalance.toString())
   const [onPresentStake] = useModal(
     <StakeModal
       isBnbPool={isBnbPool}
@@ -97,7 +98,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   )
 
   const reachStakingLimit = false
-
+  const unlockDate = dayjs(userData.unlockTime * 1000).format('YYYY-MM-DD')
+  // console.log(`unlocktime =`, unlockDate)
   const isEnableToUnstake = userData.unlockTime < Math.floor(Date.now() / 1000)
   if (!account) {
     return (
@@ -156,6 +158,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           </Text>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Staked')}
+          </Text>
+          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+            {' Unlocked At '}
+          </Text>
+          <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+            {unlockDate}
           </Text>
         </ActionTitles>
         <ActionContent>

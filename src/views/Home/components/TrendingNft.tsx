@@ -1,54 +1,79 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Link } from 'react-router-dom'
-import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem } from '@arborswap/uikit'
+import { Flex, Heading, Text, LinkExternal, Button, DashboardIcon, SubMenu, SubMenuItem, Grid } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-
-import FooterBg from '../assets/header-bg.png'
-import Logo from '../assets/logo.svg'
+import NftCard from './TrendingNft/NftCard'
 
 const Wrapper = styled(Flex)`
-  z-index: 1;
+  z-index: 0;
   position: relative;
-  padding-top: 36px;
-  min-height: 700px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 500px;
+  background: trasparent;
 `
-const InnerWrapper = styled(Flex)`
+const InnerWrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
   justify-content: center;
 `
-
-const MenuWrapper = styled(Flex)`
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+const NftWrap = styled.div`
+  width: 1200px;
   margin: 0 auto;
-`
-
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-  transform: translate3d(0, 0, 0);
-  padding-left: 16px;
-  padding-right: 16px;
-`
-
-const Logos = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    margin: 0px 10px;
+  justify-content: center;
+  margin-top: 60px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 100%;
   }
-  display: inline-block;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 20px;
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    width: 100%;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
+`
+const NftItems = styled(Grid)`
+  width: 1200px;
+  margin: 0 auto;
+  grid-template-columns: 30% 30% 30%;
+  align-item: center;
+  gap: 10px 40px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 100%;
+    grid-template-columns: 100%;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    width: 100%;
+    grid-template-columns: 100%;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    width: 100%;
+    grid-template-columns: 100%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    grid-template-columns: 100%;
+  }
+`
+const ViewAll = styled.a`
+  width: 276px;
+  display: block;
+  margin: 20px auto;
+  background: #00783F;
+  border-radius: 6px;
+  font-family: 'GilroyHome';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  text-align:center;
+  padding: 18px 0px;
 `
 
 const TrendingNft = () => {
@@ -57,9 +82,20 @@ const TrendingNft = () => {
     <>
       <Wrapper>
         <InnerWrapper>
-          <Heading textAlign="center" scale="lg">
+          <Heading textAlign="center" scale="lg" style={{ fontFamily : 'GilroyHome', fontSize: '40px' }} >
             Trending NFTs
           </Heading>
+          <NftWrap>
+            <NftItems>
+              <NftCard img="images/home/imgnew/nfts/image1.png" />
+              <NftCard img="images/home/imgnew/nfts/image2.png" />
+              <NftCard img="images/home/imgnew/nfts/image3.png" />
+              <NftCard img="images/home/imgnew/nfts/image4.png" />
+              <NftCard img="images/home/imgnew/nfts/image5.png" />
+              <NftCard img="images/home/imgnew/nfts/image6.png" />
+            </NftItems>
+            <ViewAll>View All</ViewAll>
+          </NftWrap>
         </InnerWrapper>
       </Wrapper>
     </>
