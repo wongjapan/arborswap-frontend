@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { AutoRenewIcon, Button, Card, CardBody, Heading, Skeleton, Text } from '@arborswap/uikit'
-import { useWeb3React } from '@web3-react/core'
+// import { useWeb3React } from '@web3-react/core'
 import { Link as RouterLink } from 'react-router-dom'
 import { getAddressByType } from 'utils/collectibles'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
@@ -10,6 +10,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useGetCollectibles } from 'state/collectibles/hooks'
 import useToast from 'hooks/useToast'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
 import { ProfileCreationContext } from './contexts/ProfileCreationProvider'
@@ -23,7 +24,7 @@ const NftWrapper = styled.div`
 `
 
 const ProfilePicture: React.FC = () => {
-  const { library } = useWeb3React()
+  const { library } = useActiveWeb3React()
   const [isApproved, setIsApproved] = useState(false)
   const [isApproving, setIsApproving] = useState(false)
   const { selectedNft, actions } = useContext(ProfileCreationContext)

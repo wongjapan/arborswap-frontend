@@ -1,14 +1,13 @@
 import React from 'react'
 import { ModalProvider, light, dark } from '@arborswap/uikit'
-import { Web3ReactProvider } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { useThemeManager } from 'state/user/hooks'
-import { getLibrary } from 'utils/web3React'
 import { LanguageProvider } from 'contexts/Localization'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
 import { ToastsProvider } from 'contexts/ToastsContext'
+import Web3Provider from 'contexts/Web3Provider'
 import store from 'state'
 
 const ThemeProviderWrapper = (props) => {
@@ -18,7 +17,7 @@ const ThemeProviderWrapper = (props) => {
 
 const Providers: React.FC = ({ children }) => {
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <Web3Provider>
       <Provider store={store}>
         <ToastsProvider>
           <HelmetProvider>
@@ -32,7 +31,7 @@ const Providers: React.FC = ({ children }) => {
           </HelmetProvider>
         </ToastsProvider>
       </Provider>
-    </Web3ReactProvider>
+    </Web3Provider>
   )
 }
 

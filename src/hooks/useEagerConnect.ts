@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { connectorLocalStorageKey, ConnectorNames } from '@arborswap/uikit'
 import useAuth from 'hooks/useAuth'
+import { connectionByType } from 'utils/connection'
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
@@ -17,26 +18,13 @@ const _binanceChainListener = async () =>
   )
 
 const useEagerConnect = () => {
-  const { login } = useAuth()
-
   useEffect(() => {
-    const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
-
-    if (connectorId) {
-      const isConnectorBinanceChain = connectorId === ConnectorNames.BSC
-      const isBinanceChainDefined = Reflect.has(window, 'BinanceChain')
-
-      // Currently BSC extension doesn't always inject in time.
-      // We must check to see if it exists, and if not, wait for it before proceeding.
-      if (isConnectorBinanceChain && !isBinanceChainDefined) {
-        _binanceChainListener().then(() => login(connectorId))
-
-        return
-      }
-
-      login(connectorId)
+    const selectedConnector = localStorage.getItem('accountStatus')
+    const { connector } = connectionByType[selectedConnector] ?? { connector: undefined }
+    if (connector?.connectEagerly) {
+      connector.connectEagerly()
     }
-  }, [login])
+  }, [])
 }
 
 export default useEagerConnect

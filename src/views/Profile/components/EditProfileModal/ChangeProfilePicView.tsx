@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, InjectedModalProps, Skeleton, Text } from '@arborswap/uikit'
-import { useWeb3React } from '@web3-react/core'
+// import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { useGetCollectibles } from 'state/collectibles/hooks'
 import { useProfile } from 'state/profile/hooks'
@@ -14,6 +14,7 @@ import { useProfile as useProfileContract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { ToastDescriptionWithTx } from 'components/Toast'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import SelectionCard from '../SelectionCard'
 import ApproveConfirmButtons from '../ApproveConfirmButtons'
 
@@ -29,7 +30,7 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
   const dispatch = useAppDispatch()
   const { profile } = useProfile()
   const profileContract = useProfileContract()
-  const { account, library } = useWeb3React()
+  const { account, library } = useActiveWeb3React()
   const { toastSuccess } = useToast()
   const { callWithGasPrice } = useCallWithGasPrice()
 
