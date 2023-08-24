@@ -123,7 +123,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 100000000
-  console.log(pool, 'pool')
+  // console.log(pool, 'pool')
 
   const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 
