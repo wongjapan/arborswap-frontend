@@ -62,8 +62,10 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, stakedBalance, performanceFee
             fontSize="16px"
             fontWeight="700"
             color="#00783F"
-            isDisabled={isFinished}
-            value={isFinished ? 0 : rate}
+            // isDisabled={isFinished}
+            // isDisabled={isFinished}
+            // value={isFinished ? 0 : rate}
+            value={rate}
             decimals={2}
             unit="%"
           />

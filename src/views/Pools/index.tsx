@@ -252,11 +252,11 @@ const Pools: React.FC = () => {
             </LabelWrapper>
           </FilterContainer>
         </PoolControls>
-        {showFinishedPools && (
+        {/* {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
           </Text>
-        )}
+        )} */}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center" mb="4px">
             <Loading />
