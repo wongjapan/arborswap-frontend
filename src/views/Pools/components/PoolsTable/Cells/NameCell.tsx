@@ -31,7 +31,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isStaked = stakedBalance.gt(0)
-  const isManualCakePool = sousId === 100000000
+  // const isManualCakePool = sousId === 100000000
 
   const showStakedTag = isStaked
 

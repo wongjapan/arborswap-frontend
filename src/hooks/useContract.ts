@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useWeb3React } from '@web3-react/core'
 import {
   getBep20Contract,
   getCakeContract,
@@ -59,32 +60,14 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
   }, [address, ABI, library, withSignerIfPossible, account])
 }
 
-export const useIfoV1Contract = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getIfoV1Contract(address, library.getSigner()), [address, library])
-}
-
-export const useIfoV2Contract = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getIfoV2Contract(address, library.getSigner()), [address, library])
-}
-
 export const useERC20 = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getBep20Contract(address, library.getSigner()), [address, library])
-}
-
-/**
- * @see https://docs.openzeppelin.com/contracts/3.x/api/token/erc721
- */
-export const useERC721 = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getErc721Contract(address, library.getSigner()), [address, library])
+  const { provider } = useWeb3React()
+  return useMemo(() => getBep20Contract(address, provider), [provider, address])
 }
 
 export const useCake = () => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getCakeContract(library.getSigner()), [library])
+  const { provider } = useActiveWeb3React()
+  return useMemo(() => getCakeContract(provider), [provider])
 }
 
 export const useBunnyFactory = () => {
@@ -118,8 +101,8 @@ export const useSousChef = (id) => {
 }
 
 export const useDepositWallet = (id) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getDepositContract(id, library.getSigner()), [id, library])
+  const { provider } = useWeb3React()
+  return useMemo(() => getDepositContract(id, provider), [id, provider])
 }
 
 export const useSousChefV2 = (id) => {
@@ -153,8 +136,8 @@ export const useEasterNftContract = () => {
 }
 
 export const useCakeVaultContract = () => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
+  const { provider } = useActiveWeb3React()
+  return useMemo(() => getCakeVaultContract(provider), [provider])
 }
 
 export const usePredictionsContract = () => {
