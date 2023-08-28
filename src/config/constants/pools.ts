@@ -119,11 +119,11 @@ const pools: PoolConfig[] = [
     earningToken: tokens.rba,
     contractAddress: {
       97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
-      56: '0x23ABF41f7Af16a9C1c9C623C7E4c9DaDeDfC0D3E',
+      56: '0x1a88a6D94d725c75BA868735F1a750774b3aD3c2',
     },
     depositAddress: {
       97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
-      56: '0x329e7DA38d0B0e3a5DccF6eB6FE566c134c9A5e9',
+      56: '0xecC8c82b05DE9708561902397E236c81fd739cEF',
     },
     poolCategory: PoolCategory.CORE,
     isLock: false,
