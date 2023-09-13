@@ -32,8 +32,6 @@ import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 // const Home = lazy(() => import('./views/Home'))
-const Farms = lazy(() => import('./views/Farms'))
-const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
@@ -50,7 +48,6 @@ const App: React.FC = () => {
   usePollBlockNumber()
   useEagerConnect()
   useFetchProfile()
-  usePollCoreFarmData()
 
   return (
     <Router history={history}>
@@ -89,12 +86,6 @@ const App: React.FC = () => {
         <Menu>
           <SuspenseWithChunkError fallback={<PageLoader />}>
             <Switch>
-              <Route exact path="/farms/auction">
-                <FarmAuction />
-              </Route>
-              <Route path="/farms">
-                <Farms />
-              </Route>
               <Route path="/pools">
                 <Pools />
               </Route>
@@ -122,13 +113,6 @@ const App: React.FC = () => {
               <Route path="/staking">
                 <Redirect to="/pools" />
               </Route>
-              <Route path="/syrup">
-                <Redirect to="/pools" />
-              </Route>
-              <Route path="/nft">
-                <Redirect to="/collectibles" />
-              </Route>
-
               {/* 404 */}
               <Route component={NotFound} />
             </Switch>

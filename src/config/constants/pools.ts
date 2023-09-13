@@ -64,7 +64,8 @@ const pools: PoolConfig[] = [
     rate: 2,
     tokenPerBlock: '10',
     sortOrder: 3,
-    isFinished: false,
+    isFinished: true,
+    isDisabled: true,
   },
   {
     sousId: 5,
@@ -86,7 +87,8 @@ const pools: PoolConfig[] = [
     rate: 8,
     tokenPerBlock: '10',
     sortOrder: 3,
-    isFinished: false,
+    isFinished: true,
+    isDisabled: true,
   },
   {
     sousId: 6,
@@ -107,7 +109,77 @@ const pools: PoolConfig[] = [
     rate: 12,
     tokenPerBlock: '10',
     sortOrder: 3,
+    isFinished: true,
+    isDisabled: true,
+  },
+
+  {
+    sousId: 8,
+    stakingToken: tokens.rba,
+    earningToken: tokens.rba,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x1a88a6D94d725c75BA868735F1a750774b3aD3c2',
+    },
+    depositAddress: {
+      97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
+      56: '0xecC8c82b05DE9708561902397E236c81fd739cEF',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: false,
+    lockTime: 365,
+    harvest: true,
+    rate: 2,
+    tokenPerBlock: '10',
+    sortOrder: 3,
     isFinished: false,
+    isDisabled: false,
+  },
+  {
+    sousId: 9,
+    stakingToken: tokens.rba,
+    earningToken: tokens.rba,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x102CFb2fa87781F579A7E3C27B039b105Cedf1ee',
+    },
+    depositAddress: {
+      97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
+      56: '0xbF301687B06deA6094d7B3D462E572381539872c',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 1095,
+    harvest: true,
+
+    rate: 5,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+  },
+  {
+    sousId: 10,
+    stakingToken: tokens.rba,
+    earningToken: tokens.rba,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x4ef29a5Ea779B498c9a9A6911890dd21fF53a2Fd',
+    },
+    depositAddress: {
+      97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
+      56: '0xfBfcE6D74D7ac4eF93f2F5522d7712B4F0c95E17',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 1825,
+    harvest: true,
+
+    rate: 8,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
   },
   {
     sousId: 7,
@@ -132,7 +204,7 @@ const pools: PoolConfig[] = [
     rate: 10, // 10%
     tokenPerBlock: '10', // not important
     sortOrder: 0,
-    isFinished: false,
+    isFinished: true,
   },
 ]
 

@@ -29,8 +29,17 @@ interface StackedActionProps {
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoaded }) => {
-  const { sousId, stakingToken, earningToken, isFinished, poolCategory, userData, stakingTokenPrice, isAutoVault } =
-    pool
+  const {
+    sousId,
+    stakingToken,
+    earningToken,
+    isFinished,
+    isDisabled,
+    poolCategory,
+    userData,
+    stakingTokenPrice,
+    isAutoVault,
+  } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
@@ -64,7 +73,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
-  // console.log(`stakingTokenBalance`, stakingTokenBalance.toString())
   const [onPresentStake] = useModal(
     <StakeModal
       isBnbPool={isBnbPool}
@@ -186,7 +194,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             <IconButton
               variant="secondary"
               onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-              disabled={isFinished}
+              disabled={isFinished || isDisabled}
             >
               <AddIcon color="primary" width="14px" />
             </IconButton>
@@ -212,7 +220,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           width="100%"
           onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
           variant="secondary"
-          disabled={isFinished}
+          disabled={isFinished || isDisabled}
         >
           {t('Stake')}
         </Button>

@@ -28,8 +28,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const { account } = useWeb3React()
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  console.log(earnings, 'earnings')
-  console.log(userData, 'userData')
+  // console.log(earnings, 'earnings')
+  // console.log(userData, 'userData')
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
   const hasEarnings = earnings.gt(0)

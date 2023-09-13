@@ -95,8 +95,8 @@ const Pools: React.FC = () => {
     return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
-  console.log(poolsWithoutAutoVault, 'poolsWithoutAutoVault')
-  console.log(pools, 'pools')
+  // console.log(poolsWithoutAutoVault, 'poolsWithoutAutoVault')
+  // console.log(pools, 'pools')
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
@@ -252,11 +252,11 @@ const Pools: React.FC = () => {
             </LabelWrapper>
           </FilterContainer>
         </PoolControls>
-        {showFinishedPools && (
+        {/* {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
           </Text>
-        )}
+        )} */}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center" mb="4px">
             <Loading />

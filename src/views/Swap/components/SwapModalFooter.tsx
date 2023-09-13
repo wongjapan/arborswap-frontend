@@ -12,7 +12,7 @@ import {
 import { AutoColumn } from 'components/Layout/Column'
 import QuestionHelper from 'components/QuestionHelper'
 import { AutoRow, RowBetween, RowFixed } from 'components/Layout/Row'
-import FormattedPriceImpact from './FormattedPriceImpact'
+// import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
@@ -41,7 +41,7 @@ export default function SwapModalFooter({
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [allowedSlippage, trade],
   )
-  const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
+  const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
   const routeType = trade.route.pairs[0].pairType
   const routeTypeText = routeType === PairType.INTERNAL ? 'Internal' : 'External'

@@ -1,30 +1,19 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import {
-  Box,
-  Flex,
-  HelpIcon,
-  Link,
-  LinkExternal,
-  MetamaskIcon,
-  Skeleton,
-  Text,
-  TimerIcon,
-  useTooltip,
-} from '@arborswap/uikit'
-import { BASE_BSC_SCAN_URL } from 'config'
-import { getBscScanLink } from 'utils'
+import { Box, Flex, HelpIcon, Skeleton, Text, useTooltip } from '@arborswap/uikit'
+// import { BASE_BSC_SCAN_URL } from 'config'
+// import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
+// import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { registerToken } from 'utils/wallet'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { convertSharesToCake, getPoolBlockInfo } from 'views/Pools/helpers'
+// import { registerToken } from 'utils/wallet'
+import { getBalanceNumber } from 'utils/formatBalance'
+import { getPoolBlockInfo } from 'views/Pools/helpers'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import Apr from '../Apr'
@@ -123,7 +112,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 100000000
-  console.log(pool, 'pool')
+  // console.log(pool, 'pool')
 
   const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 

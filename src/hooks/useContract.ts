@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useWeb3React } from '@web3-react/core'
 import {
   getBep20Contract,
   getCakeContract,
@@ -7,15 +8,12 @@ import {
   getBunnySpecialContract,
   getPancakeRabbitContract,
   getProfileContract,
-  getIfoV1Contract,
-  getIfoV2Contract,
   getMasterchefContract,
   getPointCenterIfoContract,
   getSouschefContract,
   getClaimRefundContract,
   getTradingCompetitionContract,
   getEasterNftContract,
-  getErc721Contract,
   getCakeVaultContract,
   getPredictionsContract,
   getChainlinkOracleContract,
@@ -45,36 +43,41 @@ import { getContract } from '../utils'
  * Helper hooks to get specific contracts (by ABI)
  */
 
-export const useIfoV1Contract = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getIfoV1Contract(address, library.getSigner()), [address, library])
-}
+function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
+  const { library, account } = useActiveWeb3React()
 
-export const useIfoV2Contract = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getIfoV2Contract(address, library.getSigner()), [address, library])
+  return useMemo(() => {
+    if (!address || !ABI || !library) return null
+    try {
+      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+    } catch (error) {
+      console.error('Failed to get contract', error)
+      return null
+    }
+  }, [address, ABI, library, withSignerIfPossible, account])
 }
 
 export const useERC20 = (address: string) => {
+  const { provider } = useWeb3React()
   const { library } = useActiveWeb3React()
-  return useMemo(() => getBep20Contract(address, library.getSigner()), [address, library])
-}
 
-/**
- * @see https://docs.openzeppelin.com/contracts/3.x/api/token/erc721
- */
-export const useERC721 = (address: string) => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getErc721Contract(address, library.getSigner()), [address, library])
+  const activeLibrary = library ? library.getSigner() : provider
+  // console.log({ activeLibrary })
+
+  return useMemo(() => getBep20Contract(address, activeLibrary), [activeLibrary, address])
 }
 
 export const useCake = () => {
+  const { provider } = useWeb3React()
   const { library } = useActiveWeb3React()
-  return useMemo(() => getCakeContract(library.getSigner()), [library])
+
+  const activeLibrary = library ? library.getSigner() : provider
+  return useMemo(() => getCakeContract(activeLibrary), [activeLibrary])
 }
 
 export const useBunnyFactory = () => {
   const { library } = useActiveWeb3React()
+
   return useMemo(() => getBunnyFactoryContract(library.getSigner()), [library])
 }
 
@@ -104,13 +107,20 @@ export const useSousChef = (id) => {
 }
 
 export const useDepositWallet = (id) => {
+  const { provider } = useWeb3React()
   const { library } = useActiveWeb3React()
-  return useMemo(() => getDepositContract(id, library.getSigner()), [id, library])
+
+  const activeLibrary = library ? library.getSigner() : provider
+  return useMemo(() => getDepositContract(id, activeLibrary), [id, activeLibrary])
 }
 
 export const useSousChefV2 = (id) => {
+  const { provider } = useWeb3React()
   const { library } = useActiveWeb3React()
-  return useMemo(() => getSouschefV2Contract(id, library.getSigner()), [id, library])
+
+  const activeLibrary = library ? library.getSigner() : provider
+
+  return useMemo(() => getSouschefV2Contract(id, activeLibrary), [id, activeLibrary])
 }
 
 export const usePointCenterIfoContract = () => {
@@ -139,8 +149,8 @@ export const useEasterNftContract = () => {
 }
 
 export const useCakeVaultContract = () => {
-  const { library } = useActiveWeb3React()
-  return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
+  const { provider } = useActiveWeb3React()
+  return useMemo(() => getCakeVaultContract(provider), [provider])
 }
 
 export const usePredictionsContract = () => {
@@ -187,19 +197,6 @@ export const useFarmAuctionContract = () => {
 // Code below migrated from Exchange useContract.ts
 
 // returns null on errors
-function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
-  const { library, account } = useActiveWeb3React()
-
-  return useMemo(() => {
-    if (!address || !ABI || !library) return null
-    try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
-    } catch (error) {
-      console.error('Failed to get contract', error)
-      return null
-    }
-  }, [address, ABI, library, withSignerIfPossible, account])
-}
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(tokenAddress, ERC20_ABI, withSignerIfPossible)
