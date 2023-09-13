@@ -133,7 +133,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '10',
     sortOrder: 3,
     isFinished: false,
-    isDisabled: true,
+    isDisabled: false,
   },
   {
     sousId: 9,
@@ -156,7 +156,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '10',
     sortOrder: 3,
     isFinished: false,
-    isDisabled: true,
+    isDisabled: false,
   },
   {
     sousId: 10,
@@ -179,7 +179,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '10',
     sortOrder: 3,
     isFinished: false,
-    isDisabled: true,
+    isDisabled: false,
   },
   {
     sousId: 7,

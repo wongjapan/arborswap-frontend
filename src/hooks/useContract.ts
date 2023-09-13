@@ -8,15 +8,12 @@ import {
   getBunnySpecialContract,
   getPancakeRabbitContract,
   getProfileContract,
-  getIfoV1Contract,
-  getIfoV2Contract,
   getMasterchefContract,
   getPointCenterIfoContract,
   getSouschefContract,
   getClaimRefundContract,
   getTradingCompetitionContract,
   getEasterNftContract,
-  getErc721Contract,
   getCakeVaultContract,
   getPredictionsContract,
   getChainlinkOracleContract,
@@ -62,16 +59,25 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
 
 export const useERC20 = (address: string) => {
   const { provider } = useWeb3React()
-  return useMemo(() => getBep20Contract(address, provider), [provider, address])
+  const { library } = useActiveWeb3React()
+
+  const activeLibrary = library ? library.getSigner() : provider
+  // console.log({ activeLibrary })
+
+  return useMemo(() => getBep20Contract(address, activeLibrary), [activeLibrary, address])
 }
 
 export const useCake = () => {
-  const { provider } = useActiveWeb3React()
-  return useMemo(() => getCakeContract(provider), [provider])
+  const { provider } = useWeb3React()
+  const { library } = useActiveWeb3React()
+
+  const activeLibrary = library ? library.getSigner() : provider
+  return useMemo(() => getCakeContract(activeLibrary), [activeLibrary])
 }
 
 export const useBunnyFactory = () => {
   const { library } = useActiveWeb3React()
+
   return useMemo(() => getBunnyFactoryContract(library.getSigner()), [library])
 }
 
@@ -102,12 +108,19 @@ export const useSousChef = (id) => {
 
 export const useDepositWallet = (id) => {
   const { provider } = useWeb3React()
-  return useMemo(() => getDepositContract(id, provider), [id, provider])
+  const { library } = useActiveWeb3React()
+
+  const activeLibrary = library ? library.getSigner() : provider
+  return useMemo(() => getDepositContract(id, activeLibrary), [id, activeLibrary])
 }
 
 export const useSousChefV2 = (id) => {
+  const { provider } = useWeb3React()
   const { library } = useActiveWeb3React()
-  return useMemo(() => getSouschefV2Contract(id, library.getSigner()), [id, library])
+
+  const activeLibrary = library ? library.getSigner() : provider
+
+  return useMemo(() => getSouschefV2Contract(id, activeLibrary), [id, activeLibrary])
 }
 
 export const usePointCenterIfoContract = () => {
