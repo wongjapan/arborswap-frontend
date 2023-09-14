@@ -8,6 +8,20 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/',
   },
   {
+    label: t('Launchpad'),
+    icon: 'LaunchpadIcon',
+    items: [
+      {
+        label: t('Pools'),
+        href: 'http://protocol.arborswap.org/launchpad/pools',
+      },
+      {
+        label: t('Create Sale'),
+        href: 'http://protocol.arborswap.org/launchpad/create-sale',
+      },
+    ],
+  },
+  {
     label: t('Locker'),
     icon: 'PoolIcon',
     items: [
@@ -37,7 +51,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Create Airdrop'),
         href: 'https://protocol.arborswap.org/airdropper/create-airdrop',
-      }
+      },
     ],
   },
   {
