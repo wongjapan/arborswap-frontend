@@ -25,7 +25,7 @@ const StyledCell = styled(BaseCell)`
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault } = pool
+  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault, isMembership } = pool
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
 
@@ -44,7 +44,12 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     subtitle = t('Automatic restaking')
   }
 
-  const src = `https://raw.githubusercontent.com/urrbn/arbor-assets/master/images/${stakingToken.address[56]}.png`
+  if (isMembership) {
+    // title = t('Membership')
+    subtitle = `${t('Stake')} ${stakingTokenSymbol} (${t('Membership')})`
+  }
+
+  const src = `https://raw.githubusercontent.com/wongjapan/arbor-assets/master/images/${stakingToken.address[56]}.png`
 
   return (
     <StyledCell role="cell">

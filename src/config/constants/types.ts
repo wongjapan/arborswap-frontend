@@ -82,6 +82,8 @@ export interface PoolConfig {
   harvest?: boolean
   isFinished?: boolean
   isDisabled?: boolean
+  isMembership?: boolean
+  membershipAddress?: Address
   enableEmergencyWithdraw?: boolean
 }
 
