@@ -68,6 +68,11 @@ const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.
 export const getBep20Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(bep20Abi, address, signer)
 }
+
+export const getMembershipContract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(erc721Abi, address, signer)
+}
+
 export const getErc721Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(erc721Abi, address, signer)
 }

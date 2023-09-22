@@ -13,6 +13,7 @@ import {
   fetchUserStakeBalances,
   fetchUserPendingRewards,
   fetchUserUnlockTimes,
+  fetchUserNFT,
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
@@ -87,13 +88,13 @@ export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => 
 export const fetchPoolsUserDataAsync =
   (account: string): AppThunk =>
   async (dispatch) => {
-  
     const allowances = await fetchPoolsAllowance(account)
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
     const unlockTimes = await fetchUserUnlockTimes(account)
-   console.log(stakedBalances, 'stakedBalances')
+    const nftBalances = await fetchUserNFT(account)
+    //  console.log(stakedBalances, 'stakedBalances')
 
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
@@ -102,7 +103,10 @@ export const fetchPoolsUserDataAsync =
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
       unlockTime: unlockTimes[pool.sousId],
+      nftBalance: nftBalances[pool.sousId],
     }))
+
+    // console.log(userData, 'userData')
 
     dispatch(setPoolsUserData(userData))
   }
@@ -179,6 +183,7 @@ export const PoolsSlice = createSlice({
       })
       state.userDataLoaded = true
     },
+
     updatePoolsUserData: (state, action) => {
       const { field, value, sousId } = action.payload
       const index = state.data.findIndex((p) => p.sousId === sousId)

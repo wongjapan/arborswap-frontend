@@ -51,6 +51,7 @@ export interface Pool extends PoolConfig {
     stakedBalance: BigNumber
     pendingReward: BigNumber
     unlockTime?: number
+    nftBalance?: BigNumber
   }
 }
 

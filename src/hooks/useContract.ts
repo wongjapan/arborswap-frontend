@@ -24,6 +24,7 @@ import {
   getFarmAuctionContract,
   getBunnySpecialLotteryContract,
   getDepositContract,
+  getMembershipContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 
@@ -65,6 +66,16 @@ export const useERC20 = (address: string) => {
   // console.log({ activeLibrary })
 
   return useMemo(() => getBep20Contract(address, activeLibrary), [activeLibrary, address])
+}
+
+export const useMembership = (address: string) => {
+  const { provider } = useWeb3React()
+  const { library } = useActiveWeb3React()
+
+  const activeLibrary = library ? library.getSigner() : provider
+  // console.log({ activeLibrary })
+
+  return useMemo(() => getMembershipContract(address, activeLibrary), [activeLibrary, address])
 }
 
 export const useCake = () => {

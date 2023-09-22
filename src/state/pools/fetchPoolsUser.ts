@@ -16,7 +16,8 @@ const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
 const lockPools = poolsConfig.filter((p) => p.isLock === true && p.sousId !== 7)
 const normalPools = poolsConfig.filter((p) => p.isLock !== true && p.sousId !== 7)
 const ttnPools = poolsConfig.filter((p) => p.sousId === 7)
-
+const membershipPools = poolsConfig.filter((p) => p.isMembership === true)
+const nonMembershipPools = poolsConfig.filter((p) => p.isMembership === false)
 export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
     address: getAddress(p.stakingToken.address),
@@ -52,6 +53,27 @@ export const fetchUserBalances = async (account) => {
   )
 
   return { ...tokenBalances, ...bnbBalances }
+}
+
+export const fetchUserNFT = async (account) => {
+  // Non RBA pools
+  const calls = membershipPools.map((p) => ({
+    address: getAddress(p.membershipAddress),
+    name: 'balanceOf',
+    params: [account],
+  }))
+  const nftBalancesRaw = await multicall(erc20ABI, calls)
+  const nftBalances = membershipPools.reduce(
+    (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(nftBalancesRaw[index]).toJSON() }),
+    {},
+  )
+
+  const nonNftBalances = nonMembershipPools.reduce(
+    (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(0).toJSON() }),
+    {},
+  )
+
+  return { ...nftBalances, ...nonNftBalances }
 }
 
 export const fetchUserStakeBalances = async (account) => {
@@ -100,7 +122,7 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances}
+  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances }
 }
 
 export const fetchUserUnlockTimes = async (account) => {
@@ -109,7 +131,7 @@ export const fetchUserUnlockTimes = async (account) => {
     name: 'staker',
     params: [account],
   }))
-  
+
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'startTime',
@@ -152,8 +174,6 @@ export const fetchUserUnlockTimes = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  
-
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'getTotalRewards',

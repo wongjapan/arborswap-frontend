@@ -162,7 +162,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={`https://raw.githubusercontent.com/urrbn/arbor-assets/master/images/${getAddress(
+            src={`https://raw.githubusercontent.com/wongjapan/arbor-assets/master/images/${getAddress(
               stakingToken.address,
             )}.png`}
             width={24}

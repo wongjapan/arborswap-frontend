@@ -107,8 +107,7 @@ const InfoSection = styled(Box)`
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded, expanded, breakpoints }) => {
   const { sousId, stakingToken, earningToken, totalStaked, contractAddress, userData, isAutoVault } = pool
   const { t } = useTranslation()
-  const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getCakeVaultAddress()
+
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 100000000
@@ -116,7 +115,6 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 
-  const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
 
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
