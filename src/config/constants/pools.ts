@@ -206,6 +206,157 @@ const pools: PoolConfig[] = [
     sortOrder: 0,
     isFinished: true,
   },
+  // mangaai
+  {
+    sousId: 11,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0xC7969e56fA827edC07b6a3E251650E6d3f2EDbCC',
+    },
+    depositAddress: {
+      97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
+      56: '0xDeB98A10Ac02903a891663F5c8c16a37A0a98C28',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: false,
+    lockTime: 1825,
+    harvest: true,
+    rate: 2,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+  },
+
+  {
+    sousId: 12,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x45069e7De24Df27e67a165Dd48Eb7A937ff4dC26',
+    },
+    depositAddress: {
+      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      56: '0xDeB98A10Ac02903a891663F5c8c16a37A0a98C28',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 30,
+    harvest: true,
+    rate: 4,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+  },
+
+  {
+    sousId: 13,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x9Ef01ee26fE89B48e0A470d0dbd473eB71BC2769',
+    },
+    depositAddress: {
+      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      56: '0x3e1e5369e37114C060d933773fEc8ba0d9e7Bad9',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 180,
+    harvest: true,
+    rate: 6,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+  },
+  // mangaai membership
+
+  {
+    sousId: 14,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0xd1Eb809f3cF7b446BBFEc50b01224bB65d150C03',
+    },
+    depositAddress: {
+      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      56: '0x48eefeD680d8ec28156F644c988460e8E83Ab9DA',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: false,
+    lockTime: 180,
+    harvest: true,
+    rate: 3,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+    isMembership: true,
+    membershipAddress: {
+      56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+    },
+  },
+
+  {
+    sousId: 15,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0xf7fb8f49d47e8BeC9fA167a4d80C9f5a4C4C3322',
+    },
+    depositAddress: {
+      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      56: '0x23e46B164812dd6eC0eee4321a83BB528866Fc11',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 30,
+    harvest: true,
+    rate: 6,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+    isMembership: true,
+    membershipAddress: {
+      56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+    },
+  },
+
+  {
+    sousId: 16,
+    stakingToken: tokens.mangaai,
+    earningToken: tokens.mangaai,
+    contractAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0xa49f4E30d25F59e757C497191c698B512b0Cfef3',
+    },
+    depositAddress: {
+      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      56: '0x89E5167006aA8704F40a220bC6f4ea20703972c3',
+    },
+    poolCategory: PoolCategory.CORE,
+    isLock: true,
+    lockTime: 180,
+    harvest: true,
+    rate: 8,
+    tokenPerBlock: '10',
+    sortOrder: 3,
+    isFinished: false,
+    isDisabled: false,
+    isMembership: true,
+    membershipAddress: {
+      56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+    },
+  },
 ]
 
 export default pools
