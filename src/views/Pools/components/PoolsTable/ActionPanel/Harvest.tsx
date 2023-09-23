@@ -23,13 +23,15 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   userData,
   userDataLoaded,
   earningTokenPrice,
+  isDisabled,
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  // console.log(earnings, 'earnings')
-  // console.log(userData, 'userData')
+  const multiplier = isDisabled ? 2 : 1
+
+  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward).multipliedBy(multiplier) : BIG_ZERO
+
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
   const hasEarnings = earnings.gt(0)

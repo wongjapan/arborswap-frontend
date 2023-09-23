@@ -149,7 +149,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   const unlockDate = dayjs().add(pool.lockTime, 'day').format('YYYY-MM-DD')
   // console.log(`unlockDate`, unlockDate)
-   console.log(`stakingToken.address`, stakingToken.address)
+  console.log(`stakingToken.address`, stakingToken.address)
 
   return (
     <Modal
@@ -158,6 +158,17 @@ const StakeModal: React.FC<StakeModalProps> = ({
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
+      {isRemovingStake ? (
+        <Flex alignItems="center" justifyContent="space-between" mb="20px">
+          <Text color="" textAlign="center" bold>
+            You are about to unstake. <br />
+            You will lose access to your rewards if you do this. <br />
+            Please harvest before unstaking !
+          </Text>
+        </Flex>
+      ) : (
+        <></>
+      )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
