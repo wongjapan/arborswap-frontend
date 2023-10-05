@@ -25,6 +25,7 @@ import {
   getBunnySpecialLotteryContract,
   getDepositContract,
   getMembershipContract,
+  getRewardContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 
@@ -123,6 +124,14 @@ export const useDepositWallet = (id) => {
 
   const activeLibrary = library ? library.getSigner() : provider
   return useMemo(() => getDepositContract(id, activeLibrary), [id, activeLibrary])
+}
+
+export const useRewardWallet = (id) => {
+  const { provider } = useWeb3React()
+  const { library } = useActiveWeb3React()
+
+  const activeLibrary = library ? library.getSigner() : provider
+  return useMemo(() => getRewardContract(id, activeLibrary), [id, activeLibrary])
 }
 
 export const useSousChefV2 = (id) => {

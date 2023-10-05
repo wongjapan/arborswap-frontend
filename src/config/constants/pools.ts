@@ -92,6 +92,11 @@ const pools: PoolConfig[] = [
     isFinished: true,
     isDisabled: true,
     isMembership: false,
+    isCustomReward: true,
+    customRewardAddress: {
+      56: '0x8AB3D24862eB222D318065a5f6988aF5F018628D',
+      97: '0x8AB3D24862eB222D318065a5f6988aF5F018628D',
+    },
   },
   {
     sousId: 6,
@@ -115,6 +120,11 @@ const pools: PoolConfig[] = [
     isFinished: true,
     isDisabled: true,
     isMembership: false,
+    isCustomReward: true,
+    customRewardAddress: {
+      56: '0x5ce09D4428137ca813CCa24C4E2CDBfe9615DC9B',
+      97: '0x5ce09D4428137ca813CCa24C4E2CDBfe9615DC9B',
+    },
   },
 
   {

@@ -13,6 +13,7 @@ import {
   fetchUserStakeBalances,
   fetchUserPendingRewards,
   fetchUserUnlockTimes,
+  fetchUserWithdrawnRewards,
   fetchUserNFT,
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
@@ -92,6 +93,7 @@ export const fetchPoolsUserDataAsync =
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
+    const withdrawnRewards = await fetchUserWithdrawnRewards(account)
     const unlockTimes = await fetchUserUnlockTimes(account)
     const nftBalances = await fetchUserNFT(account)
     //  console.log(stakedBalances, 'stakedBalances')
@@ -102,6 +104,7 @@ export const fetchPoolsUserDataAsync =
       stakingTokenBalance: stakingTokenBalances[pool.sousId],
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
+      withdrawnReward: withdrawnRewards[pool.sousId],
       unlockTime: unlockTimes[pool.sousId],
       nftBalance: nftBalances[pool.sousId],
     }))

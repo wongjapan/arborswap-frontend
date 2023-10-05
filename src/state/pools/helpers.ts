@@ -10,6 +10,7 @@ type UserData =
       stakingTokenBalance: number | string
       stakedBalance: number | string
       pendingReward: number | string
+      withdrawnReward: number | string
       unlockTime: number | string
       nftBalance: number | string
     }
@@ -20,6 +21,7 @@ export const transformUserData = (userData: UserData) => {
     stakingTokenBalance: userData ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO,
     stakedBalance: userData ? new BigNumber(userData.stakedBalance) : BIG_ZERO,
     pendingReward: userData ? new BigNumber(userData.pendingReward) : BIG_ZERO,
+    withdrawnReward: userData ? new BigNumber(userData.withdrawnReward) : BIG_ZERO,
     unlockTime: userData ? Number(userData.unlockTime) : 0,
     nftBalance: userData ? new BigNumber(userData.nftBalance) : BIG_ZERO,
   }

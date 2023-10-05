@@ -160,7 +160,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     >
       {isRemovingStake ? (
         <Flex alignItems="center" justifyContent="space-between" mb="20px">
-          <Text color="" textAlign="center" bold>
+          <Text textAlign="center" bold>
             You are about to unstake. <br />
             You will lose access to your rewards if you do this. <br />
             Please harvest before unstaking !

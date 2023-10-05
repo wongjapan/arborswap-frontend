@@ -44,6 +44,7 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import normalStake from 'config/abi/normalStake.json'
 import depositWallet from 'config/abi/stakeTreasury.json'
+import rewardWallet from 'config/abi/newReward.json'
 import lockStake from 'config/abi/lockStake.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
@@ -101,6 +102,12 @@ export const getDepositContract = (id: number, signer?: ethers.Signer | ethers.p
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const abi = depositWallet
   return getContract(abi, getAddress(config.depositAddress), signer)
+}
+
+export const getRewardContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const config = poolsConfig.find((pool) => pool.sousId === id)
+  const abi = rewardWallet
+  return getContract(abi, getAddress(config.customRewardAddress), signer)
 }
 
 export const getSouschefV2Contract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
