@@ -26,6 +26,7 @@ const ttnPools = poolsConfig.filter((p) => p.sousId === 7)
 const membershipPools = poolsConfig.filter((p) => p.isMembership === true)
 const nonMembershipPools = poolsConfig.filter((p) => p.isMembership === false)
 const customRewardPools = poolsConfig.filter((p) => p.isCustomReward === true)
+console.log(lockPoolsWithoutCustom)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
@@ -229,13 +230,15 @@ export const fetchUserPendingRewards = async (account) => {
 
   const resLock = await multicall(lockStakeABI, lockCalls)
 
-  const pendingLockRewards = lockPools.reduce(
+  const pendingLockRewards = lockPoolsWithoutCustom.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(resLock[index]).toJSON(),
     }),
     {},
   )
+
+  console.log({ pendingLockRewards })
 
   const ttnRes = await multicall(ttnStakeABI, ttnCalls)
 
