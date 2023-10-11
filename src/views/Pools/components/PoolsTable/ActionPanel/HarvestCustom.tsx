@@ -31,10 +31,20 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   const multiplier = isDisabled ? 1 : 1
 
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward).multipliedBy(multiplier) : BIG_ZERO
+  const earningsBefore = userData?.pendingReward
+    ? new BigNumber(userData.pendingReward).multipliedBy(multiplier)
+    : BIG_ZERO
+  const withdrawn = userData?.withdrawnReward ? new BigNumber(userData.withdrawnReward) : BIG_ZERO
+  const hasEarnings = earningsBefore.gt(withdrawn)
+
+  const earnings = hasEarnings ? earningsBefore.minus(withdrawn) : withdrawn.minus(earningsBefore)
+
+  const earned = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
+  const withdrawnTokenBalance = getBalanceNumber(withdrawn, earningToken.decimals)
   const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
-  const hasEarnings = earnings.gt(0)
+  // const hasEarnings = earnings.gt(0)
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isCompoundPool = sousId === 100000000
@@ -109,7 +119,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
+                <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={earningTokenBalance} prefix="-" />
                 <Text fontSize="12px" color="textDisabled">
                   0 USD
                 </Text>

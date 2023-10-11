@@ -15,6 +15,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
 import Harvest from './Harvest'
+import HarvestCustom from './HarvestCustom'
 import Stake from './Stake'
 import Apr from '../Apr'
 
@@ -105,10 +106,10 @@ const InfoSection = styled(Box)`
 `
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded, expanded, breakpoints }) => {
-  const { sousId, stakingToken, earningToken, totalStaked, contractAddress, userData, isAutoVault } = pool
+  const { sousId, stakingToken, earningToken, totalStaked, contractAddress, userData, isAutoVault, isCustomReward } =
+    pool
   const { t } = useTranslation()
-  const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getCakeVaultAddress()
+
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 100000000
@@ -116,7 +117,6 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const { shouldShowBlockCountdown } = getPoolBlockInfo(pool, currentBlock)
 
-  const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
 
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
@@ -208,7 +208,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
-        <Harvest {...pool} userDataLoaded={userDataLoaded} />
+        {isCustomReward ? (
+          <HarvestCustom {...pool} userDataLoaded={userDataLoaded} />
+        ) : (
+          <Harvest {...pool} userDataLoaded={userDataLoaded} />
+        )}
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>
     </StyledActionPanel>

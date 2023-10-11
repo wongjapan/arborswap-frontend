@@ -12,7 +12,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
-import { useERC20 } from 'hooks/useContract'
+import { useERC20, useMembership } from 'hooks/useContract'
 import { convertSharesToCake } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
@@ -39,11 +39,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
+    isMembership,
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
+
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useApprovePool(
     stakingTokenContract,
     sousId,
@@ -55,10 +57,16 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     useVaultApprove(setLastUpdated)
 
   const handleApprove = isAutoVault ? handleVaultApprove : handlePoolApprove
+
+  const handleBuyNFT = () => {
+    window.open(stakingToken.projectLink, '_blank')
+  }
+
   const requestedApproval = isAutoVault ? requestedVaultApproval : requestedPoolApproval
 
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
+  const nftBalance = userData?.nftBalance ? new BigNumber(userData.nftBalance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isNotVaultAndHasStake = !isAutoVault && stakedBalance.gt(0)
 
@@ -72,6 +80,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
+  const needBuyNFT = !nftBalance.gt(0)
+
+  // console.log({ userData })
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
   const [onPresentStake] = useModal(
     <StakeModal
@@ -108,7 +119,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const reachStakingLimit = false
   const unlockDate = dayjs(userData.unlockTime * 1000).format('YYYY-MM-DD')
   // console.log(`unlocktime =`, unlockDate)
-  const isEnableToUnstake = userData.unlockTime < Math.floor(Date.now() / 1000)
+
+  const isUnlockTime = userData.unlockTime < Math.floor(Date.now() / 1000)
+
+  // const isEnableToUnstake = isMembership ? isUnlockTime && !needBuyNFT : isUnlockTime
+  const isEnableToUnstake = isUnlockTime
+
   if (!account) {
     return (
       <ActionContainer>
@@ -137,6 +153,25 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
         </ActionContent>
       </ActionContainer>
     )
+  }
+
+  if (isMembership) {
+    if (needBuyNFT) {
+      return (
+        <ActionContainer>
+          <ActionTitles>
+            <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+              {t('Enable pool')}
+            </Text>
+          </ActionTitles>
+          <ActionContent>
+            <Button width="100%" onClick={handleBuyNFT} variant="secondary">
+              {t('Mint NFT to Enable')}
+            </Button>
+          </ActionContent>
+        </ActionContainer>
+      )
+    }
   }
 
   if (needsApproval) {

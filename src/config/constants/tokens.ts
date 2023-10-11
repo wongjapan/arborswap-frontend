@@ -121,7 +121,7 @@ const tokens = {
     symbol: 'MANGA',
     address: {
       56: '0xda022bf4402f3edf32b02356056400e8d7ef5522',
-      97: '0x083295D160A243D0A850Bc75E317e1c56f935EA9',
+      97: '0x3e1e5369e37114C060d933773fEc8ba0d9e7Bad9',
       159: '0xFAe063159b4d83d8491271a165eECa5632E4c288',
     },
     decimals: 18,

@@ -1,6 +1,7 @@
 import poolsConfig from 'config/constants/pools'
 import normalStakeABI from 'config/abi/normalStake.json'
 import lockStakeABI from 'config/abi/lockStake.json'
+import customRewardABI from 'config/abi/newReward.json'
 import ttnStakeABI from 'config/abi/ttnStakeAbi.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
@@ -15,7 +16,17 @@ const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 100000000)
 const lockPools = poolsConfig.filter((p) => p.isLock === true && p.sousId !== 7)
 const normalPools = poolsConfig.filter((p) => p.isLock !== true && p.sousId !== 7)
+const lockPoolsWithoutCustom = poolsConfig.filter(
+  (p) => p.isLock === true && p.sousId !== 7 && p.isCustomReward !== true,
+)
+const normalPoolsWithoutCustom = poolsConfig.filter(
+  (p) => p.isLock !== true && p.sousId !== 7 && p.isCustomReward !== true,
+)
 const ttnPools = poolsConfig.filter((p) => p.sousId === 7)
+const membershipPools = poolsConfig.filter((p) => p.isMembership === true)
+const nonMembershipPools = poolsConfig.filter((p) => p.isMembership === false)
+const customRewardPools = poolsConfig.filter((p) => p.isCustomReward === true)
+console.log(lockPoolsWithoutCustom)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
@@ -52,6 +63,27 @@ export const fetchUserBalances = async (account) => {
   )
 
   return { ...tokenBalances, ...bnbBalances }
+}
+
+export const fetchUserNFT = async (account) => {
+  // Non RBA pools
+  const calls = membershipPools.map((p) => ({
+    address: getAddress(p.membershipAddress),
+    name: 'balanceOf',
+    params: [account],
+  }))
+  const nftBalancesRaw = await multicall(erc20ABI, calls)
+  const nftBalances = membershipPools.reduce(
+    (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(nftBalancesRaw[index]).toJSON() }),
+    {},
+  )
+
+  const nonNftBalances = nonMembershipPools.reduce(
+    (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(0).toJSON() }),
+    {},
+  )
+
+  return { ...nftBalances, ...nonNftBalances }
 }
 
 export const fetchUserStakeBalances = async (account) => {
@@ -100,7 +132,7 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances}
+  return { ...stakedBalances, ...lockStakedBalances, ...TtnStakedBalances }
 }
 
 export const fetchUserUnlockTimes = async (account) => {
@@ -109,7 +141,7 @@ export const fetchUserUnlockTimes = async (account) => {
     name: 'staker',
     params: [account],
   }))
-  
+
   const normalCalls = normalPools.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'startTime',
@@ -152,16 +184,20 @@ export const fetchUserUnlockTimes = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  
-
-  const normalCalls = normalPools.map((p) => ({
+  const normalCalls = normalPoolsWithoutCustom.map((p) => ({
     address: getAddress(p.contractAddress),
     name: 'getTotalRewards',
     params: [account],
   }))
 
-  const lockCalls = lockPools.map((p) => ({
+  const lockCalls = lockPoolsWithoutCustom.map((p) => ({
     address: getAddress(p.contractAddress),
+    name: 'getTotalRewards',
+    params: [account],
+  }))
+
+  const customCall = customRewardPools.map((p) => ({
+    address: getAddress(p.customRewardAddress),
     name: 'getTotalRewards',
     params: [account],
   }))
@@ -174,6 +210,8 @@ export const fetchUserPendingRewards = async (account) => {
 
   const res = await multicall(normalStakeABI, normalCalls)
 
+  const resCustom = await multicall(customRewardABI, customCall)
+
   const pendingRewards = normalPools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -181,15 +219,26 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
+
+  const pendingCustomRewards = customRewardPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(resCustom[index]).toJSON(),
+    }),
+    {},
+  )
+
   const resLock = await multicall(lockStakeABI, lockCalls)
 
-  const pendingLockRewards = lockPools.reduce(
+  const pendingLockRewards = lockPoolsWithoutCustom.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(resLock[index]).toJSON(),
     }),
     {},
   )
+
+  console.log({ pendingLockRewards })
 
   const ttnRes = await multicall(ttnStakeABI, ttnCalls)
 
@@ -200,5 +249,25 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
-  return { ...pendingRewards, ...pendingLockRewards, ...ttnPendingRewards }
+  return { ...pendingRewards, ...pendingLockRewards, ...ttnPendingRewards, ...pendingCustomRewards }
+}
+
+export const fetchUserWithdrawnRewards = async (account) => {
+  const customCall = customRewardPools.map((p) => ({
+    address: getAddress(p.customRewardAddress),
+    name: 'userWithdrawn',
+    params: [account],
+  }))
+
+  const resCustom = await multicall(customRewardABI, customCall)
+
+  const pendingCustomRewards = customRewardPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(resCustom[index]).toJSON(),
+    }),
+    {},
+  )
+
+  return { ...pendingCustomRewards }
 }

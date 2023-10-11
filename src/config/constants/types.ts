@@ -85,6 +85,8 @@ export interface PoolConfig {
   isMembership?: boolean
   membershipAddress?: Address
   enableEmergencyWithdraw?: boolean
+  isCustomReward?: boolean
+  customRewardAddress?: Address
 }
 
 export type Images = {

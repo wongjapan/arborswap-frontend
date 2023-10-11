@@ -44,6 +44,7 @@ const pools: PoolConfig[] = [
   //   sortOrder: 2,
   //   isFinished: false,
   // },
+
   {
     sousId: 4,
     stakingToken: tokens.rba,
@@ -66,6 +67,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: true,
     isDisabled: true,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+    },
   },
   {
     sousId: 5,
@@ -89,6 +96,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: true,
     isDisabled: true,
+    isMembership: false,
+    isCustomReward: true,
+    customRewardAddress: {
+      56: '0x8AB3D24862eB222D318065a5f6988aF5F018628D',
+      97: '0x8AB3D24862eB222D318065a5f6988aF5F018628D',
+    },
   },
   {
     sousId: 6,
@@ -111,6 +124,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: true,
     isDisabled: true,
+    isMembership: false,
+    isCustomReward: true,
+    customRewardAddress: {
+      56: '0x5ce09D4428137ca813CCa24C4E2CDBfe9615DC9B',
+      97: '0x5ce09D4428137ca813CCa24C4E2CDBfe9615DC9B',
+    },
   },
 
   {
@@ -134,6 +153,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x1a88a6D94d725c75BA868735F1a750774b3aD3c2',
+    },
   },
   {
     sousId: 9,
@@ -151,12 +176,17 @@ const pools: PoolConfig[] = [
     isLock: true,
     lockTime: 1095,
     harvest: true,
-
     rate: 5,
     tokenPerBlock: '10',
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x102CFb2fa87781F579A7E3C27B039b105Cedf1ee',
+    },
   },
   {
     sousId: 10,
@@ -174,12 +204,17 @@ const pools: PoolConfig[] = [
     isLock: true,
     lockTime: 1825,
     harvest: true,
-
     rate: 8,
     tokenPerBlock: '10',
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      56: '0x4ef29a5Ea779B498c9a9A6911890dd21fF53a2Fd',
+    },
   },
   {
     sousId: 7,
@@ -205,18 +240,25 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '10', // not important
     sortOrder: 0,
     isFinished: true,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+      56: '0xCC2542b84bB6168bC4D54768C9AA33b5728686AE',
+    },
   },
+
   // mangaai
   {
     sousId: 11,
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0x8f6fb2fE5ce98aCaC253fc006431436031da480C',
       56: '0xC7969e56fA827edC07b6a3E251650E6d3f2EDbCC',
     },
     depositAddress: {
-      97: '0x13200e54d7c97FD4879fBeFfA4d1b1344568615b',
+      97: '0xc31Fe3840566A2800dd699dd0225c82DB16778EE',
       56: '0xDeB98A10Ac02903a891663F5c8c16a37A0a98C28',
     },
     poolCategory: PoolCategory.CORE,
@@ -228,6 +270,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x8f6fb2fE5ce98aCaC253fc006431436031da480C',
+      56: '0xC7969e56fA827edC07b6a3E251650E6d3f2EDbCC',
+    },
   },
 
   {
@@ -235,11 +283,11 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0x94A2f402d4cfD2d8d5be3038FEBb02a8D9803Bb9',
       56: '0x45069e7De24Df27e67a165Dd48Eb7A937ff4dC26',
     },
     depositAddress: {
-      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      97: '0xE809fa365A699E290d1336031431704f9547b9B1',
       56: '0xDeB98A10Ac02903a891663F5c8c16a37A0a98C28',
     },
     poolCategory: PoolCategory.CORE,
@@ -251,6 +299,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x94A2f402d4cfD2d8d5be3038FEBb02a8D9803Bb9',
+      56: '0x45069e7De24Df27e67a165Dd48Eb7A937ff4dC26',
+    },
   },
 
   {
@@ -258,11 +312,11 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0x06cF875Ea81C8da6Efcb450BB58901126eD18ae9',
       56: '0x9Ef01ee26fE89B48e0A470d0dbd473eB71BC2769',
     },
     depositAddress: {
-      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      97: '0xB381c5a18957cd32956FCe730aeD248E9971A08E',
       56: '0x3e1e5369e37114C060d933773fEc8ba0d9e7Bad9',
     },
     poolCategory: PoolCategory.CORE,
@@ -274,6 +328,12 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
     isDisabled: false,
+    isMembership: false,
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0x06cF875Ea81C8da6Efcb450BB58901126eD18ae9',
+      56: '0x9Ef01ee26fE89B48e0A470d0dbd473eB71BC2769',
+    },
   },
   // mangaai membership
 
@@ -282,11 +342,11 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0xaF2c078bC3F497520AB289F0D161B6cc351ab529',
       56: '0xd1Eb809f3cF7b446BBFEc50b01224bB65d150C03',
     },
     depositAddress: {
-      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      97: '0xAC5C6501CfC4D1dfe543E3f73714ACE5EF9BDd46',
       56: '0x48eefeD680d8ec28156F644c988460e8E83Ab9DA',
     },
     poolCategory: PoolCategory.CORE,
@@ -301,6 +361,12 @@ const pools: PoolConfig[] = [
     isMembership: true,
     membershipAddress: {
       56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+      97: '0x9655B935A84E2E99370a0c4eC6eF42387A2eaC18',
+    },
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0xaF2c078bC3F497520AB289F0D161B6cc351ab529',
+      56: '0xd1Eb809f3cF7b446BBFEc50b01224bB65d150C03',
     },
   },
 
@@ -309,11 +375,11 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0xcc0b7a70e376AaEbE9c2500064977a325e7dD9e9',
       56: '0xf7fb8f49d47e8BeC9fA167a4d80C9f5a4C4C3322',
     },
     depositAddress: {
-      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      97: '0x92B16Ab01B35FDB9E5df3Fe1f6029cD3D2AE49D8',
       56: '0x23e46B164812dd6eC0eee4321a83BB528866Fc11',
     },
     poolCategory: PoolCategory.CORE,
@@ -328,6 +394,12 @@ const pools: PoolConfig[] = [
     isMembership: true,
     membershipAddress: {
       56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+      97: '0x9655B935A84E2E99370a0c4eC6eF42387A2eaC18',
+    },
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0xcc0b7a70e376AaEbE9c2500064977a325e7dD9e9',
+      56: '0xf7fb8f49d47e8BeC9fA167a4d80C9f5a4C4C3322',
     },
   },
 
@@ -336,11 +408,11 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.mangaai,
     earningToken: tokens.mangaai,
     contractAddress: {
-      97: '0x1B6C17ab5347F9085222a6866691DE221f05372E',
+      97: '0xa39b756C2a68054Aa88BCB46914BE06f6748Ef75',
       56: '0xa49f4E30d25F59e757C497191c698B512b0Cfef3',
     },
     depositAddress: {
-      97: '0x0582767aFBf340da2d98a12D8873A8345754735E',
+      97: '0x12cB498cE9Fe54413774f8638EC5cB262aDA1804',
       56: '0x89E5167006aA8704F40a220bC6f4ea20703972c3',
     },
     poolCategory: PoolCategory.CORE,
@@ -355,6 +427,12 @@ const pools: PoolConfig[] = [
     isMembership: true,
     membershipAddress: {
       56: '0x26B4C58DD868CC3Fb6aD27292A9509Af5ce5B9Ca',
+      97: '0x9655B935A84E2E99370a0c4eC6eF42387A2eaC18',
+    },
+    isCustomReward: false,
+    customRewardAddress: {
+      97: '0xa39b756C2a68054Aa88BCB46914BE06f6748Ef75',
+      56: '0xa49f4E30d25F59e757C497191c698B512b0Cfef3',
     },
   },
 ]
