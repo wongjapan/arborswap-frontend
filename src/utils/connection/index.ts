@@ -48,7 +48,7 @@ export const [web3WalletConnectV2, web3WalletConnectHooksV2] = initializeConnect
       actions,
       options: {
         projectId: process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID,
-        chains: [ChainId.MAINNET],
+        chains: [ChainId.ROBURNA],
         showQrModal: true,
       },
       onError,

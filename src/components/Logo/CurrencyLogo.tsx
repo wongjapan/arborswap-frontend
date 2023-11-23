@@ -24,7 +24,7 @@ export default function CurrencyLogo({
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
-    if (currency === ETHER) return []
+    if (currency === ETHER) return [getTokenLogoURL('rba')]
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
@@ -35,9 +35,9 @@ export default function CurrencyLogo({
     return []
   }, [currency, uriLocations])
 
-  if (currency === ETHER) {
-    return <BinanceIcon width={size} style={style} />
-  }
+  // if (currency === ETHER) {
+  //   return <BinanceIcon width={size} style={style} />
+  // }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
 }

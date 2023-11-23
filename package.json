@@ -22,7 +22,7 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@arborswap/sdk": "wongjapan/arborswap-sdk-mainnet",
+    "@arborswap/sdk": "wongjapan/arborswap-sdk-rba#b6dde38",
     "@arborswap/uikit": "^0.51.5",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
