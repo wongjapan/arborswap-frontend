@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Link } from '@arborswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import FooterContact from './Footer/FooterContact';
+import FooterContact from './Footer/FooterContact'
 import SubscriptionForm from './Footer/SubscriptionForm'
 import FooterBg from '../assets/footer-bg.png'
 import LogoWhite from '../assets/logo-white.svg'
@@ -11,16 +11,16 @@ const WrapperUp = styled.div`
   background-image: url(${FooterBg});
   background-size: cover;
   @media (min-width: 768px) and (max-width: 1024px) {
-    background-color: #F5F6F7;
+    background-color: #f5f6f7;
   }
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    background-color: #F5F6F7;
+    background-color: #f5f6f7;
   }
   @media (min-width: 481px) and (max-width: 767px) {
-    background-color: #F5F6F7;
+    background-color: #f5f6f7;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    background-color: #F5F6F7;
+    background-color: #f5f6f7;
   }
 `
 const Wrapper = styled(Flex)`
@@ -31,16 +31,15 @@ const Wrapper = styled(Flex)`
   overflow: hidden;
   background: transparent;
   @media (min-width: 768px) and (max-width: 1024px) {
-
   }
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-      display:grid;
+    display: grid;
   }
   @media (min-width: 481px) and (max-width: 767px) {
-      display:grid;
+    display: grid;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-      display:grid;
+    display: grid;
   }
 `
 
@@ -60,21 +59,21 @@ const WrapperInner = styled(Flex)`
     display: grid;
     grid-template-columns: 100%;
     padding: 20px 40px;
-    align-item:center;
+    align-item: center;
   }
   @media (min-width: 481px) and (max-width: 767px) {
     width: 100%;
     display: grid;
     grid-template-columns: 100%;
     padding: 20px 40px;
-    align-item:center;
+    align-item: center;
   }
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
     display: grid;
     grid-template-columns: 100%;
     padding: 20px 40px;
-    align-item:center;
+    align-item: center;
   }
 `
 const FirstColumn = styled(Flex)`
@@ -100,13 +99,10 @@ const ProductColumn = styled(Flex)`
   flex-direction: column;
   gap: 20px;
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
   }
   @media (min-width: 481px) and (max-width: 767px) {
-
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    
   }
 `
 const SearchTxt = styled.div`
@@ -117,7 +113,7 @@ const SearchTxt = styled.div`
   font-size: 20px;
   line-height: 150%;
   letter-spacing: 0.02em;
-  color: #FAF3E8;
+  color: #faf3e8;
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     text-align: center;
     font-size: 15px;
@@ -141,7 +137,7 @@ const MenuTitle = styled.div`
   line-height: 120%;
   text-align: left;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     font-size: 20px;
   }
@@ -159,12 +155,11 @@ const LinkEx = styled(Link)`
   font-size: 18px;
   line-height: 120%;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
 `
 const FooterLogo = styled.img`
   width: 260px;
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
   }
   @media (min-width: 481px) and (max-width: 767px) {
     width: 220px;
@@ -174,7 +169,6 @@ const FooterLogo = styled.img`
     width: 220px;
     margin: auto;
   }
-
 `
 
 const Footer = () => {
@@ -186,30 +180,41 @@ const Footer = () => {
           <WrapperInner>
             <FirstColumn>
               <FooterLogo src={LogoWhite} alt="white" />
-              <SearchTxt>
-                Want to join Arbor on this new Journey?
-              </SearchTxt>
+              <SearchTxt>Want to join Arbor on this new Journey?</SearchTxt>
               <SubscriptionForm />
             </FirstColumn>
             <SecondColumn>
               <ProductColumn>
-                  <MenuTitle>Products</MenuTitle>
-                  <LinkEx href="/swap" >Exchange</LinkEx>
-                  <LinkEx href="/pools" target='_blank' >Staking</LinkEx>
-                  <LinkEx href="https://protocol.arborswap.org/airdropper/airdrops" target='_blank' >Airdrop</LinkEx>
-                  <LinkEx href="https://protocol.arborswap.org/locked-assets" target='_blank' >Lock</LinkEx>
+                <MenuTitle>Products</MenuTitle>
+                <LinkEx href="/swap">Exchange</LinkEx>
+                <LinkEx href="/pools" target="_blank">
+                  Staking
+                </LinkEx>
+                <LinkEx href="https://protocol.arborswap.org/airdropper/airdrops" target="_blank">
+                  Airdrop
+                </LinkEx>
+                <LinkEx href="https://protocol.arborswap.org/locked-assets" target="_blank">
+                  Lock
+                </LinkEx>
               </ProductColumn>
               <ProductColumn>
-                  <MenuTitle>Resources</MenuTitle>
-                  <LinkEx href="https://arborswap.gitbook.io/product-docs/introducing/arborswap" target='_blank' >Docs</LinkEx>
-                  <LinkEx href="https://arborswap.gitbook.io/product-docs/arborswap-dex/exchange-a-token" target='_blank' >User Guides</LinkEx>
-                  <LinkEx href="/roadmap" >Roadmap</LinkEx>
-                  <LinkEx href="/applylisting" >Apply Listing</LinkEx>
+                <MenuTitle>Resources</MenuTitle>
+                <LinkEx href="https://arborswap.gitbook.io/product-docs/introducing/arborswap" target="_blank">
+                  Docs
+                </LinkEx>
+                <LinkEx
+                  href="https://drive.google.com/file/d/1AnVa8m4sIHg_C7NtyvJLQpCnreq3hsSI/view?usp=sharing"
+                  target="_blank"
+                >
+                  User Guides
+                </LinkEx>
+                <LinkEx href="/roadmap">Roadmap</LinkEx>
+                <LinkEx href="/applylisting">Apply Listing</LinkEx>
               </ProductColumn>
             </SecondColumn>
           </WrapperInner>
-        </Wrapper>  
-        <FooterContact /> {/* Footer Contact Component */} 
+        </Wrapper>
+        <FooterContact /> {/* Footer Contact Component */}
       </WrapperUp>
     </>
   )
